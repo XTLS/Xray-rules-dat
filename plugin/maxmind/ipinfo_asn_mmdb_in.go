@@ -119,6 +119,10 @@ func (i *IPInfoASNMMDBIn) generateEntries(content []byte, entries map[string]*li
 	}
 	defer db.Close()
 
+	if err := db.Verify(); err != nil {
+		return err
+	}
+
 	for network := range db.Networks() {
 		var record ipInfoLite
 		if err := network.Decode(&record); err != nil {

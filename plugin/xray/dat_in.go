@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"net"
+	"net/netip"
 	"os"
 	"strings"
 
@@ -178,8 +178,16 @@ func (g *GeoIPDatIn) generateEntries(reader io.Reader, entries map[string]*lib.E
 		}
 
 		for _, xrayCIDR := range geoip.Cidr {
-			ipStr := net.IP(xrayCIDR.GetIp()).String() + "/" + fmt.Sprint(xrayCIDR.GetPrefix())
-			if err := entry.AddPrefix(ipStr); err != nil {
+			ip := xrayCIDR.GetIp()
+			bits := xrayCIDR.GetPrefix()
+			addr, ok := netip.AddrFromSlice(ip)
+			if !ok {
+				return fmt.Errorf("invalid IP in list %s: %x", name, ip)
+			}
+			if addr.Is4In6() && bits <= 32 {
+				addr = addr.Unmap()
+			}
+			if err := entry.AddPrefix(netip.PrefixFrom(addr, int(bits))); err != nil {
 				return err
 			}
 		}

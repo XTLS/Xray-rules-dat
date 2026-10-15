@@ -17,7 +17,10 @@ import (
 
 func TestCountryMMDBIncludesMissingCountries(t *testing.T) {
 	for _, inputType := range []string{TypeGeoLite2CountryMMDBIn, TypeDBIPCountryMMDBIn, TypeIPInfoCountryMMDBIn} {
-		writer, err := mmdbwriter.New(mmdbwriter.Options{DatabaseType: "Country-Test", IPVersion: 4, IncludeReservedNetworks: true})
+		writer, err := mmdbwriter.New(mmdbwriter.Options{
+			DatabaseType: "Country-Test", IPVersion: 4, IncludeReservedNetworks: true,
+			Description: map[string]string{"en": "Country test fixture"}, Languages: []string{"en"},
+		})
 		if err != nil {
 			t.Fatal(err)
 		}
