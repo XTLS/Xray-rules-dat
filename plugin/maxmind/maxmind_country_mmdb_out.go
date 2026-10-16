@@ -3,6 +3,7 @@ package maxmind
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"net"
 	"os"
@@ -89,13 +90,13 @@ func (g *GeoLite2CountryMMDBOut) Output(container lib.Container) error {
 		},
 	)
 	if err != nil {
-		return err
+		return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 	}
 
 	// Get extra info
 	extraInfo, err := g.GetExtraInfo()
 	if err != nil {
-		return err
+		return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 	}
 
 	updated := false
@@ -107,14 +108,16 @@ func (g *GeoLite2CountryMMDBOut) Output(container lib.Container) error {
 		}
 
 		if err := g.marshalData(writer, entry, extraInfo); err != nil {
-			return err
+			return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 		}
 
 		updated = true
 	}
 
 	if updated {
-		return g.writeFile(g.OutputName, writer)
+		if err := g.writeFile(g.OutputName, writer); err != nil {
+			return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
+		}
 	}
 
 	return nil

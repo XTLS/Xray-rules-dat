@@ -3,6 +3,7 @@ package xray
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -45,7 +46,7 @@ func newGeoIPDatOut(action lib.Action, data json.RawMessage) (lib.OutputConverte
 
 	if len(data) > 0 {
 		if err := json.Unmarshal(data, &tmp); err != nil {
-			return nil, err
+			return nil, fmt.Errorf("❌ [type %s | action %s] %w", TypeGeoIPDatOut, action, err)
 		}
 	}
 
@@ -96,7 +97,7 @@ func (g *GeoIPDatOut) GetDescription() string {
 
 func (g *GeoIPDatOut) Output(container lib.Container) error {
 	geoIPList := new(GeoIPList)
-	geoIPList.Entry = make([]*GeoIP, 0, 300)
+	geoIPList.Entry = make([]*GeoIP, 0, container.Len())
 	updated := false
 
 	for _, name := range g.filterAndSortList(container) {
@@ -108,7 +109,7 @@ func (g *GeoIPDatOut) Output(container lib.Container) error {
 
 		geoIP, err := g.generateGeoIP(entry)
 		if err != nil {
-			return err
+			return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 		}
 		geoIPList.Entry = append(geoIPList.Entry, geoIP)
 		updated = true
@@ -116,12 +117,12 @@ func (g *GeoIPDatOut) Output(container lib.Container) error {
 		if g.OneFilePerList {
 			geoIPBytes, err := proto.Marshal(geoIPList)
 			if err != nil {
-				return err
+				return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 			}
 
 			filename := strings.ToLower(entry.GetName()) + ".dat"
 			if err := g.writeFile(filename, geoIPBytes); err != nil {
-				return err
+				return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 			}
 
 			geoIPList.Entry = nil
@@ -134,10 +135,10 @@ func (g *GeoIPDatOut) Output(container lib.Container) error {
 
 		geoIPBytes, err := proto.Marshal(geoIPList)
 		if err != nil {
-			return err
+			return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 		}
 		if err := g.writeFile(g.OutputName, geoIPBytes); err != nil {
-			return err
+			return fmt.Errorf("❌ [type %s | action %s] %w", g.Type, g.Action, err)
 		}
 	}
 

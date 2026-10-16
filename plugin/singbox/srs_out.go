@@ -3,6 +3,7 @@ package singbox
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -43,7 +44,7 @@ func newSRSOut(action lib.Action, data json.RawMessage) (lib.OutputConverter, er
 
 	if len(data) > 0 {
 		if err := json.Unmarshal(data, &tmp); err != nil {
-			return nil, err
+			return nil, fmt.Errorf("❌ [type %s | action %s] %w", TypeSRSOut, action, err)
 		}
 	}
 
@@ -93,7 +94,7 @@ func (s *SRSOut) Output(container lib.Container) error {
 		}
 
 		if err := s.generate(entry); err != nil {
-			return err
+			return fmt.Errorf("❌ [type %s | action %s] %w", s.Type, s.Action, err)
 		}
 	}
 

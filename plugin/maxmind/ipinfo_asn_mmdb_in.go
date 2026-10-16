@@ -33,7 +33,7 @@ func newIPInfoASNMMDBIn(action lib.Action, data json.RawMessage) (lib.InputConve
 
 	if len(data) > 0 {
 		if err := json.Unmarshal(data, &tmp); err != nil {
-			return nil, err
+			return nil, fmt.Errorf("❌ [type %s | action %s] %w", TypeIPInfoASNMMDBIn, action, err)
 		}
 	}
 
@@ -80,16 +80,16 @@ func (i *IPInfoASNMMDBIn) Input(container lib.Container) (lib.Container, error) 
 		content, err = os.ReadFile(i.URI)
 	}
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("❌ [type %s | action %s] %w", i.Type, i.Action, err)
 	}
 
 	entries := make(map[string]*lib.Entry)
 	if err := i.generateEntries(content, entries); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("❌ [type %s | action %s] %w", i.Type, i.Action, err)
 	}
 
 	if len(entries) == 0 {
-		return nil, fmt.Errorf("[type %s | action %s] no entry is generated", i.Type, i.Action)
+		return nil, fmt.Errorf("❌ [type %s | action %s] no entry is generated", i.Type, i.Action)
 	}
 
 	ignoreIPType := lib.GetIgnoreIPType(i.OnlyIPType)
@@ -98,14 +98,14 @@ func (i *IPInfoASNMMDBIn) Input(container lib.Container) (lib.Container, error) 
 		switch i.Action {
 		case lib.ActionAdd:
 			if err := container.Add(entry, ignoreIPType); err != nil {
-				return nil, err
+				return nil, fmt.Errorf("❌ [type %s | action %s] %w", i.Type, i.Action, err)
 			}
 		case lib.ActionRemove:
 			if err := container.Remove(entry, lib.CaseRemovePrefix, ignoreIPType); err != nil {
-				return nil, err
+				return nil, fmt.Errorf("❌ [type %s | action %s] %w", i.Type, i.Action, err)
 			}
 		default:
-			return nil, lib.ErrUnknownAction
+			return nil, fmt.Errorf("❌ [type %s | action %s] %w", i.Type, i.Action, lib.ErrUnknownAction)
 		}
 	}
 

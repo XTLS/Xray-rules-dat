@@ -3,6 +3,8 @@ package maxmind
 import (
 	"bytes"
 	"net"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/maxmind/mmdbwriter"
@@ -67,6 +69,10 @@ func TestMMDBRejectsCorruptSeparator(t *testing.T) {
 	if verificationErr == nil {
 		t.Fatal("corrupt fixture passed verification")
 	}
+	file := filepath.Join(t.TempDir(), "corrupt.mmdb")
+	if err := os.WriteFile(file, data, 0600); err != nil {
+		t.Fatal(err)
+	}
 	for _, kind := range []string{TypeGeoLite2CountryMMDBIn, TypeDBIPCountryMMDBIn, TypeIPInfoCountryMMDBIn, TypeIPInfoASNMMDBIn} {
 		t.Run(kind, func(t *testing.T) {
 			entries := make(map[string]*lib.Entry)
@@ -81,4 +87,11 @@ func TestMMDBRejectsCorruptSeparator(t *testing.T) {
 			}
 		})
 	}
+	t.Run("output source", func(t *testing.T) {
+		output := &GeoLite2CountryMMDBOut{Type: TypeIPInfoCountryMMDBOut, SourceMMDBURI: file}
+		info, err := output.GetExtraInfo()
+		if err == nil || err.Error() != verificationErr.Error() || len(info) != 0 {
+			t.Fatalf("corrupt output source returned %v, %v; want %v", info, err, verificationErr)
+		}
+	})
 }
