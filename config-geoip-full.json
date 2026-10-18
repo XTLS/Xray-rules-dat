@@ -9,6 +9,38 @@
       }
     },
     {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "in-ir",
+        "uri": "./tmp/geoip-in/ir.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "in-ru",
+        "uri": "./tmp/geoip-in/ru.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ir",
+        "uri": "./tmp/geoip-in/blacklist-ir.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ru",
+        "uri": "./tmp/geoip-in/blacklist-ru.txt"
+      }
+    },
+    {
       "type": "ipinfoCountryMMDB",
       "action": "add",
       "args": {

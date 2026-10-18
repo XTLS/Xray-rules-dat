@@ -46,6 +46,171 @@
         "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt",
         "onlyIPType": "ipv6"
       }
+    },
+    {
+      "type": "ipinfoCountryMMDB",
+      "action": "add",
+      "args": {
+        "uri": "./ipinfo/ipinfo_lite.mmdb",
+        "wantedList": [
+          "ir",
+          "ru"
+        ]
+      }
+    },
+    {
+      "type": "ipinfoASNMMDB",
+      "action": "add",
+      "args": {
+        "uri": "./ipinfo/ipinfo_lite.mmdb",
+        "wantedList": {
+          "ir": [
+            "AS202798",
+            "AS210877"
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://www.arvancloud.ir/en/ips.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://api.derak.cloud/public/ipv4"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://api.derak.cloud/public/ipv6"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://ips.f95.com/ip.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "ipOrCIDR": [
+          "10.202.10.102",
+          "10.202.10.202",
+          "10.202.10.10",
+          "10.202.10.11",
+          "172.29.0.100",
+          "172.29.2.100"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ir",
+        "ipOrCIDR": [
+          "10.10.34.0/24",
+          "2001:4188:2:600:10:10:34:34",
+          "2001:4188:2:600:10:10:34:35",
+          "2001:4188:2:600:10:10:34:36",
+          "216.239.38.120",
+          "216.239.38.119",
+          "2001:4860:4802:32::78",
+          "2001:4860:4802:32::77",
+          "93.115.151.123",
+          "87.107.132.83",
+          "52.250.41.2",
+          "213.180.193.56",
+          "204.79.197.220",
+          "185.130.45.94",
+          "162.62.116.251",
+          "162.62.115.144"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ru",
+        "uri": "https://raw.githubusercontent.com/hxehex/russia-mobile-internet-whitelist/refs/heads/main/cidrwhitelist.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ru",
+        "uri": "https://antifilter.download/list/ipresolve.lst"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ru",
+        "uri": "https://antifilter.download/list/subnet.lst"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ru",
+        "uri": "https://community.antifilter.download/list/community.lst"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ru",
+        "uri": "https://raw.githubusercontent.com/1andrevich/Re-filter-lists/refs/heads/main/ipsum.lst"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "blacklist-ru",
+        "ipOrCIDR": [
+          "2001:67c:4e8::/48",
+          "2001:b28:f23c::/47",
+          "2001:b28:f23f::/48",
+          "2a0a:f280::/32",
+          "91.105.192.0/23",
+          "91.108.4.0/22",
+          "91.108.8.0/21",
+          "91.108.16.0/21",
+          "91.108.56.0/22",
+          "95.161.64.0/20",
+          "149.154.160.0/20",
+          "185.76.151.0/24"
+        ]
+      }
     }
   ],
   "output": [
@@ -55,7 +220,11 @@
       "args": {
         "outputDir": "./tmp/geoip-in",
         "wantedList": [
-          "cn"
+          "cn",
+          "ir",
+          "ru",
+          "blacklist-ir",
+          "blacklist-ru"
         ]
       }
     }
