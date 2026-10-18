@@ -1,55 +1,19 @@
 {
   "input": [
     {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "in-cn",
+        "uri": "./tmp/geoip-in/cn.txt"
+      }
+    },
+    {
       "type": "ipinfoCountryMMDB",
       "action": "add",
       "args": {
         "uri": "./ipinfo/ipinfo_lite.mmdb",
         "includeAllCountries": true
-      }
-    },
-    {
-      "type": "cutter",
-      "action": "remove",
-      "args": {
-        "wantedList": ["cn"],
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/zhufengme/block_cn_files/refs/heads/master/cn_ip_list.txt",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/misakaio/chnroutes2/refs/heads/master/chnroutes.txt",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt",
-        "onlyIPType": "ipv6"
       }
     },
     {
@@ -106,7 +70,10 @@
       "args": {
         "name": "google",
         "uri": "https://www.gstatic.com/ipranges/goog.json",
-        "jsonPath": ["prefixes.#.ipv4Prefix", "prefixes.#.ipv6Prefix"]
+        "jsonPath": [
+          "prefixes.#.ipv4Prefix",
+          "prefixes.#.ipv6Prefix"
+        ]
       }
     },
     {
@@ -115,7 +82,10 @@
       "args": {
         "name": "google",
         "uri": "https://www.gstatic.com/ipranges/cloud.json",
-        "jsonPath": ["prefixes.#.ipv4Prefix", "prefixes.#.ipv6Prefix"]
+        "jsonPath": [
+          "prefixes.#.ipv4Prefix",
+          "prefixes.#.ipv6Prefix"
+        ]
       }
     },
     {
@@ -124,7 +94,10 @@
       "args": {
         "name": "fastly",
         "uri": "https://api.fastly.com/public-ip-list",
-        "jsonPath": ["addresses", "ipv6_addresses"]
+        "jsonPath": [
+          "addresses",
+          "ipv6_addresses"
+        ]
       }
     },
     {
@@ -159,8 +132,18 @@
             "AS13335",
             "AS132892"
           ],
-          "facebook": ["AS63293", "AS54115", "AS34825", "AS32934", "AS149642"],
-          "fastly": ["AS895", "AS54113", "AS394192"],
+          "facebook": [
+            "AS63293",
+            "AS54115",
+            "AS34825",
+            "AS32934",
+            "AS149642"
+          ],
+          "fastly": [
+            "AS895",
+            "AS54113",
+            "AS394192"
+          ],
           "google": [
             "AS6432",
             "AS55023",
@@ -206,9 +189,25 @@
             "AS139190",
             "AS139070"
           ],
-          "netflix": ["AS55095", "AS40027", "AS394406", "AS2906"],
-          "telegram": ["AS62041", "AS62014", "AS59930", "AS44907", "AS211157"],
-          "twitter": ["AS63179", "AS54888", "AS35995", "AS13414"]
+          "netflix": [
+            "AS55095",
+            "AS40027",
+            "AS394406",
+            "AS2906"
+          ],
+          "telegram": [
+            "AS62041",
+            "AS62014",
+            "AS59930",
+            "AS44907",
+            "AS211157"
+          ],
+          "twitter": [
+            "AS63179",
+            "AS54888",
+            "AS35995",
+            "AS13414"
+          ]
         }
       }
     },
@@ -224,44 +223,6 @@
       "args": {
         "outputDir": "./output",
         "outputName": "geoip.dat"
-      }
-    },
-    {
-      "type": "xrayGeoIPDat",
-      "action": "output",
-      "args": {
-        "outputDir": "./output",
-        "outputName": "geoip-only-cn-private.dat",
-        "wantedList": ["cn", "private"]
-      }
-    },
-    {
-      "type": "xrayGeoIPDat",
-      "action": "output",
-      "args": {
-        "outputDir": "./output",
-        "outputName": "geoip-asn.dat",
-        "wantedList": [
-          "anycast",
-          "cloudflare",
-          "cloudfront",
-          "facebook",
-          "fastly",
-          "google",
-          "netflix",
-          "telegram",
-          "twitter",
-          "tor"
-        ]
-      }
-    },
-    {
-      "type": "xrayGeoIPDat",
-      "action": "output",
-      "args": {
-        "outputDir": "./output",
-        "oneFilePerList": true,
-        "wantedList": ["cn", "private"]
       }
     },
     {
@@ -284,35 +245,11 @@
       "action": "output"
     },
     {
-      "type": "text",
-      "action": "output",
-      "args": {
-        "outputDir": "./output/nginx/allow",
-        "outputExtension": ".conf",
-        "addPrefixInLine": "allow ",
-        "addSuffixInLine": ";"
-      }
-    },
-    {
-      "type": "text",
-      "action": "output",
-      "args": {
-        "outputDir": "./output/nginx/deny",
-        "outputExtension": ".conf",
-        "addPrefixInLine": "deny ",
-        "addSuffixInLine": ";"
-      }
-    },
-    {
       "type": "clashRuleSetClassical",
       "action": "output"
     },
     {
       "type": "clashRuleSet",
-      "action": "output"
-    },
-    {
-      "type": "surgeRuleSet",
       "action": "output"
     }
   ]

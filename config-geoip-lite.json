@@ -1,0 +1,229 @@
+{
+  "input": [
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "in-cn",
+        "uri": "./tmp/geoip-in/cn.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cn",
+        "uri": "./tmp/geoip-in/cn.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "tor",
+        "uri": "https://check.torproject.org/torbulkexitlist"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cloudflare",
+        "uri": "https://www.cloudflare.com/ips-v4"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cloudflare",
+        "uri": "https://www.cloudflare.com/ips-v6"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "telegram",
+        "uri": "https://core.telegram.org/resources/cidr.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "anycast",
+        "uri": "https://raw.githubusercontent.com/bgptools/anycast-prefixes/refs/heads/master/anycatch-v4-prefixes.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "anycast",
+        "uri": "https://raw.githubusercontent.com/bgptools/anycast-prefixes/refs/heads/master/anycatch-v6-prefixes.txt"
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "google",
+        "uri": "https://www.gstatic.com/ipranges/goog.json",
+        "jsonPath": [
+          "prefixes.#.ipv4Prefix",
+          "prefixes.#.ipv6Prefix"
+        ]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "google",
+        "uri": "https://www.gstatic.com/ipranges/cloud.json",
+        "jsonPath": [
+          "prefixes.#.ipv4Prefix",
+          "prefixes.#.ipv6Prefix"
+        ]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "fastly",
+        "uri": "https://api.fastly.com/public-ip-list",
+        "jsonPath": [
+          "addresses",
+          "ipv6_addresses"
+        ]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "cloudfront",
+        "uri": "https://ip-ranges.amazonaws.com/ip-ranges.json",
+        "jsonPath": [
+          "prefixes.#(service==\"CLOUDFRONT\")#.ip_prefix",
+          "ipv6_prefixes.#(service==\"CLOUDFRONT\")#.ipv6_prefix"
+        ]
+      }
+    },
+    {
+      "type": "ipinfoASNMMDB",
+      "action": "add",
+      "args": {
+        "uri": "./ipinfo/ipinfo_lite.mmdb",
+        "wantedList": {
+          "cloudflare": [
+            "AS402542",
+            "AS400095",
+            "AS395747",
+            "AS394536",
+            "AS209242",
+            "AS203898",
+            "AS202623",
+            "AS14789",
+            "AS139242",
+            "AS133877",
+            "AS13335",
+            "AS132892"
+          ],
+          "facebook": [
+            "AS63293",
+            "AS54115",
+            "AS34825",
+            "AS32934",
+            "AS149642"
+          ],
+          "fastly": [
+            "AS895",
+            "AS54113",
+            "AS394192"
+          ],
+          "google": [
+            "AS6432",
+            "AS55023",
+            "AS45566",
+            "AS43515",
+            "AS41264",
+            "AS40873",
+            "AS396982",
+            "AS396178",
+            "AS395973",
+            "AS394639",
+            "AS394507",
+            "AS394089",
+            "AS36987",
+            "AS36561",
+            "AS36520",
+            "AS36492",
+            "AS36411",
+            "AS36385",
+            "AS36384",
+            "AS36383",
+            "AS36040",
+            "AS36039",
+            "AS33715",
+            "AS32381",
+            "AS26910",
+            "AS26684",
+            "AS22859",
+            "AS22577",
+            "AS214611",
+            "AS214609",
+            "AS209539",
+            "AS209519",
+            "AS209504",
+            "AS19527",
+            "AS19448",
+            "AS19425",
+            "AS16591",
+            "AS16550",
+            "AS15169",
+            "AS151231",
+            "AS13949",
+            "AS139190",
+            "AS139070"
+          ],
+          "netflix": [
+            "AS55095",
+            "AS40027",
+            "AS394406",
+            "AS2906"
+          ],
+          "telegram": [
+            "AS62041",
+            "AS62014",
+            "AS59930",
+            "AS44907",
+            "AS211157"
+          ],
+          "twitter": [
+            "AS63179",
+            "AS54888",
+            "AS35995",
+            "AS13414"
+          ]
+        }
+      }
+    },
+    {
+      "type": "private",
+      "action": "add"
+    }
+  ],
+  "output": [
+    {
+      "type": "xrayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputDir": "./output",
+        "outputName": "geoip-lite.dat"
+      }
+    }
+  ]
+}
