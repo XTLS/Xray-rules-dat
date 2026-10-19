@@ -3,7 +3,7 @@ name: Build and release rule files
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [trigger]
+    types: [trigger-release]
   schedule:
     # 18:00 UTC = 02:00 the next day in China (Asia/Shanghai, UTC+8)
     #           = 21:30 in Iran (Asia/Tehran, UTC+3:30)
@@ -47,7 +47,7 @@ jobs:
 
       - name: Prepare release directory
         run: |
-          mkdir -p ./output
+          mkdir -p ./output/geoip ./output/geosite
 
       # GeoIP
       - name: Record GeoIP source commit
@@ -89,7 +89,7 @@ jobs:
         run: ./geoip convert -c ./config-geoip-full.json
 
       - name: Collect GeoIP outputs
-        run: mv ./geoip/output/* ./output/
+        run: mv ./geoip/output/* ./output/geoip/
 
       # GeoSite (TODO)
       - name: Download upstream GeoSite placeholder
@@ -97,7 +97,7 @@ jobs:
         run: |
           curl --fail --location --retry 3 \
             "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat" \
-            --output ./output/geosite.dat
+            --output ./output/geosite/geosite.dat
           echo "source=v2fly/domain-list-community dlc.dat (temporary upstream download)" >> "$GITHUB_OUTPUT"
 
       # Publish
@@ -146,13 +146,13 @@ jobs:
           git -C ./output remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git -C ./output push --force --set-upstream origin release
 
-      - name: Purge jsDelivr cache for root files
+      - name: Purge jsDelivr cache for GeoIP and GeoSite root files
         continue-on-error: true
         run: |
-          for file in ./output/*; do
+          for file in ./output/*/*; do
             [ -f "$file" ] || continue
             curl --fail --location --max-time 30 \
-              "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@release/${file##*/}" \
+              "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@release/${file#./output/}" \
               --output /dev/null || true
           done
 
@@ -176,7 +176,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           files=()
-          for file in ./output/*; do
+          for file in ./output/*/*; do
             [ -f "$file" ] || continue
             files+=("$file")
           done
