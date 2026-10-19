@@ -14,7 +14,7 @@ This project therefore introduces regional `in-*` sets as direct-connection allo
 
 Original country classifications have their own use cases. For example, when configuring egress nodes in multiple countries or territories, users may want to select a node based on the destination IP's country. Use ordinary country codes for this purpose; use `in-*` sets for the routing needs of your current environment.
 
-The full `geoip.dat` therefore keeps both types of data: ordinary country codes use IPInfo Lite's original classifications, while `in-*` entries contain the regional sets. Regional customizations do not overwrite the original country classifications.
+The full `geoip-full.dat` therefore keeps both types of data: ordinary country codes use IPInfo Lite's original classifications, while `in-*` entries contain the regional sets. Regional customizations do not overwrite the original country classifications.
 
 The lite `geoip-lite.dat` does not include complete country classifications and is not suitable for choosing egress nodes by destination IP country. The ordinary country codes it retains are only aliases for the regional sets, provided for compatibility with established community usage.
 
@@ -74,7 +74,7 @@ go run . convert -c config-geoip-full.json
 
 The first step generates temporary text files for the regional sets and blocklists in `./tmp/geoip-in/`. Both lite and full read these files directly. After the first step, lite and full can run independently or in either order. Do not clean the directories between these three steps.
 
-The lite build outputs only `./output/geoip-lite.dat`. The full build outputs `./output/geoip.dat` and generates the following files for each category:
+The lite build outputs only `./output/geoip-lite.dat`. The full build outputs `./output/geoip-full.dat` and generates the following files for each category:
 
 | Output directory         | Format                  |
 | ------------------------ | ----------------------- |
