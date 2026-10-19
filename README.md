@@ -1,52 +1,54 @@
 # GeoIP
 
-本仓库基于 IPInfo Lite 构建 GeoIP 数据，提供原始国家和地区分类、面向不同分流环境的地区定制集合及公共分类，支持 Xray、sing-box、Clash 等应用。
+English | [简体中文](./README_zh-Hans.md) | [Русский](./README_ru-RU.md) | [فارسی](./README_fa-IR.md)
 
-## 设计理念
+This repository builds GeoIP data from IPInfo Lite. It provides original country and territory classifications, regional sets tailored to different routing environments, and common categories for applications such as Xray, sing-box, and Clash.
 
-GeoIP 数据的覆盖程度会直接影响分流效果。在国际多出口分流场景下，MaxMind 的地址覆盖未能满足要求，因此采用 IPInfo Lite 作为原始国家和地区分类的数据基线，并单列 anycast，避免按国家分流造成绕路。
+## Design
 
-目标 IP 的国家归属与用户所处环境的分流需求，是两个不同的问题。国家分类回答的是“这个目标 IP 归属于哪个国家或地区”；对于中国大陆、伊朗、俄罗斯等分流环境，用户还需要回答“身处这个国家或地区时，哪些目标地址应当采用相应的路由策略”。仅凭目标地址的国家归属，无法完整表达这类需求。
+The coverage of GeoIP data directly affects routing decisions. For international routing across multiple egress nodes, MaxMind's address coverage did not meet the project's requirements. IPInfo Lite is therefore used as the baseline for original country and territory classifications, with anycast addresses listed separately to avoid detours caused by country-based routing.
 
-因此，本项目引入 `in-*` 地区定制集合，作为相应地区的直连白名单。`in-cn`、`in-ir`、`in-ru` 等分别面向对应地区的分流环境，依据当地的访问条件和分流需求整理。例如，某些海外服务、Telegram、Twitter 或 CDN 地址在当地可以直接、高效地访问，就可以按当地需求纳入相应集合；特殊需求下也可能包含私有地址。
+The country associated with a destination IP and the routing needs of the user's environment are two different questions. Country classifications answer “Which country or territory does this destination IP belong to?” In routing environments such as mainland China, Iran, and Russia, users also need to answer “While in this country or territory, which destination addresses should follow a particular routing policy?” The destination's country classification alone cannot fully express these requirements.
 
-原始国家分类也有独立用途。例如，配置多个国家或地区的出口节点时，用户可能需要按照目标 IP 的国家归属选择节点。此时应使用普通国家码；`in-*` 集合则用于匹配当前所在环境的分流需求。
+This project therefore introduces regional `in-*` sets as direct-connection allowlists for their respective regions. Sets such as `in-cn`, `in-ir`, and `in-ru` are tailored to local access conditions and routing needs. For example, addresses for overseas services, Telegram, Twitter, or CDNs may be included when they can be accessed directly and efficiently from that region. Private addresses may also be included for specific requirements.
 
-完整版 `geoip.dat` 因此同时保留这两类数据：普通国家码采用 IPInfo Lite 原始分类，`in-*` 承载地区定制集合，定制数据不会改写原始国家分类。
+Original country classifications have their own use cases. For example, when configuring egress nodes in multiple countries or territories, users may want to select a node based on the destination IP's country. Use ordinary country codes for this purpose; use `in-*` sets for the routing needs of your current environment.
 
-精简版 `geoip-lite.dat` 不含完整国家分类，不适用于按目标 IP 的国家归属选择出口节点。它保留的普通国家码仅是地区定制集合的别名，用于兼容社区旧有的使用习惯。
+The full `geoip.dat` therefore keeps both types of data: ordinary country codes use IPInfo Lite's original classifications, while `in-*` entries contain the regional sets. Regional customizations do not overwrite the original country classifications.
 
-两个版本均包含 IPv4 和 IPv6 数据。
+The lite `geoip-lite.dat` does not include complete country classifications and is not suitable for choosing egress nodes by destination IP country. The ordinary country codes it retains are only aliases for the regional sets, provided for compatibility with established community usage.
 
-## 地区定制集合
+Both versions include IPv4 and IPv6 data.
 
-### 中国大陆：`in-cn`
+## Regional sets
 
-`in-cn` 表示适用于中国大陆分流环境的直连白名单。
+### Mainland China: `in-cn`
 
-IPv4 合并以下三个来源，不加入 IPInfo Lite 原始 CN IPv4：
+`in-cn` is a direct-connection allowlist for routing from mainland China.
+
+IPv4 data combines the following three sources, without adding IPInfo Lite's original CN IPv4 data:
 
 - zhufengme/block_cn_files
 - misakaio/chnroutes2
-- gaoyifan/china-operator-ip 的 china.txt
+- china.txt from gaoyifan/china-operator-ip
 
-IPv6 合并 IPInfo Lite 原始 CN IPv6 与 gaoyifan/china-operator-ip 的 china6.txt。
+IPv6 data combines IPInfo Lite's original CN IPv6 data with china6.txt from gaoyifan/china-operator-ip.
 
-理论上，已广播的地址就足以满足分流需求。这里仍预先纳入更细分、尚未广播的地址，主要是为了让它们开始广播时即可匹配分流规则，不必等待数据更新。
+In theory, announced prefixes are sufficient for routing needs. More specific prefixes that have not yet been announced are also included so that routing rules can match them as soon as they are announced, without waiting for a data update.
 
-中国大陆因 ISP 劣化国际网络，境外地址约等于黑名单，因此只维护直连白名单，不单列黑名单。
+Because ISPs in mainland China degrade international connectivity, overseas addresses effectively constitute a blocklist. This project therefore maintains only a direct-connection allowlist for mainland China, without a separate blocklist.
 
-### 伊朗：`in-ir`
+### Iran: `in-ir`
 
-以 IPInfo Lite 原始 IR IPv4、IPv6 为基础，使用本地 ASN 数据补充 Eitaa（AS202798）和 GAP（AS210877），并合并 ArvanCloud、DerakCloud、IranServer、ParsPack 的 CDN 地址列表，以及伊朗特殊的六个本地服务私有地址。ParsPack 使用 Chocolate4U/Iran-v2ray-rules 提供的纯文本镜像。另提供 `blacklist-ir`，收录封锁注入地址与其他注入地址。
+Starting with IPInfo Lite's original IR IPv4 and IPv6 data, this set adds Eitaa (AS202798) and GAP (AS210877) from the local ASN database, CDN address lists from ArvanCloud, DerakCloud, IranServer, and ParsPack, and six private addresses used by specific local services in Iran. ParsPack data comes from the plain-text mirror provided by Chocolate4U/Iran-v2ray-rules. A separate `blacklist-ir` contains addresses injected for blocking and other injected addresses.
 
-### 俄罗斯：`in-ru`
+### Russia: `in-ru`
 
-以 IPInfo Lite 原始 RU IPv4、IPv6 为基础，合并 hxehex/russia-mobile-internet-whitelist 提供的移动网络白名单。另提供 `blacklist-ru`，合并 Antifilter、1andrevich/Re-filter-lists 的 IP 列表及参考配置补充的 Telegram 网段。
+Starting with IPInfo Lite's original RU IPv4 and IPv6 data, this set adds the mobile internet allowlist from hxehex/russia-mobile-internet-whitelist. A separate `blacklist-ru` combines IP lists from Antifilter and 1andrevich/Re-filter-lists with Telegram prefixes taken from the reference configuration.
 
-## 公共分类
+## Common categories
 
-完整版和精简版均包含以下公共分类：
+Both the full and lite versions include the following common categories:
 
 - `geoip:private`
 - `geoip:anycast`
@@ -60,9 +62,9 @@ IPv6 合并 IPInfo Lite 原始 CN IPv6 与 gaoyifan/china-operator-ip 的 china6
 - `geoip:twitter`
 - `geoip:tor`
 
-## 构建
+## Build
 
-在仓库根目录准备 `./ipinfo/ipinfo_lite.mmdb`，并确保 `./tmp/geoip-in` 和 `./output` 为干净目录，然后依次执行：
+Place `./ipinfo/ipinfo_lite.mmdb` under the repository root and ensure that `./tmp/geoip-in` and `./output` are clean directories. Then run:
 
 ```sh
 go run . convert -c config-geoip-in.json
@@ -70,28 +72,28 @@ go run . convert -c config-geoip-lite.json
 go run . convert -c config-geoip-full.json
 ```
 
-第一步在 `./tmp/geoip-in/` 生成地区定制集合与黑名单的临时文本。lite 和 full 均直接读取这些文件，第一步完成后可独立运行或交换执行顺序；三个步骤之间不要清理目录。
+The first step generates temporary text files for the regional sets and blocklists in `./tmp/geoip-in/`. Both lite and full read these files directly. After the first step, lite and full can run independently or in either order. Do not clean the directories between these three steps.
 
-lite 只输出 `./output/geoip-lite.dat`。full 输出 `./output/geoip.dat`，并生成下列逐分类文件：
+The lite build outputs only `./output/geoip-lite.dat`. The full build outputs `./output/geoip.dat` and generates the following files for each category:
 
-| 输出目录                  | 格式                    |
-| ------------------------- | ----------------------- |
-| `output/dat/`             | Xray GeoIP DAT          |
-| `output/srs/`             | sing-box SRS            |
-| `output/mrs/`             | Mihomo MRS              |
-| `output/text/`            | 纯文本 CIDR             |
+| Output directory         | Format                  |
+| ------------------------ | ----------------------- |
+| `output/dat/`            | Xray GeoIP DAT          |
+| `output/srs/`            | sing-box SRS            |
+| `output/mrs/`            | Mihomo MRS              |
+| `output/text/`           | Plain-text CIDR         |
 | `output/clash/classical/` | Clash classical RuleSet |
 | `output/clash/ipcidr/`    | Clash ipcidr RuleSet    |
 
-构建命令必须显式指定 `-c` 配置文件。更多配置选项见[配置说明](./configuration.md)。
+Build commands must explicitly specify a configuration file with `-c`. See the [configuration guide (Chinese)](./configuration.md) for more options.
 
 ## License
 
 - [GPL-3.0](./LICENSE)
 
-## 致谢
+## Acknowledgements
 
-- 本项目从 [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc) 分叉而来
+- This project was forked from [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
 - [IPInfo Lite](https://ipinfo.io/lite)
 - [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
