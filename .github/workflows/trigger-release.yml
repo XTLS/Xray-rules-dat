@@ -1,0 +1,23 @@
+name: Trigger release
+
+on:
+  push:
+    branches:
+      - geoip
+    paths-ignore:
+      - ".gitignore"
+      - "LICENSE*"
+      - "*.md"
+
+permissions:
+  contents: write
+
+jobs:
+  trigger:
+    name: Trigger release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger release workflow
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/dispatches" -f event_type=trigger-release
