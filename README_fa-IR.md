@@ -53,7 +53,6 @@
 نسخه‌های کامل و سبک هر دو شامل دسته‌های عمومی زیر هستند:
 
 - `geoip:private`
-- `geoip:anycast`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
 - `geoip:facebook`
@@ -63,6 +62,8 @@
 - `geoip:telegram`
 - `geoip:twitter`
 - `geoip:tor`
+
+`geoip:anycast` فقط در نسخهٔ کامل وجود دارد.
 
 ## ساخت
 

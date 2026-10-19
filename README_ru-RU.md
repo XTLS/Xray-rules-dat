@@ -51,7 +51,6 @@
 Полная и облегчённая версии содержат следующие общие категории:
 
 - `geoip:private`
-- `geoip:anycast`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
 - `geoip:facebook`
@@ -61,6 +60,8 @@
 - `geoip:telegram`
 - `geoip:twitter`
 - `geoip:tor`
+
+`geoip:anycast` включён только в полную версию.
 
 ## Сборка
 

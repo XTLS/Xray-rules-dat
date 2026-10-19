@@ -51,7 +51,6 @@ Starting with IPInfo Lite's original RU IPv4 and IPv6 data, this set adds the mo
 Both the full and lite versions include the following common categories:
 
 - `geoip:private`
-- `geoip:anycast`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
 - `geoip:facebook`
@@ -61,6 +60,8 @@ Both the full and lite versions include the following common categories:
 - `geoip:telegram`
 - `geoip:twitter`
 - `geoip:tor`
+
+`geoip:anycast` is included only in the full version.
 
 ## Build
 

@@ -51,7 +51,6 @@ IPv6 合并 IPInfo Lite 原始 CN IPv6 与 gaoyifan/china-operator-ip 的 china6
 完整版和精简版均包含以下公共分类：
 
 - `geoip:private`
-- `geoip:anycast`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
 - `geoip:facebook`
@@ -61,6 +60,8 @@ IPv6 合并 IPInfo Lite 原始 CN IPv6 与 gaoyifan/china-operator-ip 的 china6
 - `geoip:telegram`
 - `geoip:twitter`
 - `geoip:tor`
+
+`geoip:anycast` 仅包含在完整版中。
 
 ## 构建
 
