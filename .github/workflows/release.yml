@@ -1,0 +1,184 @@
+name: Build and release rule files
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger]
+  schedule:
+    # 18:00 UTC = 02:00 the next day in China (Asia/Shanghai, UTC+8)
+    #           = 21:30 in Iran (Asia/Tehran, UTC+3:30)
+    #           = 21:00 in Russia (Europe/Moscow, UTC+3)
+    - cron: "0 18 * * *"
+      timezone: "Etc/UTC"
+
+permissions:
+  contents: write
+
+env:
+  GH_REPO: ${{ github.repository }}
+
+concurrency:
+  group: build-and-release-rules
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash --noprofile --norc -euo pipefail {0}
+
+jobs:
+  build:
+    name: Build and release rules
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout GeoIP source
+        uses: actions/checkout@v7
+        with:
+          ref: geoip
+          path: geoip
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: 'stable'
+          cache: true
+          cache-dependency-path: ./geoip/go.mod
+
+      - name: Prepare release directory
+        run: |
+          mkdir -p ./output
+
+      # GeoIP
+      - name: Record GeoIP source commit
+        id: geoip-source
+        working-directory: ./geoip
+        run: |
+          sha="$(git rev-parse HEAD)"
+          echo "sha=${sha}" >> "$GITHUB_OUTPUT"
+
+      - name: Build GeoIP converter
+        working-directory: ./geoip
+        run: |
+          go build -o ./geoip .
+
+      - name: Download GeoIP source database
+        working-directory: ./geoip
+        env:
+          IPINFO_TOKEN: ${{ secrets.IPINFO_TOKEN }}
+        run: |
+          if [[ -z "$IPINFO_TOKEN" ]]; then
+            echo "IPINFO_TOKEN is required"
+            exit 1
+          fi
+          mkdir -p ./ipinfo
+          curl --fail --location --retry 3 \
+            "https://ipinfo.io/data/ipinfo_lite.mmdb?_src=frontend&token=${IPINFO_TOKEN}" \
+            --output ./ipinfo/ipinfo_lite.mmdb
+
+      - name: Build GeoIP regional lists
+        working-directory: ./geoip
+        run: ./geoip convert -c ./config-geoip-in.json
+
+      - name: Build GeoIP lite DAT
+        working-directory: ./geoip
+        run: ./geoip convert -c ./config-geoip-lite.json
+
+      - name: Build GeoIP full DAT and per-category files
+        working-directory: ./geoip
+        run: ./geoip convert -c ./config-geoip-full.json
+
+      - name: Collect GeoIP outputs
+        run: mv ./geoip/output/* ./output/
+
+      # GeoSite (TODO)
+      - name: Download upstream GeoSite placeholder
+        id: geosite-source
+        run: |
+          curl --fail --location --retry 3 \
+            "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat" \
+            --output ./output/geosite.dat
+          echo "source=v2fly/domain-list-community dlc.dat (temporary upstream download)" >> "$GITHUB_OUTPUT"
+
+      # Publish
+      - name: Set variables
+        env:
+          GEOIP_SOURCE_SHA: ${{ steps.geoip-source.outputs.sha }}
+          GEOSITE_SOURCE: ${{ steps.geosite-source.outputs.source }}
+        run: |
+          version="$(date -u +%Y%m%d%H%M%S)"
+          echo "TAG_NAME=${version}" >> "$GITHUB_ENV"
+          echo "RELEASE_NAME=${version}" >> "$GITHUB_ENV"
+          case "$GITHUB_EVENT_NAME" in
+            workflow_dispatch)
+              notes="Manually triggered via GitHub Actions."
+              ;;
+            schedule)
+              notes="Automatically published by scheduled workflow."
+              ;;
+            repository_dispatch)
+              notes="Automatically published by a source branch workflow."
+              ;;
+            *)
+              notes="Published by GitHub Actions."
+              ;;
+          esac
+          echo "RELEASE_NOTES=${notes} GeoIP source: ${GEOIP_SOURCE_SHA}. GeoSite source: ${GEOSITE_SOURCE}." >> "$GITHUB_ENV"
+
+      - name: Generate SHA-256 checksums
+        working-directory: ./output
+        run: |
+          find . -type f ! -name "*.sha256sum" -print0 | sort -z | while IFS= read -r -d '' path; do
+            dir="${path%/*}"
+            name="${path##*/}"
+            (cd "$dir" && sha256sum -- "$name" > "${name}.sha256sum")
+          done
+
+      - name: Push all assets to release branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git -C ./output init --initial-branch=release
+          git -C ./output config user.name "github-actions[bot]"
+          git -C ./output config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C ./output add -A
+          git -C ./output commit -m "$RELEASE_NAME"
+          git -C ./output remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git -C ./output push --force --set-upstream origin release
+
+      - name: Purge jsDelivr cache for root files
+        continue-on-error: true
+        run: |
+          for file in ./output/*; do
+            [ -f "$file" ] || continue
+            curl --fail --location --max-time 30 \
+              "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@release/${file##*/}" \
+              --output /dev/null || true
+          done
+
+      - name: Delete old GitHub releases and tags
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KEEP_RELEASES: 6
+        run: |
+          tags="$(
+            gh api "repos/${GITHUB_REPOSITORY}/releases" --paginate \
+              | jq -sr 'add | sort_by(.published_at) | reverse | .[].tag_name'
+          )"
+          mapfile -t release_tags <<< "$tags"
+          for tag in "${release_tags[@]:KEEP_RELEASES}"; do
+            echo "Deleting old release and tag: ${tag}"
+            gh release delete "$tag" --yes --cleanup-tag
+          done
+
+      - name: Upload rule files to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          files=()
+          for file in ./output/*; do
+            [ -f "$file" ] || continue
+            files+=("$file")
+          done
+          ((${#files[@]} > 0))
+          gh release create "$TAG_NAME" --title "$RELEASE_NAME" --notes "$RELEASE_NOTES" "${files[@]}"
