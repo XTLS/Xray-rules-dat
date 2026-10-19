@@ -1,4 +1,4 @@
-name: Trigger release
+name: Trigger release for GeoIP
 
 on:
   push:
