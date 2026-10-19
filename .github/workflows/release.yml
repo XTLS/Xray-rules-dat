@@ -38,6 +38,13 @@ jobs:
           path: geoip
           fetch-depth: 0
 
+      - name: Checkout GeoSite source
+        uses: actions/checkout@v7
+        with:
+          ref: geosite
+          path: geosite
+          fetch-depth: 0
+
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
@@ -91,20 +98,45 @@ jobs:
       - name: Collect GeoIP outputs
         run: mv ./geoip/output/* ./output/geoip/
 
-      # GeoSite (TODO)
-      - name: Download upstream GeoSite placeholder
+      # GeoSite
+      - name: Record GeoSite source commit
         id: geosite-source
+        working-directory: ./geosite
         run: |
-          curl --fail --location --retry 3 \
-            "https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat" \
-            --output ./output/geosite/geosite.dat
-          echo "source=v2fly/domain-list-community dlc.dat (temporary upstream download)" >> "$GITHUB_OUTPUT"
+          sha="$(git rev-parse HEAD)"
+          echo "sha=${sha}" >> "$GITHUB_OUTPUT"
+
+      - name: Build GeoSite converter
+        working-directory: ./geosite
+        run: |
+          go build -o ./geosite ./main.go
+
+      - name: Checkout upstream domain list
+        uses: actions/checkout@v7
+        with:
+          repository: 'v2fly/domain-list-community'
+          ref: master
+          path: dlc
+          fetch-depth: 0
+
+      - name: Add additional list
+        run: |
+          echo "TODO"
+          cp -r ./dlc/data ./geosite/
+
+      - name: Build GeoSite
+        working-directory: ./geosite
+        run: |
+          ./geosite --datapath ./data
+
+      - name: Collect GeoSite outputs
+        run: mv ./geosite/geosite.dat ./output/geosite/
 
       # Publish
       - name: Set variables
         env:
           GEOIP_SOURCE_SHA: ${{ steps.geoip-source.outputs.sha }}
-          GEOSITE_SOURCE: ${{ steps.geosite-source.outputs.source }}
+          GEOSITE_SOURCE_SHA: ${{ steps.geoip-source.outputs.sha }}
         run: |
           version="$(date -u +%Y%m%d%H%M%S)"
           echo "TAG_NAME=${version}" >> "$GITHUB_ENV"
@@ -123,7 +155,7 @@ jobs:
               notes="Published by GitHub Actions."
               ;;
           esac
-          echo "RELEASE_NOTES=${notes} GeoIP source: ${GEOIP_SOURCE_SHA}. GeoSite source: ${GEOSITE_SOURCE}." >> "$GITHUB_ENV"
+          echo "RELEASE_NOTES=${notes} GeoIP source: ${GEOIP_SOURCE_SHA}. GeoSite source: ${GEOSITE_SOURCE_SHA}." >> "$GITHUB_ENV"
 
       - name: Generate SHA-256 checksums
         working-directory: ./output
