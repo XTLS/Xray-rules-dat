@@ -110,6 +110,7 @@ jobs:
         working-directory: ./geosite
         run: |
           go build -o ./geosite ./main.go
+          go build -o ./datadump ./geositedumper/main.go
 
       - name: Checkout upstream domain list
         uses: actions/checkout@v7
@@ -127,16 +128,17 @@ jobs:
       - name: Build GeoSite
         working-directory: ./geosite
         run: |
-          ./geosite --datapath ./data
+          ./geosite --datapath ./data --outputdir ./output/
+          ./datadump --inputdata ./output/geosite.dat --outputdir ./output/
 
       - name: Collect GeoSite outputs
-        run: mv ./geosite/geosite.dat ./output/geosite/
+        run: mv ./geosite/output/* ./output/geosite/
 
       # Publish
       - name: Set variables
         env:
           GEOIP_SOURCE_SHA: ${{ steps.geoip-source.outputs.sha }}
-          GEOSITE_SOURCE_SHA: ${{ steps.geoip-source.outputs.sha }}
+          GEOSITE_SOURCE_SHA: ${{ steps.geosite-source.outputs.sha }}
         run: |
           version="$(date -u +%Y%m%d%H%M%S)"
           echo "TAG_NAME=${version}" >> "$GITHUB_ENV"
