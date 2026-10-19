@@ -31,9 +31,9 @@ Builds run daily at 18:00 UTC (02:00 the next day in China, 21:00 in Moscow, Rus
 | Regional custom sets                      | `in-cn`, `in-ru`, `in-ir`                                                                                      | Included     | Included     |
 | Blocklists                                | `blacklist-ru`, `blacklist-ir`                                                                                 | Included     | Included     |
 | Common categories                         | `private`, `cloudflare`, `cloudfront`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Included     | Included     |
-| Compatibility aliases                     | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                 | Not provided | Included     |
+| Compatibility aliases                     | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                 | Not provided | Provided     |
 
-See the [GeoIP documentation](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md) for the category design and data sources.
+See the [GeoIP documentation](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README.md) for the category design and data sources.
 
 ### Individual category files
 
@@ -41,7 +41,7 @@ If you only need specific categories, download their files individually without 
 
 For example, keep using the lite version as `geoip.dat`; the existing `in-cn` category remains available through `geoip:in-cn`. Download [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) into the same directory to use the `us` category through `ext:us.dat:us`.
 
-Individual category DAT files are available in the [`geoip/dat/` directory](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) on the `release` branch.
+Individual category DAT files are available in the [`geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) directory on the `release` branch.
 
 ### All countries and territories
 
@@ -203,7 +203,7 @@ Merge the following snippet into your Xray configuration to automatically update
 }
 ```
 
-The files to be updated must already exist. See the [Geodata configuration documentation](https://xtls.github.io/config/geodata.html) for more options.
+The files to be updated must already exist. See the [Geodata configuration documentation](https://xtls.github.io/en/config/geodata.html) for more options.
 
 Replace the category names in the example as needed. See Xray’s [routing documentation](https://xtls.github.io/en/config/routing.html) for rule order and IP matching behavior.
 
@@ -211,11 +211,11 @@ The existing `in-cn` category remains available through `geoip:in-cn`, and the a
 
 The category name after the last colon must exist in that DAT file. See [loading IPs from a file](https://xtls.github.io/en/config/routing.html#ruleobject) in the Xray documentation.
 
-To use original categories for more countries and territories, you can also download `geoip-full.dat`, rename it to `geoip.dat`, and replace the existing file. Also change `geoip-lite.dat` to `geoip-full.dat` in the update URL above.
+To use original categories for more countries and territories, you can also download `geoip-full.dat`, rename it to `geoip.dat`, and replace the existing file. Also change `geoip-lite.dat` to `geoip-full.dat` in the update URL above. After replacing the file, you can use original categories directly, such as `geoip:us`, without downloading `us.dat` separately or using `ext:us.dat:us`.
 
 ## Source code and license
 
-GeoIP source code, data sources, and build steps are maintained on the [`geoip` branch](https://github.com/XTLS/Xray-rules-dat/tree/geoip).
+GeoIP source code, data sources, and build steps are maintained on the [`geoip` branch](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README.md).
 
 This project is licensed under [GPL-3.0](./LICENSE).
 

@@ -31,7 +31,7 @@ GeoSite 暂时直接使用 [v2fly/domain-list-community](https://github.com/v2fl
 | 地区定制集合       | `in-cn`、`in-ru`、`in-ir`                                                                                      | 包含   | 包含   |
 | 黑名单             | `blacklist-ru`、`blacklist-ir`                                                                                 | 包含   | 包含   |
 | 公共分类           | `private`、`cloudflare`、`cloudfront`、`facebook`、`fastly`、`google`、`netflix`、`telegram`、`twitter`、`tor` | 包含   | 包含   |
-| 兼容别名           | `cn` → `in-cn`、`ru` → `in-ru`、`ir` → `in-ir`                                                                 | 不提供 | 包含   |
+| 兼容别名           | `cn` → `in-cn`、`ru` → `in-ru`、`ir` → `in-ir`                                                                 | 不提供 | 提供   |
 
 分类设计理念和数据来源详见 [GeoIP 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md)。
 
@@ -41,7 +41,7 @@ GeoSite 暂时直接使用 [v2fly/domain-list-community](https://github.com/v2fl
 
 例如，继续使用精简版的 `geoip.dat`，原有 `in-cn` 分类仍通过 `geoip:in-cn` 使用。额外下载 [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) 放在同一目录后，`us` 分类通过 `ext:us.dat:us` 使用。
 
-逐分类 DAT 文件见 “release” 分支的 [`geoip/dat/` 目录](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat)。
+逐分类 DAT 文件见 “release” 分支的 [`geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) 目录。
 
 ### 全部国家和地区
 
@@ -205,17 +205,17 @@ Xray 发布包随附的是精简版 GeoIP，文件名为 `geoip.dat`。可直接
 
 待更新文件须已存在，更多选项见 [Geodata 配置文档](https://xtls.github.io/config/geodata.html)。
 
-可按需替换示例中的分类名称。规则顺序和 IP 匹配方式见 Xray 的[路由文档](https://xtls.github.io/en/config/routing.html)。
+可按需替换示例中的分类名称。规则顺序和 IP 匹配方式见 Xray 的[路由文档](https://xtls.github.io/config/routing.html)。
 
 原有 `in-cn` 分类仍通过 `geoip:in-cn` 使用，额外下载的 `us` 分类通过 `ext:us.dat:us` 使用。如需其他分类，替换文件名和分类名中的 `us`。
 
-最后一个冒号后的分类名称必须存在于该 DAT 文件中。详见 Xray 文档中的[从文件加载 IP](https://xtls.github.io/en/config/routing.html#ruleobject)。
+最后一个冒号后的分类名称必须存在于该 DAT 文件中。详见 Xray 文档中的[从文件加载 IP](https://xtls.github.io/config/routing.html#ruleobject)。
 
-如需使用更多国家和地区的原始分类，也可以下载 `geoip-full.dat`，重命名为 `geoip.dat` 后替换原文件，并将上述更新地址中的 `geoip-lite.dat` 改为 `geoip-full.dat`。
+如需使用更多国家和地区的原始分类，也可以下载 `geoip-full.dat`，重命名为 `geoip.dat` 后替换原文件，并将上述更新地址中的 `geoip-lite.dat` 改为 `geoip-full.dat`。替换后，可直接通过 `geoip:us` 等方式使用原始分类，无需额外下载 `us.dat` 或使用 `ext:us.dat:us`。
 
 ## 源码与许可证
 
-GeoIP 源码、数据来源和构建步骤维护在 [`geoip` 分支](https://github.com/XTLS/Xray-rules-dat/tree/geoip)。
+GeoIP 源码、数据来源和构建步骤维护在 [`geoip` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md)。
 
 本项目许可证为 [GPL-3.0](./LICENSE)。
 
