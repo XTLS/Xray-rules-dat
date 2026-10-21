@@ -133,6 +133,11 @@ jobs:
           ./geosite --datapath ./data --outputdir ./output/
           ./datadump --inputdata ./output/geosite.dat --outputdir ./output/
 
+      - name: Build GeoSite Expanded (TODO)
+        working-directory: ./geosite
+        run: |
+          ./geosite --datapath ./data --outputname geosite-expand.dat --outputdir ./output/
+
       - name: Collect GeoSite outputs
         run: mv ./geosite/output/* ./output/geosite/
 
