@@ -1,6 +1,6 @@
 # Xray-rules-dat
 
-[English](./README.md) | [简体中文](./README_zh_Hans.md) | [Русский](./README_ru.md) | فارسی
+[English](./README.md) | [简体中文](./README_zh-Hans.md) | [Русский](./README_ru-RU.md) | فارسی
 
 ---
 
