@@ -23,14 +23,29 @@ func sanitize(line string) string {
 	if strings.Contains(line, `_`) {
 		return ""
 	}
-	if strings.HasPrefix(line, `"`) {
-		line := strings.TrimPrefix(line, `"`)
+	if strings.Contains(line, ` `) {
+		return ""
+	}
+	if strings.Contains(line, `%`) {
+		return ""
+	}
+	if strings.Contains(line, `"`) {
+		return ""
+	}
+	if strings.Contains(line, `\`) {
+		return ""
 	}
 	if strings.HasPrefix(line, `.`) {
-		line := strings.TrimPrefix(line, `.`)
+		line = strings.TrimPrefix(line, `.`)
 	}
 	if strings.HasSuffix(line, `.`) {
-		line := strings.TrimSuffix(line, `.`)
+		line = strings.TrimSuffix(line, `.`)
+	}
+	if strings.HasPrefix(line, `,`) {
+		line = strings.TrimPrefix(line, `,`)
+	}
+	if strings.HasSuffix(line, `,`) {
+		line = strings.TrimSuffix(line, `,`)
 	}
 
 	puny, err:= idna.ToASCII(line)
