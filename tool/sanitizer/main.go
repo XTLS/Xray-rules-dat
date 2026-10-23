@@ -20,6 +20,9 @@ var (
 )
 
 func sanitize(line string) string {
+	if strings.Contains(line, `_`) {
+		return ""
+	}
 	if strings.HasPrefix(line, `"`) {
 		return strings.TrimPrefix(line, `"`)
 	}
