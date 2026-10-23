@@ -125,48 +125,52 @@ jobs:
       - name: Prepare base data directories
         run: |
           mv ./geosite/predata ./geosite/data
+          mkdir ./geosite/temp/
           cp -r ./dlc/data/* ./geosite/data/std
           cp -r ./dlc/data/* ./geosite/data/exp
 
       - name: Download additional CN site list
+        working-directory: ./geosite
         run: |
-          curl -L -o pre-gfwlist-cn https://raw.githubusercontent.com/gfwlist/gfwlist/refs/heads/master/list.txt
-          go run ./geosite/tool/abpextract/main.go --inputpath pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./geosite/data/std/
-          go run ./geosite/tool/abpextract/main.go --inputpath pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./geosite/data/exp/
-          curl -L -o pre-acc-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf
-          go run ./geosite/tool/dnsmasqextract/main.go --inputpath pre-acc-cn --outputname mainly-cn --outputdir ./geosite/data/std/
-          go run ./geosite/tool/dnsmasqextract/main.go --inputpath pre-acc-cn --outputname mainly-cn --outputdir ./geosite/data/exp/
-          curl -L -o pre-apple-cn https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf
-          go run ./geosite/tool/dnsmasqextract/main.go --inputpath pre-apple-cn --outputname apple-cn --outputdir ./geosite/data/std/
-          go run ./geosite/tool/dnsmasqextract/main.go --inputpath pre-apple-cn --outputname apple-cn --outputdir ./geosite/data/exp/
-          curl -L -o pre-google-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/google.china.conf
-          go run ./geosite/tool/dnsmasqextract/main.go --inputpath pre-google-cn --outputname google-cn --outputdir ./geosite/data/std/
-          go run ./geosite/tool/dnsmasqextract/main.go --inputpath pre-google-cn --outputname google-cn --outputdir ./geosite/data/exp/
-          curl -L -o greatfire-list https://raw.githubusercontent.com/Loyalsoldier/cn-blocked-domain/refs/heads/release/domains.txt
-          cp ./greatfire-list ./geosite/data/exp/
+          curl -L -o ./temp/pre-gfwlist-cn https://raw.githubusercontent.com/gfwlist/gfwlist/refs/heads/master/list.txt
+          go run ./tool/abpextract/main.go --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/std/
+          go run ./tool/abpextract/main.go --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/exp/
+          curl -L -o ./temp/pre-acc-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf
+          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/std/
+          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/exp/
+          curl -L -o ./temp/pre-apple-cn https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf
+          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/std/
+          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/exp/
+          curl -L -o ./temp/pre-google-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/google.china.conf
+          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/std/
+          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/exp/
+          curl -L -o ./temp/greatfire-list https://raw.githubusercontent.com/Loyalsoldier/cn-blocked-domain/refs/heads/release/domains.txt
+          cp ./temp/greatfire-list ./data/exp/
 
       - name: Download additional IR site list
+        working-directory: ./geosite
         run: |
-          curl -L -o pre-ir-redundant https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/refs/heads/redundant/redundant-domains.txt
-          curl -L -o expand-ir https://raw.githubusercontent.com/bootmortis/iran-hosted-domains/refs/heads/release/domains.txt
-          comm -23 ./expand-ir ./pre-ir-redundant > mainly-ir
-          cp ./mainly-ir ./geosite/data/std/
-          cp ./mainly-ir ./geosite/data/exp/
-          cp ./expand-ir ./geosite/data/exp/
+          curl -L -o ./temp/pre-ir-redundant https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/refs/heads/redundant/redundant-domains.txt
+          curl -L -o ./temp/expand-ir https://raw.githubusercontent.com/bootmortis/iran-hosted-domains/refs/heads/release/domains.txt
+          comm -23 ./temp/expand-ir ./temp/pre-ir-redundant > ./temp/mainly-ir
+          cp ./temp/mainly-ir ./data/std/
+          cp ./temp/mainly-ir ./data/exp/
+          cp ./temp/expand-ir ./data/exp/
 
       - name: Download additional RU site list
+        working-directory: ./geosite
         run: |
-          curl -L -o available-only-in-ru https://raw.githubusercontent.com/runetfreedom/russia-domains-list/refs/heads/main/ru-available-only-inside
-          cp ./available-only-in-ru ./geosite/data/std/
-          cp ./available-only-in-ru ./geosite/data/exp/
-          curl -L -o refilter https://raw.githubusercontent.com/1andrevich/Re-filter-lists/refs/heads/main/domains_all.lst
-          cp ./refilter ./geosite/data/std/
-          cp ./refilter ./geosite/data/exp/
-          curl -L -o antifilter-list-community https://community.antifilter.download/list/domains.lst
-          cp ./antifilter-list-community ./geosite/data/std/
-          cp ./antifilter-list-community ./geosite/data/exp/
-          curl -L -o pre-antifilter-list-full https://antifilter.download/list/domains.lst
-          go run ./geosite/tool/sanitizer/main.go --inputpath ./pre-antifilter-list-full --outputname antifilter-list-full --outputdir ./geosite/data/exp/
+          curl -L -o ./temp/available-only-in-ru https://raw.githubusercontent.com/runetfreedom/russia-domains-list/refs/heads/main/ru-available-only-inside
+          cp ./temp/available-only-in-ru ./data/std/
+          cp ./temp/available-only-in-ru ./data/exp/
+          curl -L -o ./temp/refilter https://raw.githubusercontent.com/1andrevich/Re-filter-lists/refs/heads/main/domains_all.lst
+          cp ./temp/refilter ./data/std/
+          cp ./temp/refilter ./data/exp/
+          curl -L -o ./temp/antifilter-list-community https://community.antifilter.download/list/domains.lst
+          cp ./temp/antifilter-list-community ./data/std/
+          cp ./temp/antifilter-list-community ./data/exp/
+          curl -L -o ./temp/pre-antifilter-list-full https://antifilter.download/list/domains.lst
+          go run ./tool/sanitizer/main.go --inputpath ./temp/pre-antifilter-list-full --outputname antifilter-list-full --outputdir ./data/exp/
 
       - name: Build GeoSite
         working-directory: ./geosite
