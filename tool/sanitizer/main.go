@@ -24,7 +24,13 @@ func sanitize(line string) string {
 		return ""
 	}
 	if strings.HasPrefix(line, `"`) {
-		return strings.TrimPrefix(line, `"`)
+		line := strings.TrimPrefix(line, `"`)
+	}
+	if strings.HasPrefix(line, `.`) {
+		line := strings.TrimPrefix(line, `.`)
+	}
+	if strings.HasSuffix(line, `.`) {
+		line := strings.TrimSuffix(line, `.`)
 	}
 
 	puny, err:= idna.ToASCII(line)
