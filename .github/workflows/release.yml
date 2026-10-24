@@ -132,21 +132,25 @@ jobs:
           cp -r ./dlc/data/* ./geosite/data/std
           cp -r ./dlc/data/* ./geosite/data/exp
 
+      - name: Build GeoSite validation.dat
+        working-directory: ./geosite
+        run: |
+          ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/
+
       - name: Download additional CN site list
         working-directory: ./geosite
         run: |
           curl -L -o ./temp/pre-gfwlist-cn https://raw.githubusercontent.com/gfwlist/gfwlist/refs/heads/master/list.txt
           ./extract-abp --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/std/
           ./extract-abp --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/exp/
-          curl -L -o ./temp/pre-acc-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf
-          ./extract-dnsmasq --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/std/
-          ./extract-dnsmasq --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/exp/
           curl -L -o ./temp/pre-apple-cn https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf
           ./extract-dnsmasq --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/std/
           ./extract-dnsmasq --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/exp/
           curl -L -o ./temp/pre-google-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/google.china.conf
           ./extract-dnsmasq --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/std/
           ./extract-dnsmasq --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/exp/
+          curl -L -o ./temp/pre-acc-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf
+          ./extract-dnsmasq --inputpath ./temp/pre-acc-cn --outputname expand-cn --outputdir ./data/exp/
           curl -L -o ./temp/greatfire-list https://raw.githubusercontent.com/Loyalsoldier/cn-blocked-domain/refs/heads/release/domains.txt
           cp ./temp/greatfire-list ./data/exp/
 
