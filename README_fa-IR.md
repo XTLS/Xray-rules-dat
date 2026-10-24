@@ -22,13 +22,10 @@
 |---|---|---|---|---|
 | شاخص‌های دادهٔ منطبق با `domain-list-community` | مجموعهٔ کامل داده‌های `v2fly/domain-list-community` | | | هیچ تغییری در شاخص‌های دادهٔ مربوطه اعمال نشده است. |
 | `gfwlist-cn` | داده‌های برگرفته از GFWList که با ابزار `abpextract` به قالبی سازگار با معناشناسی GeoSite تبدیل شده‌اند | `blocked-in-cn` | | |
-| `apple-cn` | دامنه‌های سرورهای Apple در سرزمین اصلی چین، برگرفته از `felixonmars/dnsmasq-china-list` و تبدیل‌شده به فهرست دامنه با ابزار `dnsmasqextract` | `additional-set-cn` | | |
-| `google-cn` | دامنه‌های سرورهای Google در سرزمین اصلی چین، برگرفته از `felixonmars/dnsmasq-china-list` و تبدیل‌شده به فهرست دامنه با ابزار `dnsmasqextract` | `additional-set-cn` | | |
 | `mainly-ir` | مجموعه‌ای از دامنه‌های بررسی‌شده از `Chocolate4U/Iran-v2ray-rules` که برای دور زدن محدودیت‌های داخل ایران در نظر گرفته شده‌اند | | | با دسته‌بندی `category-ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
 | `available-only-in-ru` | دامنه‌هایی که فقط در داخل روسیه در دسترس هستند، برگرفته از `runetfreedom/russia-domains-list` | | | با دسته‌بندی `ru-available-only-inside` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `refilter` | فهرست کامل دامنه‌های پروژهٔ Re:filter | `blocked-in-ru` | | |
 | `antifilter-list-community` | فهرست دامنه‌های نسخهٔ انجمنی Antifilter.Download | `blocked-in-ru` | | با دسته‌بندی `antifilter-download-community` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
-| `additional-set-cn` | مجموعهٔ تکمیلی دامنه‌ها برای سرزمین اصلی چین | | `apple-cn`، `google-cn` | |
 | `blocked-in-cn` | فهرست دامنه‌های مسدودشده برای سرزمین اصلی چین | | `gfwlist-cn` | |
 | `blocked-in-ru` | فهرست دامنه‌های مسدودشده برای روسیه | | `refilter`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 
@@ -38,8 +35,6 @@
 |---|---|---|---|---|
 | شاخص‌های دادهٔ منطبق با `domain-list-community` | مجموعهٔ کامل داده‌های `v2fly/domain-list-community` | | | هیچ تغییری در شاخص‌های دادهٔ مربوطه اعمال نشده است. |
 | `gfwlist-cn` | داده‌های برگرفته از GFWList که با ابزار `abpextract` به قالبی سازگار با معناشناسی GeoSite تبدیل شده‌اند | `blocked-in-cn`، `blocked-in-cn-expand` | | |
-| `apple-cn` | دامنه‌های سرورهای Apple در سرزمین اصلی چین، برگرفته از `felixonmars/dnsmasq-china-list` و تبدیل‌شده به فهرست دامنه با ابزار `dnsmasqextract` | `additional-set-cn` | | |
-| `google-cn` | دامنه‌های سرورهای Google در سرزمین اصلی چین، برگرفته از `felixonmars/dnsmasq-china-list` و تبدیل‌شده به فهرست دامنه با ابزار `dnsmasqextract` | `additional-set-cn` | | |
 | `expand-cn` | دامنه‌های مربوط به سرزمین اصلی چین از `felixonmars/dnsmasq-china-list` که با ابزار `dnsmasqextract` به فهرست دامنه تبدیل شده‌اند | `additional-set-cn` | | استفادهٔ هم‌زمان با `cn`، `tld-cn` یا `geosite-cn` توصیه نمی‌شود. |
 | `greatfire-list` | داده‌های برگرفته از GreatFire.org که توسط پروژهٔ `Loyalsoldier/cn-blocked-domain` تبدیل شده‌اند | `blocked-in-cn-expand` | | |
 | `mainly-ir` | مجموعه‌ای از دامنه‌های بررسی‌شده از `Chocolate4U/Iran-v2ray-rules` که برای دور زدن محدودیت‌های داخل ایران در نظر گرفته شده‌اند | | | با دسته‌بندی `category-ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
@@ -48,7 +43,6 @@
 | `refilter` | فهرست کامل دامنه‌های پروژهٔ Re:filter | `blocked-in-ru`، `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | فهرست دامنه‌های نسخهٔ انجمنی Antifilter.Download | `blocked-in-ru`، `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download-community` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `antifilter-list-full` | فهرست دامنه‌های Antifilter.Download | `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
-| `additional-set-cn` | مجموعهٔ تکمیلی دامنه‌ها برای سرزمین اصلی چین | | `apple-cn`، `google-cn`، `expand-cn` | |
 | `blocked-in-cn` | فهرست دامنه‌های مسدودشده برای سرزمین اصلی چین | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | فهرست گسترش‌یافتهٔ دامنه‌های مسدودشده برای سرزمین اصلی چین | | `blocked-in-cn`، `greatfire-list` | |
 | `blocked-in-ru` | فهرست دامنه‌های مسدودشده برای روسیه | `blocked-in-ru-expand` | `refilter`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |

@@ -22,13 +22,10 @@
 |---|---|---|---|---|
 | Индексы данных, соответствующие `domain-list-community` | Полный набор данных из `v2fly/domain-list-community` | | | Соответствующие индексы данных не изменялись и не корректировались. |
 | `gfwlist-cn` | Данные из GFWList, преобразованные утилитой `abpextract` в соответствии с семантикой GeoSite | `blocked-in-cn` | | |
-| `apple-cn` | Домены серверов Apple в материковом Китае из `felixonmars/dnsmasq-china-list`, преобразованные утилитой `dnsmasqextract` в список доменов | `additional-set-cn` | | |
-| `google-cn` | Домены серверов Google в материковом Китае из `felixonmars/dnsmasq-china-list`, преобразованные утилитой `dnsmasqextract` в список доменов | `additional-set-cn` | | |
 | `mainly-ir` | Проверенный набор доменов из `Chocolate4U/Iran-v2ray-rules`, предназначенный для обхода ограничений внутри Ирана | | | Соответствует категории `category-ir` в `Chocolate4U/Iran-v2ray-rules`. |
 | `available-only-in-ru` | Домены, доступные только на территории России, из `runetfreedom/russia-domains-list` | | | Соответствует категории `ru-available-only-inside` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `refilter` | Полный список доменов из Re:filter | `blocked-in-ru` | | |
 | `antifilter-list-community` | Список доменов из сообщества Antifilter.Download | `blocked-in-ru` | | Соответствует категории `antifilter-download-community` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
-| `additional-set-cn` | Дополнительные домены для материкового Китая | | `apple-cn`, `google-cn` | |
 | `blocked-in-cn` | Список заблокированных доменов для материкового Китая | | `gfwlist-cn` | |
 | `blocked-in-ru` | Список заблокированных доменов для России | | `refilter`, `antifilter-list-community` | Соответствует категории `ru-blocked` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 
@@ -38,8 +35,6 @@
 |---|---|---|---|---|
 | Индексы данных, соответствующие `domain-list-community` | Полный набор данных из `v2fly/domain-list-community` | | | Соответствующие индексы данных не изменялись и не корректировались. |
 | `gfwlist-cn` | Данные из GFWList, преобразованные утилитой `abpextract` в соответствии с семантикой GeoSite | `blocked-in-cn`, `blocked-in-cn-expand` | | |
-| `apple-cn` | Домены серверов Apple в материковом Китае из `felixonmars/dnsmasq-china-list`, преобразованные утилитой `dnsmasqextract` в список доменов | `additional-set-cn` | | |
-| `google-cn` | Домены серверов Google в материковом Китае из `felixonmars/dnsmasq-china-list`, преобразованные утилитой `dnsmasqextract` в список доменов | `additional-set-cn` | | |
 | `expand-cn` | Домены материкового Китая из `felixonmars/dnsmasq-china-list`, преобразованные утилитой `dnsmasqextract` в список доменов | `additional-set-cn` | | Не рекомендуется использовать одновременно с `cn`, `tld-cn` или `geosite-cn`. |
 | `greatfire-list` | Данные из GreatFire.org, преобразованные проектом `Loyalsoldier/cn-blocked-domain` | `blocked-in-cn-expand` | | |
 | `mainly-ir` | Проверенный набор доменов из `Chocolate4U/Iran-v2ray-rules`, предназначенный для обхода ограничений внутри Ирана | | | Соответствует категории `category-ir` в `Chocolate4U/Iran-v2ray-rules`. |
@@ -48,7 +43,6 @@
 | `refilter` | Полный список доменов из Re:filter | `blocked-in-ru`, `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | Список доменов из сообщества Antifilter.Download | `blocked-in-ru`, `blocked-in-ru-expand` | | Соответствует категории `antifilter-download-community` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `antifilter-list-full` | Список доменов из Antifilter.Download | `blocked-in-ru-expand` | | Соответствует категории `antifilter-download` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. Содержит очень много записей; используйте с осторожностью. |
-| `additional-set-cn` | Дополнительные домены для материкового Китая | | `apple-cn`, `google-cn`, `expand-cn` | |
 | `blocked-in-cn` | Список заблокированных доменов для материкового Китая | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | Расширенный список заблокированных доменов для материкового Китая | | `blocked-in-cn`, `greatfire-list` | |
 | `blocked-in-ru` | Список заблокированных доменов для России | `blocked-in-ru-expand` | `refilter`, `antifilter-list-community` | Соответствует категории `ru-blocked` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |

@@ -22,13 +22,10 @@ The verification build (`verify.dat`) contains only data sourced from `v2fly/dom
 |---|---|---|---|---|
 | Data indices matching `domain-list-community` | Complete dataset from `v2fly/domain-list-community` | | | No modifications or adjustments have been made to the corresponding data indices. |
 | `gfwlist-cn` | Data sourced from GFWList, converted into GeoSite-compatible semantics by `abpextract` | `blocked-in-cn` | | |
-| `apple-cn` | Domain data for Apple's servers in mainland China, sourced from `felixonmars/dnsmasq-china-list` and converted into a domain list by `dnsmasqextract` | `additional-set-cn` | | |
-| `google-cn` | Domain data for Google's servers in mainland China, sourced from `felixonmars/dnsmasq-china-list` and converted into a domain list by `dnsmasqextract` | `additional-set-cn` | | |
 | `mainly-ir` | A validated set of domains intended to bypass restrictions within Iran, sourced from `Chocolate4U/Iran-v2ray-rules` | | | Matches `category-ir` in `Chocolate4U/Iran-v2ray-rules`. |
 | `available-only-in-ru` | Domains available exclusively within Russia, sourced from `runetfreedom/russia-domains-list` | | | Matches `ru-available-only-inside` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 | `refilter` | Complete domain list from Re:filter | `blocked-in-ru` | | |
 | `antifilter-list-community` | Domain list from the community edition of Antifilter.Download | `blocked-in-ru` | | Matches `antifilter-download-community` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
-| `additional-set-cn` | Additional domain coverage for mainland China | | `apple-cn`, `google-cn` | |
 | `blocked-in-cn` | Blocklist for mainland China | | `gfwlist-cn` | |
 | `blocked-in-ru` | Blocklist for Russia | | `refilter`, `antifilter-list-community` | Matches `ru-blocked` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 
@@ -38,8 +35,6 @@ The verification build (`verify.dat`) contains only data sourced from `v2fly/dom
 |---|---|---|---|---|
 | Data indices matching `domain-list-community` | Complete dataset from `v2fly/domain-list-community` | | | No modifications or adjustments have been made to the corresponding data indices. |
 | `gfwlist-cn` | Data sourced from GFWList, converted into GeoSite-compatible semantics by `abpextract` | `blocked-in-cn`, `blocked-in-cn-expand` | | |
-| `apple-cn` | Domain data for Apple's servers in mainland China, sourced from `felixonmars/dnsmasq-china-list` and converted into a domain list by `dnsmasqextract` | `additional-set-cn` | | |
-| `google-cn` | Domain data for Google's servers in mainland China, sourced from `felixonmars/dnsmasq-china-list` and converted into a domain list by `dnsmasqextract` | `additional-set-cn` | | |
 | `expand-cn` | Mainland China domain data from `felixonmars/dnsmasq-china-list`, converted into a domain list by `dnsmasqextract` | `additional-set-cn` | | Not recommended for simultaneous use with `cn`, `tld-cn`, or `geosite-cn`. |
 | `greatfire-list` | Data sourced from GreatFire.org and converted by `Loyalsoldier/cn-blocked-domain` | `blocked-in-cn-expand` | | |
 | `mainly-ir` | A validated set of domains intended to bypass restrictions within Iran, sourced from `Chocolate4U/Iran-v2ray-rules` | | | Matches `category-ir` in `Chocolate4U/Iran-v2ray-rules`. |
@@ -48,7 +43,6 @@ The verification build (`verify.dat`) contains only data sourced from `v2fly/dom
 | `refilter` | Complete domain list from Re:filter | `blocked-in-ru`, `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | Domain list from the community edition of Antifilter.Download | `blocked-in-ru`, `blocked-in-ru-expand` | | Matches `antifilter-download-community` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 | `antifilter-list-full` | Domain list from Antifilter.Download | `blocked-in-ru-expand` | | Matches `antifilter-download` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. Excessive record count; use with caution. |
-| `additional-set-cn` | Additional domain coverage for mainland China | | `apple-cn`, `google-cn`, `expand-cn` | |
 | `blocked-in-cn` | Blocklist for mainland China | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | Expanded blocklist for mainland China | | `blocked-in-cn`, `greatfire-list` | |
 | `blocked-in-ru` | Blocklist for Russia | `blocked-in-ru-expand` | `refilter`, `antifilter-list-community` | Matches `ru-blocked` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |

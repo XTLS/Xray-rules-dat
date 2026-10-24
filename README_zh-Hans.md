@@ -22,13 +22,10 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 |----|----|----|----|----|
 | 与 domain-list-community 一致的数据索引 | 来自 v2fly/domain-list-community 的完整数据 | | | 未对相关数据索引进行改动或调整 |
 | `gfwlist-cn` | 来自 GFWList 的数据，经过 abpextract 转换为 GeoSite 语义 | `blocked-in-cn` | | |
-| `apple-cn` | 来自 felixonmars/dnsmasq-china-list 中 Apple 在中国大陆服务器的域名数据，经过 dnsmasqextract 转换为域名数据列表 | `additional-set-cn` | | |
-| `google-cn` | 来自 felixonmars/dnsmasq-china-list 中 Google 在中国大陆服务器的域名数据，经过 dnsmasqextract 转换为域名数据列表 | `additional-set-cn` | | |
 | `mainly-ir` | 来自 Chocolate4U/Iran-v2ray-rules 中经过有效性检查的用于绕过伊朗境内的域名集合 | | | 与 Chocolate4U/Iran-v2ray-rules 中 `category-ir` 一致 |
 | `available-only-in-ru` | 来自 runetfreedom/russia-domains-list 中仅能在俄罗斯境内使用的域名 | | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-available-only-inside` 一致 |
 | `refilter` | 来自 Re:filter 的完整域名列表 | `blocked-in-ru` | | |
 | `antifilter-list-community` | 来自 Antifilter.Download community edition 的域名列表 | `blocked-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download-community` 一致 |
-| `additional-set-cn` | 中国大陆域名扩展 | | `apple-cn` `google-cn` | |
 | `blocked-in-cn` | 中国大陆黑名单域名 | |  `gfwlist-cn` | |
 | `blocked-in-ru` | 俄罗斯黑名单域名 | | `refilter` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
 
@@ -38,8 +35,6 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 |----|----|----|----|----|
 | 与 domain-list-community 一致的数据索引 | 来自 v2fly/domain-list-community 的完整数据 | | | 未对相关数据索引进行改动或调整 |
 | `gfwlist-cn` | 来自 GFWList 的数据，经过 abpextract 转换为 GeoSite 语义 | `blocked-in-cn` `blocked-in-cn-expand` | | |
-| `apple-cn` | 来自 felixonmars/dnsmasq-china-list 中 Apple 在中国大陆服务器的域名数据，经过 dnsmasqextract 转换为域名数据列表 | `additional-set-cn` | | |
-| `google-cn` | 来自 felixonmars/dnsmasq-china-list 中 Google 在中国大陆服务器的域名数据，经过 dnsmasqextract 转换为域名数据列表 | `additional-set-cn` | | |
 | `expand-cn` | 来自 felixonmars/dnsmasq-china-list 中的中国大陆域名数据，经过 dnsmasqextract 转换为域名数据列表 | `additional-set-cn` | | 不建议与 `cn` `tld-cn` `geosite-cn` 同时使用 |
 | `greatfire-list` | 来自 GreatFire.org 的数据，由 Loyalsoldier/cn-blocked-domain 转换 | `blocked-in-cn-expand` | | |
 | `mainly-ir` | 来自 Chocolate4U/Iran-v2ray-rules 中经过有效性检查的用于绕过伊朗境内的域名集合 | | | 与 Chocolate4U/Iran-v2ray-rules 中 `category-ir` 一致 |
@@ -48,7 +43,6 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | `refilter` | 来自 Re:filter 的完整域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | 来自 Antifilter.Download community edition 的域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download-community` 一致 |
 | `antifilter-list-full` | 来自 Antifilter.Download 的域名列表 | `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download` 一致；记录数过多，慎用 |
-| `additional-set-cn` | 中国大陆域名扩展 | | `apple-cn` `google-cn` `expand-cn` | |
 | `blocked-in-cn` | 中国大陆黑名单域名 | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | 扩展中国大陆黑名单域名 | | `blocked-in-cn` `greatfire-list` | |
 | `blocked-in-ru` | 俄罗斯黑名单域名 | `blocked-in-ru-expand` | `refilter` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
