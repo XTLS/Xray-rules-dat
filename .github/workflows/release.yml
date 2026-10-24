@@ -113,6 +113,9 @@ jobs:
         run: |
           go build -o ./geosite ./main.go
           go build -o ./datadump ./geositedumper/main.go
+          go build -o ./extract-abp ./tool/abpextract/main.go
+          go build -o ./extract-dnsmasq ./tool/dnsmasqextract/main.go
+          go build -o ./sanitize ./tool/sanitizer/main.go
 
       - name: Checkout upstream domain list
         uses: actions/checkout@v7
@@ -133,17 +136,17 @@ jobs:
         working-directory: ./geosite
         run: |
           curl -L -o ./temp/pre-gfwlist-cn https://raw.githubusercontent.com/gfwlist/gfwlist/refs/heads/master/list.txt
-          go run ./tool/abpextract/main.go --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/std/
-          go run ./tool/abpextract/main.go --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/exp/
+          ./extract-abp --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/std/
+          ./extract-abp --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/exp/
           curl -L -o ./temp/pre-acc-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf
-          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/std/
-          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/exp/
+          ./extract-dnsmasq --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/std/
+          ./extract-dnsmasq --inputpath ./temp/pre-acc-cn --outputname mainly-cn --outputdir ./data/exp/
           curl -L -o ./temp/pre-apple-cn https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf
-          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/std/
-          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/exp/
+          ./extract-dnsmasq --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/std/
+          ./extract-dnsmasq --inputpath ./temp/pre-apple-cn --outputname apple-cn --outputdir ./data/exp/
           curl -L -o ./temp/pre-google-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/google.china.conf
-          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/std/
-          go run ./tool/dnsmasqextract/main.go --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/exp/
+          ./extract-dnsmasq --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/std/
+          ./extract-dnsmasq --inputpath ./temp/pre-google-cn --outputname google-cn --outputdir ./data/exp/
           curl -L -o ./temp/greatfire-list https://raw.githubusercontent.com/Loyalsoldier/cn-blocked-domain/refs/heads/release/domains.txt
           cp ./temp/greatfire-list ./data/exp/
 
@@ -171,7 +174,7 @@ jobs:
           cp ./temp/antifilter-list-community ./data/std/
           cp ./temp/antifilter-list-community ./data/exp/
           curl -L -o ./temp/pre-antifilter-list-full https://antifilter.download/list/domains.lst
-          go run ./tool/sanitizer/main.go --inputpath ./temp/pre-antifilter-list-full --outputname antifilter-list-full --outputdir ./data/exp/
+          ./sanitize --inputpath ./temp/pre-antifilter-list-full --outputname antifilter-list-full --outputdir ./data/exp/
 
       - name: Build GeoSite
         working-directory: ./geosite
@@ -179,7 +182,7 @@ jobs:
           ./geosite --datapath ./data/std --outputdir ./output/
           ./datadump --inputdata ./output/geosite.dat --outputdir ./output/
 
-      - name: Build GeoSite Expanded (TODO)
+      - name: Build GeoSite Expanded
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --outputname geosite-expand.dat --outputdir ./output/
