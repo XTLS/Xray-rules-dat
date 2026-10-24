@@ -57,17 +57,11 @@ func convertRegexp(s string) (string, bool) {
 	if after, ok := strings.CutPrefix(pattern, `^https?:\/\/`); ok {
 		pattern = after
 	}
-	if after, ok := strings.CutPrefix(pattern, `[^\/]+`); ok {
-		pattern = after
-	}
 
 	// Validate syntax using Go's regexp engine (RE2).
 	if _, err := regexp.Compile(pattern); err != nil {
 		return "", false
 	}
-
-	// Match the domain itself or a subdomain ending in that domain.
-	pattern = strings.ReplaceAll(pattern, `\.`, `\\.`)
 
 	return pattern, true
 }
@@ -141,7 +135,7 @@ func middleWildcardToRegexp(host string) (string, bool) {
 		return host, false
 	}
 
-	pattern := strings.ReplaceAll(host, `*`, `[.*]`)
+	pattern := strings.ReplaceAll(host, `*`, `(.*)`)
 
 	return pattern, true
 }
