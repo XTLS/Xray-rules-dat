@@ -49,9 +49,9 @@
 | `antifilter-list-community` | Список доменов из сообщества Antifilter.Download | `blocked-in-ru`, `blocked-in-ru-expand` | | Соответствует категории `antifilter-download-community` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `antifilter-list-full` | Список доменов из Antifilter.Download | `blocked-in-ru-expand` | | Соответствует категории `antifilter-download` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. Содержит очень много записей; используйте с осторожностью. |
 | `additional-set-cn` | Дополнительные домены для материкового Китая | | `apple-cn`, `google-cn`, `expand-cn` | |
-| `blocked-in-cn` | Список заблокированных доменов для материкового Китая | | `gfwlist-cn` | |
+| `blocked-in-cn` | Список заблокированных доменов для материкового Китая | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | Расширенный список заблокированных доменов для материкового Китая | | `blocked-in-cn`, `greatfire-list` | |
-| `blocked-in-ru` | Список заблокированных доменов для России | | `refilter`, `antifilter-list-community` | Соответствует категории `ru-blocked` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
+| `blocked-in-ru` | Список заблокированных доменов для России | `blocked-in-ru-expand` | `refilter`, `antifilter-list-community` | Соответствует категории `ru-blocked` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `blocked-in-ru-expand` | Расширенный список заблокированных доменов для России | | `blocked-in-ru`, `antifilter-list-full` | Соответствует категории `ru-blocked-all` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. Содержит очень много записей; используйте с осторожностью. |
 
 ## Сборка

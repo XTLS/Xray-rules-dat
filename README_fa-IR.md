@@ -49,9 +49,9 @@
 | `antifilter-list-community` | فهرست دامنه‌های نسخهٔ انجمنی Antifilter.Download | `blocked-in-ru`، `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download-community` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `antifilter-list-full` | فهرست دامنه‌های Antifilter.Download | `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
 | `additional-set-cn` | مجموعهٔ تکمیلی دامنه‌ها برای سرزمین اصلی چین | | `apple-cn`، `google-cn`، `expand-cn` | |
-| `blocked-in-cn` | فهرست دامنه‌های مسدودشده برای سرزمین اصلی چین | | `gfwlist-cn` | |
+| `blocked-in-cn` | فهرست دامنه‌های مسدودشده برای سرزمین اصلی چین | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | فهرست گسترش‌یافتهٔ دامنه‌های مسدودشده برای سرزمین اصلی چین | | `blocked-in-cn`، `greatfire-list` | |
-| `blocked-in-ru` | فهرست دامنه‌های مسدودشده برای روسیه | | `refilter`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
+| `blocked-in-ru` | فهرست دامنه‌های مسدودشده برای روسیه | `blocked-in-ru-expand` | `refilter`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `blocked-in-ru-expand` | فهرست گسترش‌یافتهٔ دامنه‌های مسدودشده برای روسیه | | `blocked-in-ru`، `antifilter-list-full` | با دسته‌بندی `ru-blocked-all` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
 
 ## ساخت

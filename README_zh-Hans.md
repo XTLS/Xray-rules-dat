@@ -49,9 +49,9 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | `antifilter-list-community` | 来自 Antifilter.Download community edition 的域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download-community` 一致 |
 | `antifilter-list-full` | 来自 Antifilter.Download 的域名列表 | `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download` 一致；记录数过多，慎用 |
 | `additional-set-cn` | 中国大陆域名扩展 | | `apple-cn` `google-cn` `expand-cn` | |
-| `blocked-in-cn` | 中国大陆黑名单域名 | | `gfwlist-cn` | |
+| `blocked-in-cn` | 中国大陆黑名单域名 | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | 扩展中国大陆黑名单域名 | | `blocked-in-cn` `greatfire-list` | |
-| `blocked-in-ru` | 俄罗斯黑名单域名 | | `refilter` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
+| `blocked-in-ru` | 俄罗斯黑名单域名 | `blocked-in-ru-expand` | `refilter` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
 | `blocked-in-ru-expand` | 扩展俄罗斯黑名单域名 | | `blocked-in-ru` `antifilter-list-full` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked-all` 一致；记录数过多，慎用 |
 
 ## 构建

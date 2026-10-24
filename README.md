@@ -49,9 +49,9 @@ The verification build (`verify.dat`) contains only data sourced from `v2fly/dom
 | `antifilter-list-community` | Domain list from the community edition of Antifilter.Download | `blocked-in-ru`, `blocked-in-ru-expand` | | Matches `antifilter-download-community` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 | `antifilter-list-full` | Domain list from Antifilter.Download | `blocked-in-ru-expand` | | Matches `antifilter-download` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. Excessive record count; use with caution. |
 | `additional-set-cn` | Additional domain coverage for mainland China | | `apple-cn`, `google-cn`, `expand-cn` | |
-| `blocked-in-cn` | Blocklist for mainland China | | `gfwlist-cn` | |
+| `blocked-in-cn` | Blocklist for mainland China | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | Expanded blocklist for mainland China | | `blocked-in-cn`, `greatfire-list` | |
-| `blocked-in-ru` | Blocklist for Russia | | `refilter`, `antifilter-list-community` | Matches `ru-blocked` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
+| `blocked-in-ru` | Blocklist for Russia | `blocked-in-ru-expand` | `refilter`, `antifilter-list-community` | Matches `ru-blocked` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 | `blocked-in-ru-expand` | Expanded blocklist for Russia | | `blocked-in-ru`, `antifilter-list-full` | Matches `ru-blocked-all` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. Excessive record count; use with caution. |
 
 ## Build
