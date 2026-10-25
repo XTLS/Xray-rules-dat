@@ -22,7 +22,7 @@ The verification build (`validation.dat`) contains only data sourced from `v2fly
 |---|---|---|---|---|
 | Data indices matching `domain-list-community` | Complete dataset from `v2fly/domain-list-community` | | | No modifications or adjustments have been made to the corresponding data indices. |
 | `gfwlist-cn` | Data sourced from GFWList, converted into GeoSite-compatible semantics by `abpextract` | `blocked-in-cn` | | |
-| `mainly-ir` | A validated set of domains intended to bypass restrictions within Iran, sourced from `Chocolate4U/Iran-v2ray-rules` | | | Matches `category-ir` in `Chocolate4U/Iran-v2ray-rules`. |
+| `mainly-ir` | A validated set of domains inside Iran, sourced from `Chocolate4U/Iran-v2ray-rules` | | | Matches `category-ir` in `Chocolate4U/Iran-v2ray-rules`. |
 | `available-only-in-ru` | Domains available exclusively within Russia, sourced from `runetfreedom/russia-domains-list` | | | Matches `ru-available-only-inside` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 | `refilter` | Complete domain list from Re:filter | `blocked-in-ru` | | |
 | `antifilter-list-community` | Domain list from the community edition of Antifilter.Download | `blocked-in-ru` | | Matches `antifilter-download-community` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
@@ -37,8 +37,8 @@ The verification build (`validation.dat`) contains only data sourced from `v2fly
 | `gfwlist-cn` | Data sourced from GFWList, converted into GeoSite-compatible semantics by `abpextract` | `blocked-in-cn`, `blocked-in-cn-expand` | | |
 | `expand-cn` | Mainland China domain data from `felixonmars/dnsmasq-china-list`, converted into a domain list by `dnsmasqextract` | `additional-set-cn` | | Not recommended for simultaneous use with `cn`, `tld-cn`, or `geosite-cn`. |
 | `greatfire-list` | Data sourced from GreatFire.org and converted by `Loyalsoldier/cn-blocked-domain` | `blocked-in-cn-expand` | | |
-| `mainly-ir` | A validated set of domains intended to bypass restrictions within Iran, sourced from `Chocolate4U/Iran-v2ray-rules` | | | Matches `category-ir` in `Chocolate4U/Iran-v2ray-rules`. |
-| `expand-ir` | A set of domains intended to bypass restrictions within Iran, sourced from Iran Hosted Domains | | | Matches `ir` in `Chocolate4U/Iran-v2ray-rules`. |
+| `mainly-ir` | A validated set of domains inside Iran, sourced from `Chocolate4U/Iran-v2ray-rules` | | | Matches `category-ir` in `Chocolate4U/Iran-v2ray-rules`. |
+| `expand-ir` | A set of domains inside Iran, sourced from Iran Hosted Domains | | | Matches `ir` in `Chocolate4U/Iran-v2ray-rules`. |
 | `available-only-in-ru` | Domains available exclusively within Russia, sourced from `runetfreedom/russia-domains-list` | | | Matches `ru-available-only-inside` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
 | `refilter` | Complete domain list from Re:filter | `blocked-in-ru`, `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | Domain list from the community edition of Antifilter.Download | `blocked-in-ru`, `blocked-in-ru-expand` | | Matches `antifilter-download-community` in `russia-blocked-geosite` and `russia-v2ray-rules-dat`. |
