@@ -8,9 +8,9 @@
 
 GeoIP 以 [IPinfo Lite](https://ipinfo.io/lite) 为基础，结合各地分流需求和常用服务的 IP 数据整理，支持 IPv4 和 IPv6。
 
-GeoSite 暂时直接使用 [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) 的上游数据，未作修改。
+GeoSite 基于 [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) 构建，并在此基础上补充各地区存在刚性使用需求的黑名单与白名单数据集合。
 
-每天 UTC 18:00 定时构建（中国次日 02:00、俄罗斯莫斯科 21:00、伊朗 21:30）。
+数据按日定时构建，计划执行时间为 UTC 18:00（中国标准时间次日 02:00、俄罗斯莫斯科时间 21:00、伊朗时间 21:30）。受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时间可能较计划时间延后数分钟至数小时。
 
 ## 快速下载
 
@@ -18,9 +18,10 @@ GeoSite 暂时直接使用 [v2fly/domain-list-community](https://github.com/v2fl
 | ------------ | ---------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GeoIP 完整版 | `geoip-full.dat` | 涵盖全部国家和地区的原始分类、地区定制集合、黑名单及公共分类 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat) | 体积过大                                                                                                                                                                         |
 | GeoIP 精简版 | `geoip-lite.dat` | 涵盖地区定制集合、黑名单及公共分类，并提供兼容别名           | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat) | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoSite      | `geosite.dat`    | 域名分类数据                                                 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)    | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+| GeoSite 标准版 | `geosite.dat`    | 在数据覆盖完整性与编码后文件体积之间取得平衡的基础域名分类数据，适用于一般使用场景                                                 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)    | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+| GeoSite 扩展版 | `geosite-expand.dat` | 以扩大列表覆盖范围为目标的域名分类数据，适用于需要更高数据覆盖程度的使用场景                                                 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat)    | 体积过大 |
 
-\* Xray 发布包随附 GeoSite 和精简版 GeoIP，文件名分别为 `geosite.dat` 和 `geoip.dat`。
+\* Xray 发布包默认随附标准版 GeoSite 与精简版 GeoIP 数据文件，分别以 `geosite.dat` 和 `geoip.dat` 为文件名。
 
 ### GeoIP 精简版与完整版的区别
 
@@ -139,6 +140,42 @@ GeoSite 暂时直接使用 [v2fly/domain-list-community](https://github.com/v2fl
 
 </details>
 
+### GeoSite 数据集合
+
+分类组合、迁移指南及数据来源的具体说明，请参阅 [GeoSite 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
+
+#### GeoSite 标准版
+
+标准版（`geosite.dat`）由以下标签及其对应的数据集合构成：
+
+- `v2fly/domain-list-community` 提供的原始数据，保持原样引入
+- `available-only-in-ru`：来自 `runetfreedom/russia-domains-list` 中仅能在俄罗斯境内使用的域名
+- `blocked-in-cn`：中国大陆黑名单域名
+  - `gfwlist-cn`：来自 `gfwlist/gfwlist` 的数据
+- `blocked-in-ru`：俄罗斯黑名单域名
+  - `antifilter-list-community`：来自 Antifilter.Download community edition 的域名列表
+  - `refilter`：来自 `1andrevich/Re-filter-lists` 的完整域名列表
+- `mainly-ir`：来自 `Chocolate4U/Iran-v2ray-rules` 中经过有效性检查的用于绕过伊朗境内的域名集合
+
+#### GeoSite 扩展版
+
+扩展版（`geosite-expand.dat`）由以下标签及其对应的数据集合构成：
+
+- `v2fly/domain-list-community` 提供的原始数据，保持原样引入
+- `available-only-in-ru`：来自 `runetfreedom/russia-domains-list` 中仅能在俄罗斯境内使用的域名
+- `blocked-in-cn-expand`：扩展中国大陆黑名单域名
+  - `blocked-in-cn`：中国大陆黑名单域名
+    - `gfwlist-cn`：来自 `gfwlist/gfwlist` 的数据
+  - `greatfire-list`：来自 GreatFire.org 的数据
+- `blocked-in-ru-expand`：扩展俄罗斯黑名单域名
+  - `antifilter-list-full`：来自 Antifilter.Download 的域名列表
+  - `blocked-in-ru`：俄罗斯黑名单域名
+    - `antifilter-list-community`：来自 Antifilter.Download community edition 的域名列表
+    - `refilter`：来自 `1andrevich/Re-filter-lists` 的完整域名列表
+- `expand-cn`：来自 `felixonmars/dnsmasq-china-list` 中的中国大陆域名数据
+- `expand-ir`：来自 `bootmortis/iran-hosted-domains` 中用于绕过伊朗境内的域名集合
+- `mainly-ir`：来自 `Chocolate4U/Iran-v2ray-rules` 中经过有效性检查的用于绕过伊朗境内的域名集合
+
 ## 下载说明
 
 ### GitHub Releases
@@ -217,22 +254,28 @@ Xray 发布包随附的是精简版 GeoIP，文件名为 `geoip.dat`。可直接
 
 GeoIP 源码、数据来源和构建步骤维护在 [`geoip` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md)。
 
-本项目许可证为 [GPL-3.0](./LICENSE)。
+GeoSite 源码、数据来源及构建工具统一维护于 [`geosite` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
+
+本项目整体适用 [GPL-3.0](./LICENSE) 许可证。部分工具（GeoSite）分别适用 [MIT](./LICENSE-GeoSite) 许可证或 [继承许可条款](./LICENSE-GeoSite-inherit)。
 
 ## 致谢
 
 - GeoIP 源码从 [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) 分叉而来，后者分叉自 [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
+- GeoSite 源码由 [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) 分叉并移植而来
 - [IPInfo Lite](https://ipinfo.io/lite)
+- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)：GeoSite 上游数据
 - [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
+- [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
+- [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
 - [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
+- [Antifilter.Download community edition](https://community.antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
-
----
-
-- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)：GeoSite 上游数据
+- [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)

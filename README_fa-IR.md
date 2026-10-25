@@ -8,9 +8,9 @@
 
 GeoIP بر پایهٔ [IPinfo Lite](https://ipinfo.io/lite) تهیه شده و با داده‌های IP متناسب با نیازهای مسیریابی منطقه‌ای و سرویس‌های پرکاربرد تکمیل می‌شود. از IPv4 و IPv6 پشتیبانی می‌شود.
 
-GeoSite در حال حاضر از داده‌های بالادستی [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) بدون تغییر استفاده می‌کند.
+GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) توسعه یافته است و فهرست‌های سیاه و سفید موردنیاز برای استفادهٔ عملی در مناطق مختلف را به مجموعهٔ داده‌های اصلی اضافه می‌کند.
 
-ساخت داده‌ها هر روز ساعت ۱۸:۰۰ به وقت UTC انجام می‌شود (۰۲:۰۰ روز بعد در چین، ۲۱:۰۰ در مسکو و ۲۱:۳۰ در ایران).
+ساخت داده‌ها هر روز طبق برنامه در ساعت ۱۸:۰۰ به وقت UTC اجرا می‌شود (۰۲:۰۰ روز بعد به وقت استاندارد چین، ۲۱:۰۰ به وقت مسکو و ۲۱:۳۰ به وقت ایران). به‌دلیل صف اجرای گردش‌کارها و سازوکار زمان‌بندی در GitHub Actions، تکمیل واقعی فرایند ساخت ممکن است از چند دقیقه تا چند ساعت به تأخیر بیفتد.
 
 ## دانلود سریع
 
@@ -18,9 +18,10 @@ GeoSite در حال حاضر از داده‌های بالادستی [v2fly/doma
 | ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | نسخهٔ کامل GeoIP | `geoip-full.dat` | دسته‌بندی‌های اصلی همهٔ کشورها و قلمروها، مجموعه‌های سفارشی منطقه‌ای، فهرست‌های مسدودسازی و دسته‌بندی‌های عمومی | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat) | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
 | نسخهٔ سبک GeoIP  | `geoip-lite.dat` | مجموعه‌های سفارشی منطقه‌ای، فهرست‌های مسدودسازی و دسته‌بندی‌های عمومی، به همراه نام‌های مستعار برای سازگاری     | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat) | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoSite          | `geosite.dat`    | داده‌های دسته‌بندی دامنه‌ها                                                                                     | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)    | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+|  نسخهٔ استاندارد GeoSite | `geosite.dat` | مجموعه‌دادهٔ پایهٔ دسته‌بندی دامنه‌ها که میان جامعیت پوشش داده‌ها و حجم فایل رمزگذاری‌شده تعادل برقرار می‌کند و برای استفادهٔ عمومی مناسب است | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)    | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+|  نسخهٔ توسعه‌یافتهٔ GeoSite | `geosite-expand.dat` | مجموعه‌دادهٔ دسته‌بندی دامنه‌ها با پوشش گسترده‌تر فهرست‌ها، مناسب برای سناریوهایی که به داده‌های جامع‌تری نیاز دارند | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) |  حجم فایل بیش از حد مجاز است                                                 |
 
-\* بسته‌های انتشار Xray شامل GeoSite و نسخهٔ سبک GeoIP با نام‌های `geosite.dat` و `geoip.dat` هستند.
+\* بسته‌های انتشار Xray به‌طور پیش‌فرض شامل مجموعه‌دادهٔ استاندارد GeoSite و مجموعه‌دادهٔ کم‌حجم GeoIP هستند که به‌ترتیب با نام‌های `geosite.dat` و `geoip.dat` ارائه می‌شوند.
 
 ### تفاوت نسخهٔ سبک و کامل GeoIP
 
@@ -139,6 +140,42 @@ GeoSite در حال حاضر از داده‌های بالادستی [v2fly/doma
 
 </details>
 
+### مجموعه‌داده‌های GeoSite
+
+برای مشاهدهٔ جزئیات ترکیب دسته‌بندی‌ها، راهنمای مهاجرت و منابع داده، به [مستندات GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) مراجعه کنید.
+
+#### نسخهٔ استاندارد GeoSite
+
+نسخهٔ استاندارد (`geosite.dat`) شامل برچسب‌های زیر و مجموعه‌داده‌های متناظر با آن‌ها است:
+
+- داده‌های اصلی `v2fly/domain-list-community` که بدون تغییر وارد مجموعه شده‌اند
+- `available-only-in-ru`: دامنه‌های برگرفته از `runetfreedom/russia-domains-list` که فقط در داخل روسیه قابل دسترسی هستند.
+- `blocked-in-cn`: مجموعهٔ دامنه‌های مسدودشده در سرزمین اصلی چین.
+  - `gfwlist-cn`: داده‌های برگرفته از `gfwlist/gfwlist`.
+- `blocked-in-ru`: مجموعهٔ دامنه‌های مسدودشده در روسیه.
+  - `antifilter-list-community`: فهرست دامنه‌های نسخهٔ جامعهٔ Antifilter.Download.
+  - `refilter`: فهرست کامل دامنه‌های برگرفته از `1andrevich/Re-filter-lists`.
+- `mainly-ir`: مجموعه‌ای از دامنه‌های برگرفته از `Chocolate4U/Iran-v2ray-rules` که اعتبار آن‌ها بررسی شده و برای عبور از محدودیت‌های شبکه در داخل ایران در نظر گرفته شده‌اند.
+
+#### نسخهٔ توسعه‌یافتهٔ GeoSite
+
+نسخهٔ توسعه‌یافته (`geosite-expand.dat`) شامل برچسب‌های زیر و مجموعه‌داده‌های متناظر با آن‌ها است:
+
+- داده‌های اصلی `v2fly/domain-list-community` که بدون تغییر وارد مجموعه شده‌اند.
+- `available-only-in-ru`: دامنه‌های برگرفته از `runetfreedom/russia-domains-list` که فقط در داخل روسیه قابل دسترسی هستند.
+- `blocked-in-cn-expand`: مجموعهٔ توسعه‌یافتهٔ دامنه‌های مسدودشده در سرزمین اصلی چین.
+  - `blocked-in-cn`: مجموعهٔ دامنه‌های مسدودشده در سرزمین اصلی چین.
+    - `gfwlist-cn`: داده‌های برگرفته از `gfwlist/gfwlist`.
+  - `greatfire-list`: داده‌های برگرفته از GreatFire.org.
+- `blocked-in-ru-expand`: مجموعهٔ توسعه‌یافتهٔ دامنه‌های مسدودشده در روسیه.
+  - `antifilter-list-full`: فهرست دامنه‌های برگرفته از Antifilter.Download.
+  - `blocked-in-ru`: مجموعهٔ دامنه‌های مسدودشده در روسیه.
+    - `antifilter-list-community`: فهرست دامنه‌های نسخهٔ جامعهٔ Antifilter.Download.
+    - `refilter`: فهرست کامل دامنه‌های برگرفته از `1andrevich/Re-filter-lists`.
+- `expand-cn`: مجموعه‌دادهٔ دامنه‌های سرزمین اصلی چین، برگرفته از `felixonmars/dnsmasq-china-list`.
+- `expand-ir`: مجموعه‌ای از دامنه‌های برگرفته از `bootmortis/iran-hosted-domains` که برای عبور از محدودیت‌های شبکه در داخل ایران در نظر گرفته شده‌اند.
+- `mainly-ir`: مجموعه‌ای از دامنه‌های برگرفته از `Chocolate4U/Iran-v2ray-rules` که اعتبار آن‌ها بررسی شده و برای عبور از محدودیت‌های شبکه در داخل ایران در نظر گرفته شده‌اند.
+
 ## راهنمای دانلود
 
 ### GitHub Releases
@@ -217,22 +254,28 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 کد منبع GeoIP، منابع داده و مراحل ساخت در [شاخهٔ `geoip`](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_fa-IR.md) نگهداری می‌شوند.
 
-این پروژه تحت مجوز [GPL-3.0](./LICENSE) منتشر می‌شود.
+کد منبع GeoSite، منابع داده و ابزارهای ساخت در شاخهٔ [`geosite`](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) نگهداری می‌شوند.
+
+مجوز کلی این پروژه [GPL-3.0](./LICENSE) است. برخی ابزارها (GeoSite) تحت مجوز [MIT](./LICENSE-GeoSite) یا [شرایط مجوز به‌ارث‌رسیده](./LICENSE-GeoSite-inherit) ارائه می‌شوند.
 
 ## قدردانی
 
 - کد منبع GeoIP از [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) منشعب شده است که خود انشعابی از [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc) است
+- کد منبع GeoSite از [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) انشعاب گرفته شده و بر پایهٔ آن انتقال و سازگار‌سازی شده است
 - [IPInfo Lite](https://ipinfo.io/lite)
+- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community): منبع بالادستی داده‌های GeoSite
 - [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
+- [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
+- [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
 - [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
+- [Antifilter.Download community edition](https://community.antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
-
----
-
-- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community): منبع بالادستی داده‌های GeoSite
+- [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)

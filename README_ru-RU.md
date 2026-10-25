@@ -8,9 +8,9 @@
 
 GeoIP основан на [IPinfo Lite](https://ipinfo.io/lite) и дополнен IP-данными для региональных задач маршрутизации и популярных сервисов. Поддерживаются IPv4 и IPv6.
 
-GeoSite пока использует исходные данные [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) без изменений.
+GeoSite основан на [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) и дополняет исходный набор данных чёрными и белыми списками, необходимыми для практического использования в отдельных регионах.
 
-Сборка выполняется ежедневно в 18:00 UTC (02:00 следующего дня в Китае, 21:00 в Москве и 21:30 в Иране).
+Сборка данных запускается ежедневно по расписанию в 18:00 UTC (02:00 следующего дня по китайскому стандартному времени, 21:00 по московскому времени и 21:30 по времени Ирана). Из-за очередей и особенностей планирования задач в GitHub Actions фактическое завершение сборки может задерживаться на несколько минут или несколько часов.
 
 ## Быстрая загрузка
 
@@ -18,9 +18,10 @@ GeoSite пока использует исходные данные [v2fly/domai
 | ------ | ---- | ---------- | --------------- | ---------------- |
 | Полная версия GeoIP | `geoip-full.dat` | Исходные категории всех стран и территорий, региональные наборы, списки блокировок и общие категории | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat) | Файл слишком большой |
 | Облегчённая версия GeoIP | `geoip-lite.dat` | Региональные наборы, списки блокировок и общие категории, а также псевдонимы для совместимости | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat) | [По умолчанию](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoSite | `geosite.dat` | Категории доменов | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) | [По умолчанию](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) |
+| GeoSite Standard | `geosite.dat` | Базовый набор данных классификации доменов, обеспечивающий баланс между полнотой покрытия и размером закодированного файла; подходит для общего использования | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) | [По умолчанию](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) |
+| GeoSite Extended | `geosite-expand.dat` | Набор данных классификации доменов с расширенным охватом списков, предназначенный для сценариев, требующих более полного покрытия | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) | Файл слишком большой |
 
-\* В дистрибутив Xray входят GeoSite и облегчённая версия GeoIP под именами `geosite.dat` и `geoip.dat` соответственно.
+\* В состав релизных пакетов Xray по умолчанию входят GeoSite Standard и облегчённая версия GeoIP. Их имена файлов — `geosite.dat` и `geoip.dat` соответственно.
 
 ### Различия между облегчённой и полной версиями GeoIP
 
@@ -139,6 +140,42 @@ DAT-файлы отдельных категорий находятся в ка�
 
 </details>
 
+### Наборы данных GeoSite
+
+Подробные сведения о комбинациях категорий, руководстве по миграции и источниках данных приведены в [документации GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_ru-RU.md).
+
+#### GeoSite Standard
+
+Стандартная версия (`geosite.dat`) включает следующие теги и соответствующие им наборы данных:
+
+- Исходные данные из `v2fly/domain-list-community`, включённые без изменений
+- `available-only-in-ru`: Домены, доступные только на территории России, из `runetfreedom/russia-domains-list`
+- `blocked-in-cn`: Список заблокированных доменов для материкового Китая
+  - `gfwlist-cn`: Данные из `gfwlist/gfwlist`
+- `blocked-in-ru`: Список заблокированных доменов для России
+  - `antifilter-list-community`: Список доменов из сообщества Antifilter.Download
+  - `refilter`: Полный список доменов из `1andrevich/Re-filter-lists`
+- `mainly-ir`: Проверенный набор доменов из `Chocolate4U/Iran-v2ray-rules`, предназначенный для обхода ограничений внутри Ирана
+
+#### GeoSite Extended
+
+Расширенная версия (`geosite-expand.dat`) включает следующие теги и соответствующие им наборы данных:
+
+- Исходные данные из `v2fly/domain-list-community`, включённые без изменений
+- `available-only-in-ru`: Домены, доступные только на территории России, из `runetfreedom/russia-domains-list`
+- `blocked-in-cn-expand`: Расширенный список заблокированных доменов для материкового Китая
+  - `blocked-in-cn`: Список заблокированных доменов для материкового Китая
+    - `gfwlist-cn`: Данные из `gfwlist/gfwlist`
+  - `greatfire-list`: Данные из GreatFire.org
+- `blocked-in-ru-expand`: Расширенный список заблокированных доменов для России
+  - `antifilter-list-full`: Список доменов из Antifilter.Download
+  - `blocked-in-ru`: Список заблокированных доменов для России
+    - `antifilter-list-community`: Список доменов из сообщества Antifilter.Download
+    - `refilter`: Полный список доменов из `1andrevich/Re-filter-lists`
+- `expand-cn`: Домены материкового Китая из `felixonmars/dnsmasq-china-list`
+- `expand-ir`: Набор доменов для обхода ограничений внутри Ирана из `bootmortis/iran-hosted-domains`
+- `mainly-ir`: Проверенный набор доменов из `Chocolate4U/Iran-v2ray-rules`, предназначенный для обхода ограничений внутри Ирана
+
 ## Инструкции по загрузке
 
 ### GitHub Releases
@@ -217,22 +254,28 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 Исходный код GeoIP, источники данных и инструкции по сборке находятся в [ветке `geoip`](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_ru-RU.md).
 
-Проект распространяется по лицензии [GPL-3.0](./LICENSE).
+Исходный код GeoSite, источники данных и инструменты сборки поддерживаются в [`geosite` ветке](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_ru-RU.md).
+
+Проект распространяется по лицензии [GPL-3.0](./LICENSE). На отдельные инструменты (GeoSite) распространяется лицензия [MIT](./LICENSE-GeoSite) либо [унаследованные условия лицензирования](./LICENSE-GeoSite-inherit).
 
 ## Благодарности
 
 - Исходный код GeoIP основан на форке [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb), который, в свою очередь, был ответвлён от [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
+- Исходный код GeoSite был ответвлён от [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) и перенесён на его основе
 - [IPInfo Lite](https://ipinfo.io/lite)
+- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community): источник данных GeoSite
 - [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
+- [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
+- [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
 - [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
+- [Antifilter.Download community edition](https://community.antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
-
----
-
-- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community): источник данных GeoSite
+- [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
