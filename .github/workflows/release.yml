@@ -36,14 +36,14 @@ jobs:
         with:
           ref: geoip
           path: geoip
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Checkout GeoSite source
         uses: actions/checkout@v7
         with:
           ref: geosite
           path: geosite
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Set up Go
         uses: actions/setup-go@v7
@@ -123,7 +123,7 @@ jobs:
           repository: 'v2fly/domain-list-community'
           ref: master
           path: dlc
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Build GeoSite validation.dat
         working-directory: ./geosite
