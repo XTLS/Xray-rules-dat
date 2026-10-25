@@ -1,0 +1,15 @@
+Write-Host "Building GeoSite Encoder..."
+go build -v -trimpath -o ".\geosite.exe" ".\main.go"
+Write-Host "Building GeoSite Data Dumper..."
+go build -v -trimpath -o ".\datadump.exe" ".\geositedumper\main.go"
+Write-Host "Building GeoSite Extract-ABP..."
+go build -v -trimpath -o ".\extract-abp.exe" ".\tool\abpextract\main.go"
+Write-Host "Building GeoSite Extract-DNSMasq..."
+go build -v -trimpath -o ".\extract-dnsmasq.exe" ".\tool\dnsmasqextract\main.go"
+Write-Host "Building GeoSite Sanitizer..."
+go build -v -trimpath -o ".\sanitize.exe" ".\tool\sanitizer\main.go"
+
+Write-Host "Preparing directories..."
+Rename-Item -Path ".\predata" -NewName "data"
+New-Item -Path ".\temp" -ItemType Directory -Force
+Write-Host "Preparation completed."

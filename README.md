@@ -10,11 +10,11 @@ The accuracy and coverage of GeoSite data affect the effectiveness of domain-bas
 
 On top of implementing the complete upstream domain classification dataset, this repository incorporates additional practical domain lists and transforms them into datasets that conform to GeoSite semantics. These additional lists serve as a supplementary layer of coverage beyond the upstream dataset.
 
-To balance dataset completeness against the size of the encoded artifacts, this repository provides two builds: the standard edition (`geosite.dat`) and the expanded edition (`geosite-expand.dat`). For tracking and verification purposes, a separate verification build (`verify.dat`) is also provided. This build can be regarded as a mirror build of upstream data only, intended to verify that the encoding and build tooling remains consistent with upstream behavior.
+To balance dataset completeness against the size of the encoded artifacts, this repository provides two builds: the standard edition (`geosite.dat`) and the expanded edition (`geosite-expand.dat`). For tracking and verification purposes, a separate verification build (`validation.dat`) is also provided. This build can be regarded as a mirror build of upstream data only, intended to verify that the encoding and build tooling remains consistent with upstream behavior.
 
 ## Data Contents
 
-The verification build (`verify.dat`) contains only data sourced from `v2fly/domain-list-community`.
+The verification build (`validation.dat`) contains only data sourced from `v2fly/domain-list-community`.
 
 ### Standard Edition: `geosite.dat`
 
