@@ -111,11 +111,11 @@ jobs:
       - name: Build GeoSite converter
         working-directory: ./geosite
         run: |
-          go build -o ./geosite ./main.go
-          go build -o ./datadump ./geositedumper/main.go
-          go build -o ./extract-abp ./tool/abpextract/main.go
-          go build -o ./extract-dnsmasq ./tool/dnsmasqextract/main.go
-          go build -o ./sanitize ./tool/sanitizer/main.go
+          go build -v -o ./geosite ./main.go
+          go build -v -o ./datadump ./geositedumper/main.go
+          go build -v -o ./extract-abp ./tool/abpextract/main.go
+          go build -v -o ./extract-dnsmasq ./tool/dnsmasqextract/main.go
+          go build -v -o ./sanitize ./tool/sanitizer/main.go
 
       - name: Checkout upstream domain list
         uses: actions/checkout@v7
@@ -125,6 +125,11 @@ jobs:
           path: dlc
           fetch-depth: 0
 
+      - name: Build GeoSite validation.dat
+        working-directory: ./geosite
+        run: |
+          ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/
+
       - name: Prepare base data directories
         run: |
           mv ./geosite/predata ./geosite/data
@@ -132,47 +137,13 @@ jobs:
           cp -r ./dlc/data/* ./geosite/data/std
           cp -r ./dlc/data/* ./geosite/data/exp
 
-      - name: Build GeoSite validation.dat
+      - name: Download additional lists for GeoSite
         working-directory: ./geosite
         run: |
-          ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/
-
-      - name: Download additional CN site list
-        working-directory: ./geosite
-        run: |
-          curl -L -o ./temp/pre-gfwlist-cn https://raw.githubusercontent.com/gfwlist/gfwlist/refs/heads/master/list.txt
-          ./extract-abp --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/std/
-          ./extract-abp --inputpath ./temp/pre-gfwlist-cn --outputname gfwlist-cn --outputdir ./data/exp/
-          curl -L -o ./temp/pre-acc-cn https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/refs/heads/master/accelerated-domains.china.conf
-          ./extract-dnsmasq --inputpath ./temp/pre-acc-cn --outputname expand-cn --outputdir ./data/exp/
-          curl -L -o ./temp/greatfire-list https://raw.githubusercontent.com/Loyalsoldier/cn-blocked-domain/refs/heads/release/domains.txt
-          cp ./temp/greatfire-list ./data/exp/
-
-      - name: Download additional IR site list
-        working-directory: ./geosite
-        run: |
-          curl -L -o ./temp/pre-ir-redundant https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/refs/heads/redundant/redundant-domains.txt
-          curl -L -o ./temp/pre-expand-ir https://raw.githubusercontent.com/bootmortis/iran-hosted-domains/refs/heads/release/domains.txt
-          cat ./temp/pre-expand-ir | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | LC_ALL=C sort -u > ./temp/expand-ir
-          comm -23 ./temp/expand-ir ./temp/pre-ir-redundant > ./temp/mainly-ir
-          cp ./temp/mainly-ir ./data/std/
-          cp ./temp/mainly-ir ./data/exp/
-          cp ./temp/expand-ir ./data/exp/
-
-      - name: Download additional RU site list
-        working-directory: ./geosite
-        run: |
-          curl -L -o ./temp/available-only-in-ru https://raw.githubusercontent.com/runetfreedom/russia-domains-list/refs/heads/main/ru-available-only-inside
-          cp ./temp/available-only-in-ru ./data/std/
-          cp ./temp/available-only-in-ru ./data/exp/
-          curl -L -o ./temp/refilter https://raw.githubusercontent.com/1andrevich/Re-filter-lists/refs/heads/main/domains_all.lst
-          cp ./temp/refilter ./data/std/
-          cp ./temp/refilter ./data/exp/
-          curl -L -o ./temp/antifilter-list-community https://community.antifilter.download/list/domains.lst
-          cp ./temp/antifilter-list-community ./data/std/
-          cp ./temp/antifilter-list-community ./data/exp/
-          curl -L -o ./temp/pre-antifilter-list-full https://antifilter.download/list/domains.lst
-          ./sanitize --inputpath ./temp/pre-antifilter-list-full --outputname antifilter-list-full --outputdir ./data/exp/
+          find ./scripts/bash -type f -name "*.sh" -exec chmod +x {} +
+          ./scripts/bash/download-list-cn.sh
+          ./scripts/bash/download-list-ir.sh
+          ./scripts/bash/download-list-ru.sh
 
       - name: Build GeoSite
         working-directory: ./geosite
