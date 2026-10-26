@@ -1,0 +1,24 @@
+[
+	{
+		"name": "delta-cn.dat",
+		"mode": "allowlist",
+		"lists": [
+			"expand-cn",
+			"greatfire-list"
+		]
+	},
+	{
+		"name": "delta-ir.dat",
+		"mode": "allowlist",
+		"lists": [
+			"expand-ir"
+		]
+	},
+	{
+		"name": "delta-ru.dat",
+		"mode": "allowlist",
+		"lists": [
+			"antifilter-list-full"
+		]
+	}
+]

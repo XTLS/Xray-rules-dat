@@ -1,0 +1,14 @@
+[
+	{
+		"name": "geosite.dat",
+		"mode": "denylist",
+		"lists": [
+			"expand-cn",
+			"expand-ir",
+			"greatfire-list",
+			"antifilter-list-full",
+			"blocked-in-cn-expand",
+			"blocked-in-ru-expand"
+		]
+	}
+]

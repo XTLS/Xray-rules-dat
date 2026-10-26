@@ -60,6 +60,11 @@
 go run ./main.go --datapath ./data --outputname geosite.dat --outputdir ./
 ```
 
+``` sh
+go run ./main.go --datapath ./data --datprofile ./tasks/standard.json --outputdir ./
+go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir ./
+```
+
 ## Лицензии
 
 - [MIT](./LICENSE-inherited): кодировщик данных и экспортёр данных, портированные из `v2fly`.

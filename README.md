@@ -60,6 +60,11 @@ Then execute the following command to generate the encoded `geosite.dat` artifac
 go run ./main.go --datapath ./data --outputname geosite.dat --outputdir ./
 ```
 
+``` sh
+go run ./main.go --datapath ./data --datprofile ./tasks/standard.json --outputdir ./
+go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir ./
+```
+
 ## License
 
 - [MIT](./LICENSE-inherited): The data encoder and data exporter ported from `v2fly`.

@@ -58,6 +58,11 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 go run ./main.go --datapath ./data --outputname geosite.dat --outputdir ./
 ```
 
+``` sh
+go run ./main.go --datapath ./data --datprofile ./tasks/standard.json --outputdir ./
+go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir ./
+```
+
 ## License
 
 - [MIT](./LICENSE-inherited)：由 v2fly 移植的数据编码器以及数据导出器
