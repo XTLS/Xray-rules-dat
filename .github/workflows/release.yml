@@ -128,7 +128,7 @@ jobs:
       - name: Build GeoSite validation.dat
         working-directory: ./geosite
         run: |
-          ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/
+          ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/validate/
 
       - name: Prepare base data directories
         run: |
@@ -155,6 +155,11 @@ jobs:
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --outputname geosite-expand.dat --outputdir ./output/
+
+      - name: Build GeoSite Deltas
+        working-directory: ./geosite
+        run: |
+          ./geosite --datapath ./data/exp --datprofile ./tasks/delta.json --outputdir ./output/delta/
 
       - name: Collect GeoSite outputs
         run: mv ./geosite/output/* ./output/geosite/
