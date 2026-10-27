@@ -129,6 +129,7 @@ jobs:
         working-directory: ./geosite
         run: |
           ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/validate/
+          ./datadump --inputdata ./output/validate/validation.dat --outputdir ./output/validate/
 
       - name: Prepare base data directories
         run: |
@@ -155,11 +156,15 @@ jobs:
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --outputname geosite-expand.dat --outputdir ./output/
+          ./datadump --inputdata ./output/geosite-expand.dat --outputdir ./output/
 
       - name: Build GeoSite Deltas
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --datprofile ./tasks/delta.json --outputdir ./output/delta/
+          for file in ./output/delta/*.dat; do
+            ./datadump --inputdata "$file" --outputdir ./output/delta/
+          done
 
       - name: Collect GeoSite outputs
         run: mv ./geosite/output/* ./output/geosite/
@@ -235,12 +240,12 @@ jobs:
             gh release delete "$tag" --yes --cleanup-tag
           done
 
-      - name: Upload rule files to GitHub Release
+      - name: Upload DAT files and checksums to GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           files=()
-          for file in ./output/*/*; do
+          for file in ./output/*/*.dat ./output/*/*.dat.sha256sum; do
             [ -f "$file" ] || continue
             files+=("$file")
           done
