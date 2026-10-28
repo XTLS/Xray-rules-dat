@@ -152,14 +152,14 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 | ----------------------------------------------------------------------- | ---------------------- | ------ | ------ |
 | [domain-list-community](https://github.com/v2fly/domain-list-community) | 与上游保持一致         | 包含   | 包含   |
 | 中国大陆黑名单                                                          | `blocked-in-cn`        | 包含   | 包含   |
-| 中国大陆白名单                                                          | `cn`                   | 包含   | 包含   |
+| 中国大陆白名单                                                          | `located-in-cn`        | 包含   | 包含   |
 | 中国大陆扩展黑名单                                                      | `blocked-in-cn-expand` | 不包含 | 包含   |
-| 中国大陆扩展白名单                                                      | `expand-cn`            | 不包含 | 包含   |
+| 中国大陆扩展白名单                                                      | `located-in-cn-expand` | 不包含 | 包含   |
 | 俄罗斯黑名单                                                            | `blocked-in-ru`        | 包含   | 包含   |
-| 俄罗斯白名单                                                            | `available-only-in-ru` | 包含   | 包含   |
+| 俄罗斯白名单                                                            | `located-in-ru`        | 包含   | 包含   |
 | 俄罗斯扩展黑名单                                                        | `blocked-in-ru-expand` | 不包含 | 包含   |
-| 伊朗白名单                                                              | `mainly-ir`            | 包含   | 包含   |
-| 伊朗扩展白名单                                                          | `expand-ir`            | 不包含 | 包含   |
+| 伊朗白名单                                                              | `located-in-ir`        | 包含   | 包含   |
+| 伊朗扩展白名单                                                          | `located-in-ir-expand` | 不包含 | 包含   |
 
 分类组合、迁移指南及数据来源详见 [GeoSite 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
 

@@ -152,14 +152,14 @@ The Full edition includes the following 250 country and territory categories.
 | ----------------------------------------------------------------------- | ---------------------- | ------------ | -------- |
 | [domain-list-community](https://github.com/v2fly/domain-list-community) | Same as upstream       | Included     | Included |
 | Mainland China blacklist                                                | `blocked-in-cn`        | Included     | Included |
-| Mainland China whitelist                                                | `cn`                   | Included     | Included |
+| Mainland China whitelist                                                | `located-in-cn`        | Included     | Included |
 | Expanded mainland China blacklist                                       | `blocked-in-cn-expand` | Not included | Included |
-| Expanded mainland China whitelist                                       | `expand-cn`            | Not included | Included |
+| Expanded mainland China whitelist                                       | `located-in-cn-expand` | Not included | Included |
 | Russia blacklist                                                        | `blocked-in-ru`        | Included     | Included |
-| Russia whitelist                                                        | `available-only-in-ru` | Included     | Included |
+| Russia whitelist                                                        | `located-in-ru`        | Included     | Included |
 | Expanded Russia blacklist                                               | `blocked-in-ru-expand` | Not included | Included |
-| Iran whitelist                                                          | `mainly-ir`            | Included     | Included |
-| Expanded Iran whitelist                                                 | `expand-ir`            | Not included | Included |
+| Iran whitelist                                                          | `located-in-ir`        | Included     | Included |
+| Expanded Iran whitelist                                                 | `located-in-ir-expand` | Not included | Included |
 
 For category combinations, migration guidance, and data sources, see the [GeoSite documentation](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README.md).
 
