@@ -20,32 +20,22 @@ var (
 )
 
 func sanitize(line string) string {
-	if strings.Contains(line, `_`) {
+	if len(line) < 4 || len(line) > 253 {
 		return ""
 	}
-	if strings.Contains(line, ` `) {
+
+	for i := range line {
+		c := line[i]
+		if (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '.' || c == '-' || c >= 128 {
+			continue
+		}
 		return ""
 	}
-	if strings.Contains(line, `%`) {
-		return ""
-	}
-	if strings.Contains(line, `"`) {
-		return ""
-	}
-	if strings.Contains(line, `\`) {
-		return ""
-	}
-	if strings.HasPrefix(line, `.`) {
-		line = strings.TrimPrefix(line, `.`)
-	}
-	if strings.HasSuffix(line, `.`) {
-		line = strings.TrimSuffix(line, `.`)
-	}
-	if strings.HasPrefix(line, `,`) {
-		line = strings.TrimPrefix(line, `,`)
-	}
-	if strings.HasSuffix(line, `,`) {
-		line = strings.TrimSuffix(line, `,`)
+
+	for label := range strings.SplitSeq(line, ".") {
+		if label == "" || len(label) > 63 || label[0] == '-' || label[len(label)-1] == '-' {
+			return ""
+		}
 	}
 
 	puny, err:= idna.ToASCII(line)
