@@ -6,50 +6,56 @@ English | [简体中文](./README_zh-Hans.md) | [Русский](./README_ru-RU.
 
 GeoIP and GeoSite data for [Xray](https://github.com/XTLS/Xray-core).
 
-GeoIP is based on [IPinfo Lite](https://ipinfo.io/lite), supplemented with IP data for regional routing needs and commonly used services. Both IPv4 and IPv6 are supported.
+GeoIP is based on [IPinfo Lite](https://ipinfo.io/lite), supplemented with IP data for regional routing needs and commonly used services. It supports both IPv4 and IPv6.
 
-GeoSite is based on [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community), with additional blocklists and allowlists for regions where such lists are required for practical use.
+GeoSite is based on [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community), supplemented with blacklist and whitelist datasets for essential access needs in various regions.
 
-Builds are scheduled daily at 18:00 UTC (02:00 the following day in China, 21:00 in Moscow, and 21:30 in Iran). Due to GitHub Actions workflow queuing and scheduling, actual build completion may be delayed by several minutes to several hours.
+Data is built daily at a scheduled time of 18:00 UTC (02:00 the following day in Beijing, 21:00 in Moscow, and 21:30 in Tehran).\
+_Due to GitHub Actions workflow queues and scheduling, builds may finish a few minutes to several hours later than scheduled._
 
-## Quick download
+## Quick downloads
 
-| Data             | File                 | Contents                                                                                                                 | GitHub Releases                                                                                | jsDelivr mirrors                                                                                                                                                                    |
-| ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeoIP full       | `geoip-full.dat`     | Original categories for all countries and territories, regional custom sets, blocklists, and common categories           | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | File too large                                                                                                                                                                      |
-| GeoIP lite       | `geoip-lite.dat`     | Regional custom sets, blocklists, and common categories, with compatibility aliases                                      | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [Default](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoSite Standard | `geosite.dat`        | A baseline domain classification dataset that balances data coverage against encoded file size, suitable for general use | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [Default](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
-| GeoSite Extended | `geosite-expand.dat` | A domain classification dataset with broader list coverage, intended for use cases that require more comprehensive data  | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | File too large                                                                                                                                                                      |
+| Data             | File                 | Contents                                                                                                                                   | GitHub Releases                                                                                | jsDelivr mirrors                                                                                                                                                                    |
+| ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeoIP Lite       | `geoip-lite.dat`     | Blacklists and whitelists for mainland China, Russia, and Iran, plus IP data for private networks, commonly used services, and more        | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [Default](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
+| GeoIP Full       | `geoip-full.dat`     | All routing data from the Lite edition, plus global IP geolocation data and Anycast IP addresses                                           | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | File too large                                                                                                                                                                      |
+| GeoSite Standard | `geosite.dat`        | Upstream domain categories, plus domain blacklists and whitelists for mainland China, Russia, and Iran                                     | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [Default](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+| GeoSite Expanded | `geosite-expand.dat` | All categories from the Standard edition, plus domain blacklists and whitelists with broader coverage for mainland China, Russia, and Iran | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | File too large                                                                                                                                                                      |
 
-\* Xray release packages include the GeoSite standard dataset and the GeoIP lite dataset by default, named `geosite.dat` and `geoip.dat`, respectively.
+\* The Lite edition is suitable for basic direct/proxy routing in mainland China, Russia, and Iran.\
+\* The Full edition supports more granular routing by destination country, as well as direct/proxy routing needs in other countries and regions.\
+\* Xray releases include GeoIP Lite and GeoSite Standard by default, named `geoip.dat` and `geosite.dat`, respectively.
 
-### Differences between GeoIP lite and full
+### GeoIP Lite vs. Full
 
-| Category                                  | Name or scope                                                                                                  | Full         | Lite         |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ | ------------ |
-| Original country and territory categories | Original IPinfo data for all countries and territories                                                         | Included     | Not included |
-| Anycast addresses                         | `anycast`                                                                                                      | Included     | Not included |
-| Regional custom sets                      | `in-cn`, `in-ru`, `in-ir`                                                                                      | Included     | Included     |
-| Blocklists                                | `blacklist-ru`, `blacklist-ir`                                                                                 | Included     | Included     |
-| Common categories                         | `private`, `cloudflare`, `cloudfront`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Included     | Included     |
-| Compatibility aliases                     | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                 | Not provided | Provided     |
+| Type                                        | Category names                                                                                                 | Lite         | Full          |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| IP geolocation                              | Two-letter country codes (see the [table below](#all-countries-and-territories))                               | Not included | Included      |
+| Anycast addresses                           | `anycast`                                                                                                      | Not included | Included      |
+| Region-specific sets (whitelists)           | `in-cn`, `in-ru`, `in-ir`                                                                                      | Included     | Included      |
+| Blacklists                                  | `blacklist-ru`, `blacklist-ir`                                                                                 | Included     | Included      |
+| Private networks and commonly used services | `private`, `cloudflare`, `cloudfront`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Included     | Included      |
+| Compatibility aliases                       | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                 | Available    | Not available |
 
-See the [GeoIP documentation](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README.md) for the category design and data sources.
+\* Compatibility aliases preserve established community usage and are available only in the Lite edition.\
+\* `in-cn` contains IP addresses suitable for direct connections from mainland China; it does not imply that these IP addresses are located in mainland China. In the Full edition, `cn` is strictly based on IP geolocation; the same applies to `ru` and `ir`.
 
-### Individual category files
+For the category design and data sources, see the [GeoIP documentation](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README.md).
 
-If you only need specific categories, download their files individually without downloading the larger `geoip-full.dat`.
+#### Per-category files
 
-For example, keep using the lite version as `geoip.dat`; the existing `in-cn` category remains available through `geoip:in-cn`. Download [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) into the same directory to use the `us` category through `ext:us.dat:us`.
+If you need only a few categories, download their individual files instead of the larger `geoip-full.dat`.
 
-Individual category DAT files are available in the [`geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) directory on the `release` branch.
+For example, you can keep using the Lite edition as `geoip.dat` and continue to access its `in-cn` category through `geoip:in-cn`. Download the U.S. IP category file [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) into the same directory, then access its `us` category through `ext:us.dat:us`.
 
-### All countries and territories
+Per-category DAT files are available in the [`/geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) directory on the `release` branch.
 
-The full version includes the following 250 country and territory categories.
+#### All countries and territories
+
+The Full edition includes the following 250 country and territory categories.
 
 <details>
-<summary>Show the complete list (sorted by code)</summary>
+<summary>Expand the full list (sorted by code)</summary>
 
 | Code | Country or territory                 | Code | Country or territory     | Code | Country or territory                         |
 | ---- | ------------------------------------ | ---- | ------------------------ | ---- | -------------------------------------------- |
@@ -123,11 +129,11 @@ The full version includes the following 250 country and territory categories.
 | `sk` | Slovakia                             | `sl` | Sierra Leone             | `sm` | San Marino                                   |
 | `sn` | Senegal                              | `so` | Somalia                  | `sr` | Suriname                                     |
 | `ss` | South Sudan                          | `st` | São Tomé and Príncipe    | `sv` | El Salvador                                  |
-| `sx` | Sint Maarten (Dutch part)            | `sy` | Syria                    | `sz` | Swaziland                                    |
+| `sx` | Sint Maarten (Dutch part)            | `sy` | Syria                    | `sz` | Eswatini                                     |
 | `tc` | Turks and Caicos Islands             | `td` | Chad                     | `tf` | French Southern Territories                  |
 | `tg` | Togo                                 | `th` | Thailand                 | `tj` | Tajikistan                                   |
-| `tk` | Tokelau                              | `tl` | East Timor               | `tm` | Turkmenistan                                 |
-| `tn` | Tunisia                              | `to` | Tonga                    | `tr` | Turkey                                       |
+| `tk` | Tokelau                              | `tl` | Timor-Leste              | `tm` | Turkmenistan                                 |
+| `tn` | Tunisia                              | `to` | Tonga                    | `tr` | Türkiye                                      |
 | `tt` | Trinidad and Tobago                  | `tv` | Tuvalu                   | `tw` | Taiwan                                       |
 | `tz` | Tanzania                             | `ua` | Ukraine                  | `ug` | Uganda                                       |
 | `um` | United States Minor Outlying Islands | `us` | United States            | `uy` | Uruguay                                      |
@@ -140,49 +146,38 @@ The full version includes the following 250 country and territory categories.
 
 </details>
 
-### GeoSite Data Collections
+### GeoSite Standard vs. Expanded
 
-For details on category combinations, migration guidance, and data sources, see the [GeoSite documentation](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README.md).
+| Type                                                                    | Category names         | Standard     | Expanded |
+| ----------------------------------------------------------------------- | ---------------------- | ------------ | -------- |
+| [domain-list-community](https://github.com/v2fly/domain-list-community) | Same as upstream       | Included     | Included |
+| Mainland China blacklist                                                | `blocked-in-cn`        | Included     | Included |
+| Mainland China whitelist                                                | `cn`                   | Included     | Included |
+| Expanded mainland China blacklist                                       | `blocked-in-cn-expand` | Not included | Included |
+| Expanded mainland China whitelist                                       | `expand-cn`            | Not included | Included |
+| Russia blacklist                                                        | `blocked-in-ru`        | Included     | Included |
+| Russia whitelist                                                        | `available-only-in-ru` | Included     | Included |
+| Expanded Russia blacklist                                               | `blocked-in-ru-expand` | Not included | Included |
+| Iran whitelist                                                          | `mainly-ir`            | Included     | Included |
+| Expanded Iran whitelist                                                 | `expand-ir`            | Not included | Included |
 
-#### GeoSite Standard
+For category combinations, migration guidance, and data sources, see the [GeoSite documentation](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README.md).
 
-The standard edition (`geosite.dat`) consists of the following tags and their corresponding datasets:
+#### Expanded delta files
 
-- Original data from `v2fly/domain-list-community`, imported without modification.
-- `available-only-in-ru`: Domains available exclusively within Russia, sourced from `runetfreedom/russia-domains-list`
-- `blocked-in-cn`: Blocklist for mainland China
-  - `gfwlist-cn`: Data sourced from `gfwlist/gfwlist`
-- `blocked-in-ru`: Blocklist for Russia
-  - `antifilter-list-community`: Domain list from the community edition of Antifilter.Download
-  - `refilter`: Complete domain list from `1andrevich/Re-filter-lists`
-- `mainly-ir`: A validated set of domains inside Iran, sourced from `Chocolate4U/Iran-v2ray-rules`
+If you need expanded data for only a few regions, download the corresponding delta files alongside GeoSite Standard (`geosite.dat`) instead of downloading `geosite-expand.dat`.
 
-#### GeoSite Extended
+For example, place [delta-ru.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geosite/delta/delta-ru.dat) in the same directory as GeoSite Standard (`geosite.dat`). Upstream domain-list-community categories remain available through `geosite:xx`, and the expanded Russia blacklist through `ext:delta-ru.dat:blocked-in-ru-expand`.
 
-The extended edition (`geosite-expand.dat`) consists of the following tags and their corresponding datasets:
-
-- Original data from `v2fly/domain-list-community`, imported without modification.
-- `available-only-in-ru`: Domains available exclusively within Russia, sourced from `runetfreedom/russia-domains-list`
-- `blocked-in-cn-expand`: Expanded blocklist for mainland China
-  - `blocked-in-cn`: Blocklist for mainland China
-    - `gfwlist-cn`: Data sourced from `gfwlist/gfwlist`
-  - `greatfire-list`: Data sourced from GreatFire.org
-- `blocked-in-ru-expand`: Expanded blocklist for Russia
-  - `antifilter-list-full`: Domain list from Antifilter.Download
-  - `blocked-in-ru`: Blocklist for Russia
-    - `antifilter-list-community`: Domain list from the community edition of Antifilter.Download
-    - `refilter`: Complete domain list from `1andrevich/Re-filter-lists`
-- `expand-cn`: Mainland China domain data from `felixonmars/dnsmasq-china-list`
-- `expand-ir`: A set of domains inside Iran, sourced from `bootmortis/iran-hosted-domains`
-- `mainly-ir`: A validated set of domains inside Iran, sourced from `Chocolate4U/Iran-v2ray-rules`
+Delta DAT files are available in the [`/geosite/delta/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geosite/delta) directory on the `release` branch.
 
 ## Download instructions
 
 ### GitHub Releases
 
-GitHub Releases only provides single-file DAT databases. For manual downloads, open the [latest release](https://github.com/XTLS/Xray-rules-dat/releases/latest). Older versions are available on [GitHub Releases](https://github.com/XTLS/Xray-rules-dat/releases).
+GitHub Releases provides only complete DAT packages. Both current and historical versions are available on the [releases page](https://github.com/XTLS/Xray-rules-dat/releases).
 
-Automatic updaters can download the latest version from the following fixed URL. Replace `<filename>` with the appropriate file name:
+Use the following fixed URL for automatic updates. Replace `<filename>` with the desired filename to get the latest version:
 
 ```text
 https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
@@ -190,25 +185,33 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 ### The `release` branch
 
-The latest versions of all files are published on the [`release` branch](https://github.com/XTLS/Xray-rules-dat/tree/release). When you need a specific category, download its file directly from this branch.
+The `release` branch also provides the latest complete packages, along with per-category and delta files, but does not retain historical versions.
 
-Replace `<path>` with the file path within the branch, such as `geoip/dat/us.dat`:
+[Browse the branch](https://github.com/XTLS/Xray-rules-dat/tree/release) to find the file you need, then replace `<path>` with its path (for example, `geoip/dat/us.dat`). The following URL can be used for automatic updates:
 
-- GitHub Raw: `https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>`
-- jsDelivr mirror (default): `https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
-- jsDelivr mirror (Fastly): `https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+```text
+https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
+```
 
-jsDelivr mirrors have a [per-file size limit](https://github.com/jsdelivr/jsdelivr#restrictions), so even individual category files may be too large to download. Prefer GitHub Releases or GitHub Raw, and use mirrors when GitHub is inaccessible.
+<details>
+<summary>If GitHub is inaccessible, use a jsDelivr mirror</summary>
+
+- Default: `https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+- Fastly: `https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+
+\* jsDelivr has a [per-file size limit](https://github.com/jsdelivr/jsdelivr#restrictions), so even per-category or delta files may be too large to download. Downloading directly from GitHub is recommended.
+
+</details>
 
 Each data file has a corresponding `.sha256sum` checksum file in the same location.
 
 ## Xray usage
 
-Xray releases include GeoIP lite as `geoip.dat`. Its regional custom sets and common categories can be used directly.
+Xray releases include GeoIP Lite and GeoSite Standard by default, already named `geoip.dat` and `geosite.dat`. You can use them directly with the `geoip:xx` and `geosite:xx` syntax.
 
-The following example keeps the lite version as `geoip.dat` and downloads [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) into the same directory.
+The following example also uses the U.S. IP file [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat). Place all three files in the same directory.
 
-Merge the following snippet into your Xray configuration to automatically update and hot-reload both files daily at 04:00 in the runtime environment’s local time. Private addresses and the `in-cn` category use the existing `direct` outbound, while the `us` category uses the existing `wireguard` outbound:
+Merge the following snippet into your existing Xray configuration. The example uses existing `direct`, `xhttp-us`, and `xhttp-jp` outbounds, and automatically updates and hot-reloads all three files daily at 04:00 in the runtime environment's local time:
 
 ```json
 {
@@ -222,60 +225,76 @@ Merge the following snippet into your Xray configuration to automatically update
       {
         "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat",
         "file": "us.dat"
+      },
+      {
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat",
+        "file": "geosite.dat"
       }
     ]
   },
   "routing": {
+    "domainStrategy": "IPOnDemand", // Resolve domains on demand so domain traffic can also match IP rules
     "rules": [
       {
-        "ip": ["geoip:private", "geoip:in-cn"],
+        // Route private addresses directly first
+        "ip": ["geoip:private"],
         "outboundTag": "direct"
       },
       {
+        // Intersect the domain and IP whitelists; route directly only if both match, reducing misclassification from either list alone
+        "domain": ["geosite:cn"],
+        "ip": ["geoip:in-cn"],
+        "outboundTag": "direct"
+      },
+      {
+        // Match U.S. IP addresses using the us category in us.dat and use the xhttp-us outbound
         "ip": ["ext:us.dat:us"],
-        "outboundTag": "wireguard"
+        "outboundTag": "xhttp-us"
+      },
+      {
+        // Use the xhttp-jp outbound for domains on the mainland China blacklist
+        "domain": ["geosite:blocked-in-cn"],
+        "outboundTag": "xhttp-jp"
       }
     ]
   }
 }
 ```
 
-The files to be updated must already exist. See the [Geodata configuration documentation](https://xtls.github.io/en/config/geodata.html) for more options.
+Files must already exist before they can be updated. For update options, see the [Geodata configuration documentation](https://xtls.github.io/en/config/geodata.html).
 
-Replace the category names in the example as needed. See Xray’s [routing documentation](https://xtls.github.io/en/config/routing.html) for rule order and IP matching behavior.
+This is only a configuration snippet; adapt it to your existing configuration and routing needs. For rule order and IP/domain matching behavior, see the [routing documentation](https://xtls.github.io/en/config/routing.html).
 
-The existing `in-cn` category remains available through `geoip:in-cn`, and the additional `us` category is loaded through `ext:us.dat:us`. For other categories, replace `us` in both the file name and category name.
+The category name after the last colon must exist in the corresponding DAT file. See [Loading IP addresses / domains from files](https://xtls.github.io/en/config/routing.html#ruleobject).
 
-The category name after the last colon must exist in that DAT file. See [loading IPs from a file](https://xtls.github.io/en/config/routing.html#ruleobject) in the Xray documentation.
+If you need IP data for more countries, download `geoip-full.dat`, rename it to `geoip.dat`, replace the original file, and change `geoip-lite.dat` to `geoip-full.dat` in the update URL. You can then use references such as `geoip:us` directly, without downloading `us.dat` separately or using `ext:us.dat:us`.
 
-To use original categories for more countries and territories, you can also download `geoip-full.dat`, rename it to `geoip.dat`, and replace the existing file. Also change `geoip-lite.dat` to `geoip-full.dat` in the update URL above. After replacing the file, you can use original categories directly, such as `geoip:us`, without downloading `us.dat` separately or using `ext:us.dat:us`.
+## Source code and licenses
 
-## Source code and license
+GeoIP source code, data sources, and build instructions are maintained on the [`geoip` branch](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README.md).
 
-GeoIP source code, data sources, and build steps are maintained on the [`geoip` branch](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README.md).
+GeoSite source code, data sources, and build instructions are maintained on the [`geosite` branch](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README.md).
 
-GeoSite source code, data sources, and build tools are maintained in the [`geosite` branch](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README.md).
-
-This project is licensed under [GPL-3.0](./LICENSE). Certain tools (GeoSite) are licensed under the [MIT](./LICENSE-GeoSite) License or are subject to [inherited license terms](./LICENSE-GeoSite-inherit).
+The project as a whole is licensed under [GPL-3.0](./LICENSE). Some tools (GeoSite) are separately covered by the [MIT license](./LICENSE-GeoSite) or [inherited license terms](./LICENSE-GeoSite-inherit).
 
 ## Acknowledgments
 
-- The GeoIP source code was forked from [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb), which was forked from [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
-- GeoSite source code was forked from and ported from [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618)
+- GeoIP source code was forked from [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb), which was forked from [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
+- GeoSite source code was forked and ported from [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618)
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community): upstream GeoSite data
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
-- [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
+- [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
+- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
+- [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
+- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
-- [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
-- [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
-- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
 - [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
 - [Antifilter.Download community edition](https://community.antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
+- [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)

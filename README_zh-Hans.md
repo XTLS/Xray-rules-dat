@@ -8,43 +8,49 @@
 
 GeoIP 以 [IPinfo Lite](https://ipinfo.io/lite) 为基础，结合各地分流需求和常用服务的 IP 数据整理，支持 IPv4 和 IPv6。
 
-GeoSite 基于 [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) 构建，并在此基础上补充各地区存在刚性使用需求的黑名单与白名单数据集合。
+GeoSite 以 [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) 为基础，补充各地区存在刚性使用需求的黑名单与白名单数据集合。
 
-数据按日定时构建，计划执行时间为 UTC 18:00（中国标准时间次日 02:00、俄罗斯莫斯科时间 21:00、伊朗时间 21:30）。受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时间可能较计划时间延后数分钟至数小时。
+数据每日定时构建，计划执行时间为 UTC 18:00（北京次日 02:00、莫斯科 21:00、德黑兰 21:30）。\
+_受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时间可能较计划时间延后数分钟至数小时。_
 
 ## 快速下载
 
-| 数据           | 文件                 | 内容                                                                               | GitHub Releases                                                                            | jsDelivr 镜像                                                                                                                                                                    |
-| -------------- | -------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeoIP 完整版   | `geoip-full.dat`     | 涵盖全部国家和地区的原始分类、地区定制集合、黑名单及公共分类                       | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | 体积过大                                                                                                                                                                         |
-| GeoIP 精简版   | `geoip-lite.dat`     | 涵盖地区定制集合、黑名单及公共分类，并提供兼容别名                                 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoSite 标准版 | `geosite.dat`        | 在数据覆盖完整性与编码后文件体积之间取得平衡的基础域名分类数据，适用于一般使用场景 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
-| GeoSite 扩展版 | `geosite-expand.dat` | 以扩大列表覆盖范围为目标的域名分类数据，适用于需要更高数据覆盖程度的使用场景       | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | 体积过大                                                                                                                                                                         |
+| 数据           | 文件                 | 内容                                                                         | GitHub Releases                                                                            | jsDelivr 镜像                                                                                                                                                                    |
+| -------------- | -------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeoIP 精简版   | `geoip-lite.dat`     | 面向中国大陆、俄罗斯和伊朗的黑白名单，以及私有网络、常用服务等 IP 数据       | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
+| GeoIP 完整版   | `geoip-full.dat`     | 包含精简版分流数据，另提供全球 IP 地理位置数据及任播（Anycast）IP            | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | 体积过大                                                                                                                                                                         |
+| GeoSite 标准版 | `geosite.dat`        | 上游域名分类，以及针对中国大陆、俄罗斯和伊朗补充的域名黑白名单               | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+| GeoSite 扩展版 | `geosite-expand.dat` | 包含标准版全部分类，并为中国大陆、俄罗斯和伊朗提供覆盖范围更广的域名黑白名单 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | 体积过大                                                                                                                                                                         |
 
-\* Xray 发布包默认随附标准版 GeoSite 与精简版 GeoIP 数据文件，分别以 `geosite.dat` 和 `geoip.dat` 为文件名。
+\* 精简版适合中国大陆、俄罗斯和伊朗的基本直连／代理分流。\
+\* 完整版适合按流量目的地国家进一步精细分流，也适用于其他国家和地区的直连／代理分流需求。\
+\* Xray 发布包默认随附精简版 GeoIP 与标准版 GeoSite 数据文件，分别以 `geoip.dat` 和 `geosite.dat` 为文件名。
 
 ### GeoIP 精简版与完整版的区别
 
-| 分类               | 名称或范围                                                                                                     | 完整版 | 精简版 |
-| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------ | ------ |
-| 原始国家和地区分类 | IPinfo 全部国家和地区的原始数据                                                                                | 包含   | 不包含 |
-| 任播地址           | `anycast`                                                                                                      | 包含   | 不包含 |
-| 地区定制集合       | `in-cn`、`in-ru`、`in-ir`                                                                                      | 包含   | 包含   |
-| 黑名单             | `blacklist-ru`、`blacklist-ir`                                                                                 | 包含   | 包含   |
-| 公共分类           | `private`、`cloudflare`、`cloudfront`、`facebook`、`fastly`、`google`、`netflix`、`telegram`、`twitter`、`tor` | 包含   | 包含   |
-| 兼容别名           | `cn` → `in-cn`、`ru` → `in-ru`、`ir` → `in-ir`                                                                 | 不提供 | 提供   |
+| 类型                   | 分类名称                                                                                                       | 精简版 | 完整版 |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------- | ------ | ------ |
+| IP 地理位置            | 两字母国家代码（见[下表](#全部国家和地区)）                                                                    | 不包含 | 包含   |
+| 任播地址               | `anycast`                                                                                                      | 不包含 | 包含   |
+| 地区定制集合（白名单） | `in-cn`、`in-ru`、`in-ir`                                                                                      | 包含   | 包含   |
+| 黑名单                 | `blacklist-ru`、`blacklist-ir`                                                                                 | 包含   | 包含   |
+| 私有网络与常用服务     | `private`、`cloudflare`、`cloudfront`、`facebook`、`fastly`、`google`、`netflix`、`telegram`、`twitter`、`tor` | 包含   | 包含   |
+| 兼容别名               | `cn` → `in-cn`、`ru` → `in-ru`、`ir` → `in-ir`                                                                 | 提供   | 不提供 |
+
+\* 兼容别名用于延续社区旧有的使用习惯，仅在精简版中提供。\
+\* `in-cn` 收录适合从中国大陆直连的 IP，不代表这些 IP 位于中国大陆；完整版中的 `cn` 严格按 IP 地理位置划分，`ru`、`ir` 同理。
 
 分类设计理念和数据来源详见 [GeoIP 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md)。
 
-### 逐分类文件
+#### 逐分类文件
 
 只需个别分类时，可单独下载对应文件，无需下载体积较大的 `geoip-full.dat`。
 
-例如，继续使用精简版的 `geoip.dat`，原有 `in-cn` 分类仍通过 `geoip:in-cn` 使用。额外下载 [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) 放在同一目录后，`us` 分类通过 `ext:us.dat:us` 使用。
+例如，继续使用精简版的 `geoip.dat`，原有 `in-cn` 分类仍通过 `geoip:in-cn` 使用。额外下载美国 IP 分类文件 [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) 放在同一目录后，其中的 `us` 分类通过 `ext:us.dat:us` 使用。
 
-逐分类 DAT 文件见 “release” 分支的 [`geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) 目录。
+逐分类 DAT 文件见 “release” 分支的 [`/geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) 目录。
 
-### 全部国家和地区
+#### 全部国家和地区
 
 完整版包含以下 250 个国家和地区分类。
 
@@ -140,49 +146,38 @@ GeoSite 基于 [v2fly/domain-list-community](https://github.com/v2fly/domain-lis
 
 </details>
 
-### GeoSite 数据集合
+### GeoSite 标准版与扩展版的区别
 
-分类组合、迁移指南及数据来源的具体说明，请参阅 [GeoSite 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
+| 类型                                                                    | 分类名称               | 标准版 | 扩展版 |
+| ----------------------------------------------------------------------- | ---------------------- | ------ | ------ |
+| [domain-list-community](https://github.com/v2fly/domain-list-community) | 与上游保持一致         | 包含   | 包含   |
+| 中国大陆黑名单                                                          | `blocked-in-cn`        | 包含   | 包含   |
+| 中国大陆白名单                                                          | `cn`                   | 包含   | 包含   |
+| 中国大陆扩展黑名单                                                      | `blocked-in-cn-expand` | 不包含 | 包含   |
+| 中国大陆扩展白名单                                                      | `expand-cn`            | 不包含 | 包含   |
+| 俄罗斯黑名单                                                            | `blocked-in-ru`        | 包含   | 包含   |
+| 俄罗斯白名单                                                            | `available-only-in-ru` | 包含   | 包含   |
+| 俄罗斯扩展黑名单                                                        | `blocked-in-ru-expand` | 不包含 | 包含   |
+| 伊朗白名单                                                              | `mainly-ir`            | 包含   | 包含   |
+| 伊朗扩展白名单                                                          | `expand-ir`            | 不包含 | 包含   |
 
-#### GeoSite 标准版
+分类组合、迁移指南及数据来源详见 [GeoSite 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
 
-标准版（`geosite.dat`）由以下标签及其对应的数据集合构成：
+#### 扩展版增量文件
 
-- `v2fly/domain-list-community` 提供的原始数据，保持原样引入
-- `available-only-in-ru`：来自 `runetfreedom/russia-domains-list` 中仅能在俄罗斯境内使用的域名
-- `blocked-in-cn`：中国大陆黑名单域名
-  - `gfwlist-cn`：来自 `gfwlist/gfwlist` 的数据
-- `blocked-in-ru`：俄罗斯黑名单域名
-  - `antifilter-list-community`：来自 Antifilter.Download community edition 的域名列表
-  - `refilter`：来自 `1andrevich/Re-filter-lists` 的完整域名列表
-- `mainly-ir`：来自 `Chocolate4U/Iran-v2ray-rules` 中经过有效性检查的用于绕过伊朗境内的域名集合
+只需个别地区的扩展数据时，可在标准版 `geosite.dat` 基础上下载对应增量，无需下载 `geosite-expand.dat`。
 
-#### GeoSite 扩展版
+例如，将 [delta-ru.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geosite/delta/delta-ru.dat) 与标准版 `geosite.dat` 放在同一目录，上游 domain-list-community 的分类仍可通过 `geosite:xx` 使用，俄罗斯扩展黑名单则通过 `ext:delta-ru.dat:blocked-in-ru-expand` 使用。
 
-扩展版（`geosite-expand.dat`）由以下标签及其对应的数据集合构成：
-
-- `v2fly/domain-list-community` 提供的原始数据，保持原样引入
-- `available-only-in-ru`：来自 `runetfreedom/russia-domains-list` 中仅能在俄罗斯境内使用的域名
-- `blocked-in-cn-expand`：扩展中国大陆黑名单域名
-  - `blocked-in-cn`：中国大陆黑名单域名
-    - `gfwlist-cn`：来自 `gfwlist/gfwlist` 的数据
-  - `greatfire-list`：来自 GreatFire.org 的数据
-- `blocked-in-ru-expand`：扩展俄罗斯黑名单域名
-  - `antifilter-list-full`：来自 Antifilter.Download 的域名列表
-  - `blocked-in-ru`：俄罗斯黑名单域名
-    - `antifilter-list-community`：来自 Antifilter.Download community edition 的域名列表
-    - `refilter`：来自 `1andrevich/Re-filter-lists` 的完整域名列表
-- `expand-cn`：来自 `felixonmars/dnsmasq-china-list` 中的中国大陆域名数据
-- `expand-ir`：来自 `bootmortis/iran-hosted-domains` 中用于绕过伊朗境内的域名集合
-- `mainly-ir`：来自 `Chocolate4U/Iran-v2ray-rules` 中经过有效性检查的用于绕过伊朗境内的域名集合
+增量 DAT 文件见 “release” 分支的 [`/geosite/delta/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geosite/delta) 目录。
 
 ## 下载说明
 
 ### GitHub Releases
 
-GitHub Releases 仅提供单文件 DAT 数据库。手动下载请打开[最新版本](https://github.com/XTLS/Xray-rules-dat/releases/latest)，历史版本见 [GitHub Releases](https://github.com/XTLS/Xray-rules-dat/releases)。
+GitHub Releases 仅提供整包 DAT 文件。最新及历史版本均见[发布页面](https://github.com/XTLS/Xray-rules-dat/releases)。
 
-自动更新程序可通过以下固定地址下载最新版本，将 `<filename>` 替换为对应文件名：
+以下固定地址可用于自动更新，将 `<filename>` 替换为所需文件名即可获取最新版本：
 
 ```text
 https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
@@ -190,25 +185,33 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 ### “release” 分支
 
-所有文件的最新版本统一发布在 [“release” 分支](https://github.com/XTLS/Xray-rules-dat/tree/release)。需要特定分类时，可直接从该分支下载对应文件。
+“release” 分支同样提供最新的整包文件，并额外提供逐分类和增量文件，但不保留历史版本。
 
-将 `<path>` 替换为分支内的文件路径，如 `geoip/dat/us.dat`：
+[浏览该分支](https://github.com/XTLS/Xray-rules-dat/tree/release)查找所需文件，将其路径（如 `geoip/dat/us.dat`）填入 `<path>`，以下地址即可用于自动更新：
 
-- GitHub Raw：`https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>`
-- jsDelivr 镜像（默认）：`https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
-- jsDelivr 镜像（Fastly）：`https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+```text
+https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
+```
 
-jsDelivr 镜像受[单文件体积限制](https://github.com/jsdelivr/jsdelivr#restrictions)，逐分类文件也可能因体积过大而无法下载。建议优先通过 GitHub Releases 或 GitHub Raw 下载，仅在无法访问 GitHub 时使用镜像。
+<details>
+<summary>无法访问 GitHub 时，可改用 jsDelivr 镜像</summary>
+
+- 默认：`https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+- Fastly：`https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+
+\* jsDelivr 受[单文件体积限制](https://github.com/jsdelivr/jsdelivr#restrictions)，即便是逐分类或增量文件也可能因体积过大而无法下载。建议优先从 GitHub 下载。
+
+</details>
 
 每个数据文件在同一位置都有对应的 `.sha256sum` 校验文件。
 
 ## Xray 用法
 
-Xray 发布包随附的是精简版 GeoIP，文件名为 `geoip.dat`。可直接使用其中的地区定制集合和公共分类。
+Xray 发布包默认随附精简版 GeoIP 和标准版 GeoSite，已分别命名为 `geoip.dat` 和 `geosite.dat`，可直接通过 `geoip:xx` 和 `geosite:xx` 语法使用。
 
-以下示例继续使用精简版的 `geoip.dat`，并额外下载 [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) 到同一目录。
+以下示例额外使用美国 IP 文件 [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat)，三个文件放在同一目录。
 
-将以下片段合并到 Xray 配置中，每天按运行环境本地时间 04:00 自动更新并热重载这两个文件。私有地址和 `in-cn` 分类通过已有的 `direct` 出站，`us` 分类通过已有的 `wireguard` 出站：
+将以下片段合并到现有 Xray 配置中。示例使用已有的 `direct`、`xhttp-us` 和 `xhttp-jp` 出站，每天按运行环境本地时间 04:00 自动更新并热重载三个文件：
 
 ```json
 {
@@ -222,60 +225,76 @@ Xray 发布包随附的是精简版 GeoIP，文件名为 `geoip.dat`。可直接
       {
         "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat",
         "file": "us.dat"
+      },
+      {
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat",
+        "file": "geosite.dat"
       }
     ]
   },
   "routing": {
+    "domainStrategy": "IPOnDemand", // 按需解析域名，使域名流量也能匹配 IP 规则
     "rules": [
       {
-        "ip": ["geoip:private", "geoip:in-cn"],
+        // 私有地址优先直连
+        "ip": ["geoip:private"],
         "outboundTag": "direct"
       },
       {
+        // 域名与 IP 白名单取交集，两项均命中才直连，减少单一名单误判的影响
+        "domain": ["geosite:cn"],
+        "ip": ["geoip:in-cn"],
+        "outboundTag": "direct"
+      },
+      {
+        // 从 us.dat 的 us 分类匹配美国 IP，使用 xhttp-us 出站
         "ip": ["ext:us.dat:us"],
-        "outboundTag": "wireguard"
+        "outboundTag": "xhttp-us"
+      },
+      {
+        // 中国大陆黑名单域名使用 xhttp-jp 出站
+        "domain": ["geosite:blocked-in-cn"],
+        "outboundTag": "xhttp-jp"
       }
     ]
   }
 }
 ```
 
-待更新文件须已存在，更多选项见 [Geodata 配置文档](https://xtls.github.io/config/geodata.html)。
+待更新文件须已存在，更新选项见 [Geodata 配置文档](https://xtls.github.io/config/geodata.html)。
 
-可按需替换示例中的分类名称。规则顺序和 IP 匹配方式见 Xray 的[路由文档](https://xtls.github.io/config/routing.html)。
+以上仅为配置片段示例，实际使用需结合现有配置和分流需求调整。规则顺序及 IP、域名匹配方式见[路由文档](https://xtls.github.io/config/routing.html)。
 
-原有 `in-cn` 分类仍通过 `geoip:in-cn` 使用，额外下载的 `us` 分类通过 `ext:us.dat:us` 使用。如需其他分类，替换文件名和分类名中的 `us`。
+最后一个冒号后的分类名称须存在于对应的 DAT 文件中，详见[从文件中加载 IP / 域名](https://xtls.github.io/config/routing.html#ruleobject)。
 
-最后一个冒号后的分类名称必须存在于该 DAT 文件中。详见 Xray 文档中的[从文件加载 IP](https://xtls.github.io/config/routing.html#ruleobject)。
-
-如需使用更多国家和地区的原始分类，也可以下载 `geoip-full.dat`，重命名为 `geoip.dat` 后替换原文件，并将上述更新地址中的 `geoip-lite.dat` 改为 `geoip-full.dat`。替换后，可直接通过 `geoip:us` 等方式使用原始分类，无需额外下载 `us.dat` 或使用 `ext:us.dat:us`。
+如需更多国家的 IP 数据，可下载 `geoip-full.dat`，重命名为 `geoip.dat` 后替换原文件，并将更新地址中的 `geoip-lite.dat` 改为 `geoip-full.dat`。此时可直接使用 `geoip:us` 等引用，无需额外下载 `us.dat` 或使用 `ext:us.dat:us`。
 
 ## 源码与许可证
 
-GeoIP 源码、数据来源和构建步骤维护在 [`geoip` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md)。
+GeoIP 源码、数据来源和构建说明维护在 [`geoip` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_zh-Hans.md)。
 
-GeoSite 源码、数据来源及构建工具统一维护于 [`geosite` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
+GeoSite 源码、数据来源和构建说明维护在 [`geosite` 分支](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
 
 本项目整体适用 [GPL-3.0](./LICENSE) 许可证。部分工具（GeoSite）分别适用 [MIT](./LICENSE-GeoSite) 许可证或 [继承许可条款](./LICENSE-GeoSite-inherit)。
 
 ## 致谢
 
 - GeoIP 源码从 [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) 分叉而来，后者分叉自 [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
-- GeoSite 源码由 [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) 分叉并移植而来
+- GeoSite 源码从 [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) 分叉并移植而来
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)：GeoSite 上游数据
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
-- [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
+- [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
+- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
+- [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
+- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
-- [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
-- [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
-- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
 - [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
 - [Antifilter.Download community edition](https://community.antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
+- [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)

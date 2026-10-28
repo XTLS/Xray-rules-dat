@@ -4,65 +4,71 @@
 
 ---
 
-داده‌های GeoIP و GeoSite برای استفاده در [Xray](https://github.com/XTLS/Xray-core).
+داده‌های GeoIP و GeoSite برای [Xray](https://github.com/XTLS/Xray-core).
 
-GeoIP بر پایهٔ [IPinfo Lite](https://ipinfo.io/lite) تهیه شده و با داده‌های IP متناسب با نیازهای مسیریابی منطقه‌ای و سرویس‌های پرکاربرد تکمیل می‌شود. از IPv4 و IPv6 پشتیبانی می‌شود.
+GeoIP بر پایهٔ [IPinfo Lite](https://ipinfo.io/lite) تهیه شده و با توجه به نیازهای مسیریابی در مناطق مختلف و داده‌های IP سرویس‌های پرکاربرد تکمیل می‌شود. این مجموعه از IPv4 و IPv6 پشتیبانی می‌کند.
 
-GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) توسعه یافته است و فهرست‌های سیاه و سفید موردنیاز برای استفادهٔ عملی در مناطق مختلف را به مجموعهٔ داده‌های اصلی اضافه می‌کند.
+GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) تهیه شده و با مجموعه‌های فهرست سیاه و سفید برای پاسخ‌گویی به نیازهای ضروری دسترسی در مناطق مختلف تکمیل می‌شود.
 
-ساخت داده‌ها هر روز طبق برنامه در ساعت ۱۸:۰۰ به وقت UTC اجرا می‌شود (۰۲:۰۰ روز بعد به وقت استاندارد چین، ۲۱:۰۰ به وقت مسکو و ۲۱:۳۰ به وقت ایران). به‌دلیل صف اجرای گردش‌کارها و سازوکار زمان‌بندی در GitHub Actions، تکمیل واقعی فرایند ساخت ممکن است از چند دقیقه تا چند ساعت به تأخیر بیفتد.
+ساخت داده‌ها هر روز برای ساعت 18:00 به وقت UTC برنامه‌ریزی شده است (02:00 روز بعد در پکن، 21:00 در مسکو و 21:30 در تهران).\
+_به دلیل صف گردش‌کارها و سازوکار زمان‌بندی GitHub Actions، پایان ساخت ممکن است از چند دقیقه تا چند ساعت پس از زمان برنامه‌ریزی‌شده به تأخیر بیفتد._
 
 ## دانلود سریع
 
-| داده                       | فایل                 | محتوا                                                                                                                                         | GitHub Releases                                                                              | آینه‌های jsDelivr                                                                                                                                                                   |
-| -------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| نسخهٔ کامل GeoIP           | `geoip-full.dat`     | دسته‌بندی‌های اصلی همهٔ کشورها و قلمروها، مجموعه‌های سفارشی منطقه‌ای، فهرست‌های مسدودسازی و دسته‌بندی‌های عمومی                               | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
-| نسخهٔ سبک GeoIP            | `geoip-lite.dat`     | مجموعه‌های سفارشی منطقه‌ای، فهرست‌های مسدودسازی و دسته‌بندی‌های عمومی، به همراه نام‌های مستعار برای سازگاری                                   | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| نسخهٔ استاندارد GeoSite    | `geosite.dat`        | مجموعه‌دادهٔ پایهٔ دسته‌بندی دامنه‌ها که میان جامعیت پوشش داده‌ها و حجم فایل رمزگذاری‌شده تعادل برقرار می‌کند و برای استفادهٔ عمومی مناسب است | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
-| نسخهٔ توسعه‌یافتهٔ GeoSite | `geosite-expand.dat` | مجموعه‌دادهٔ دسته‌بندی دامنه‌ها با پوشش گسترده‌تر فهرست‌ها، مناسب برای سناریوهایی که به داده‌های جامع‌تری نیاز دارند                          | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
+| داده                | فایل                 | محتوا                                                                                                                             | GitHub Releases                                                                              | آینه‌های jsDelivr                                                                                                                                                                   |
+| ------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeoIP سبک           | `geoip-lite.dat`     | فهرست‌های سیاه و سفید برای سرزمین اصلی چین، روسیه و ایران، به‌همراه داده‌های IP شبکه‌های خصوصی، سرویس‌های پرکاربرد و موارد دیگر   | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
+| GeoIP کامل          | `geoip-full.dat`     | تمام داده‌های مسیریابی نسخهٔ سبک، به‌همراه داده‌های موقعیت جغرافیایی IP در سراسر جهان و نشانی‌های IP از نوع Anycast               | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
+| GeoSite استاندارد   | `geosite.dat`        | دسته‌بندی دامنه‌های پروژهٔ بالادستی، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها برای سرزمین اصلی چین، روسیه و ایران                  | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
+| GeoSite گسترش‌یافته | `geosite-expand.dat` | تمام دسته‌بندی‌های نسخهٔ استاندارد، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها با پوشش گسترده‌تر برای سرزمین اصلی چین، روسیه و ایران | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
 
-\* بسته‌های انتشار Xray به‌طور پیش‌فرض شامل مجموعه‌دادهٔ استاندارد GeoSite و مجموعه‌دادهٔ کم‌حجم GeoIP هستند که به‌ترتیب با نام‌های `geosite.dat` و `geoip.dat` ارائه می‌شوند.
+\* نسخهٔ سبک برای تفکیک پایهٔ ترافیک مستقیم و پراکسی در سرزمین اصلی چین، روسیه و ایران مناسب است.\
+\* نسخهٔ کامل برای مسیریابی دقیق‌تر بر اساس کشور مقصد ترافیک و همچنین نیازهای تفکیک ترافیک مستقیم و پراکسی در سایر کشورها و مناطق مناسب است.\
+\* بسته‌های انتشار Xray به‌طور پیش‌فرض شامل داده‌های GeoIP سبک و GeoSite استاندارد هستند که به‌ترتیب با نام‌های `geoip.dat` و `geosite.dat` ارائه می‌شوند.
 
-### تفاوت نسخهٔ سبک و کامل GeoIP
+### تفاوت GeoIP سبک و کامل
 
-| دسته‌بندی                           | نام یا محدوده                                                                                                  | نسخهٔ کامل    | نسخهٔ سبک    |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------- | ------------ |
-| دسته‌بندی‌های اصلی کشورها و قلمروها | داده‌های اصلی IPinfo برای همهٔ کشورها و قلمروها                                                                | دارد          | ندارد        |
-| آدرس‌های Anycast                    | `anycast`                                                                                                      | دارد          | ندارد        |
-| مجموعه‌های سفارشی منطقه‌ای          | `in-cn`، `in-ru`، `in-ir`                                                                                      | دارد          | دارد         |
-| فهرست‌های مسدودسازی                 | `blacklist-ru`، `blacklist-ir`                                                                                 | دارد          | دارد         |
-| دسته‌بندی‌های عمومی                 | `private`، `cloudflare`، `cloudfront`، `facebook`، `fastly`، `google`، `netflix`، `telegram`، `twitter`، `tor` | دارد          | دارد         |
-| نام‌های مستعار برای سازگاری         | `cn` → `in-cn`، `ru` → `in-ru`، `ir` → `in-ir`                                                                 | ارائه نمی‌شود | ارائه می‌شود |
+| نوع                                    | نام دسته‌ها                                                                                                    | سبک          | کامل          |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| موقعیت جغرافیایی IP                    | کدهای دوحرفی کشورها (نگاه کنید به [جدول زیر](#همه-کشورها-و-مناطق))                                             | ندارد        | دارد          |
+| نشانی‌های Anycast                      | `anycast`                                                                                                      | ندارد        | دارد          |
+| مجموعه‌های ویژهٔ هر منطقه (فهرست سفید) | `in-cn`، `in-ru`، `in-ir`                                                                                      | دارد         | دارد          |
+| فهرست‌های سیاه                         | `blacklist-ru`، `blacklist-ir`                                                                                 | دارد         | دارد          |
+| شبکه‌های خصوصی و سرویس‌های پرکاربرد    | `private`، `cloudflare`، `cloudfront`، `facebook`، `fastly`، `google`، `netflix`، `telegram`، `twitter`، `tor` | دارد         | دارد          |
+| نام‌های مستعار برای سازگاری            | `cn` → `in-cn`، `ru` → `in-ru`، `ir` → `in-ir`                                                                 | ارائه می‌شود | ارائه نمی‌شود |
 
-برای آشنایی با اصول طراحی دسته‌بندی‌ها و منابع داده، [مستندات GeoIP](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_fa-IR.md) را ببینید.
+\* نام‌های مستعار برای سازگاری، شیوهٔ استفادهٔ رایج در جامعهٔ کاربران را حفظ می‌کنند و فقط در نسخهٔ سبک ارائه می‌شوند.\
+\* دستهٔ `in-cn` شامل نشانی‌های IP مناسب برای اتصال مستقیم از سرزمین اصلی چین است؛ این به معنی قرار داشتن آن نشانی‌ها در سرزمین اصلی چین نیست. در نسخهٔ کامل، دستهٔ `cn` صرفاً بر اساس موقعیت جغرافیایی IP تعریف می‌شود؛ همین موضوع دربارهٔ `ru` و `ir` نیز صدق می‌کند.
 
-### فایل‌های جداگانهٔ دسته‌بندی‌ها
+برای آشنایی با منطق طراحی دسته‌ها و منابع داده، [مستندات GeoIP](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_fa-IR.md) را ببینید.
 
-اگر فقط به چند دسته‌بندی نیاز دارید، می‌توانید فایل‌های مربوط به آن‌ها را جداگانه دانلود کنید و نیازی به دانلود فایل بزرگ‌تر `geoip-full.dat` نیست.
+#### فایل‌های جداگانهٔ هر دسته
 
-برای نمونه، می‌توانید همچنان از نسخهٔ سبک با نام `geoip.dat` استفاده کنید؛ دسته‌بندی موجود `in-cn` همچنان از طریق `geoip:in-cn` در دسترس است. فایل [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) را نیز در همان پوشه قرار دهید تا دسته‌بندی `us` از طریق `ext:us.dat:us` قابل استفاده باشد.
+اگر فقط به چند دسته نیاز دارید، می‌توانید فایل‌های مربوط به همان دسته‌ها را جداگانه دانلود کنید و نیازی به دانلود فایل حجیم `geoip-full.dat` ندارید.
 
-فایل‌های DAT هر دسته‌بندی در پوشهٔ [`geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) در شاخهٔ `release` قرار دارند.
+برای مثال، می‌توانید همچنان از نسخهٔ سبک با نام `geoip.dat` استفاده کنید و به دستهٔ `in-cn` آن از طریق `geoip:in-cn` دسترسی داشته باشید. سپس فایل دستهٔ IP آمریکا، یعنی [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat)، را در همان پوشه قرار دهید و به دستهٔ `us` آن از طریق `ext:us.dat:us` دسترسی پیدا کنید.
 
-### همهٔ کشورها و قلمروها
+فایل‌های DAT هر دسته در پوشهٔ [`/geoip/dat/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geoip/dat) از شاخهٔ `release` قرار دارند.
 
-نسخهٔ کامل شامل ۲۵۰ دسته‌بندی کشور و قلمرو زیر است.
+#### همه کشورها و مناطق
+
+نسخهٔ کامل شامل 250 دستهٔ کشور و منطقهٔ زیر است.
 
 <details>
 <summary>نمایش فهرست کامل (مرتب‌شده بر اساس کد)</summary>
 
-| کد   | کشور یا قلمرو                    | کد   | کشور یا قلمرو                   | کد   | کشور یا قلمرو                       |
+| کد   | کشور یا منطقه                    | کد   | کشور یا منطقه                   | کد   | کشور یا منطقه                       |
 | ---- | -------------------------------- | ---- | ------------------------------- | ---- | ----------------------------------- |
 | `ad` | آندورا                           | `ae` | امارات متحدهٔ عربی              | `af` | افغانستان                           |
 | `ag` | آنتیگوا و باربودا                | `ai` | آنگویلا                         | `al` | آلبانی                              |
 | `am` | ارمنستان                         | `ao` | آنگولا                          | `aq` | جنوبگان                             |
 | `ar` | آرژانتین                         | `as` | ساموآی آمریکا                   | `at` | اتریش                               |
-| `au` | استرالیا                         | `aw` | آروبا                           | `ax` | جزایر آلند                          |
+| `au` | استرالیا                         | `aw` | آروبا                           | `ax` | جزایر آلاند                         |
 | `az` | جمهوری آذربایجان                 | `ba` | بوسنی و هرزگوین                 | `bb` | باربادوس                            |
 | `bd` | بنگلادش                          | `be` | بلژیک                           | `bf` | بورکینافاسو                         |
 | `bg` | بلغارستان                        | `bh` | بحرین                           | `bi` | بوروندی                             |
 | `bj` | بنین                             | `bl` | سن بارتلمی                      | `bm` | برمودا                              |
-| `bn` | برونئی                           | `bo` | بولیوی                          | `bq` | هلند کارائیب                        |
+| `bn` | برونئی                           | `bo` | بولیوی                          | `bq` | جزایر کارائیب هلند                  |
 | `br` | برزیل                            | `bs` | باهاما                          | `bt` | بوتان                               |
 | `bv` | جزیرهٔ بووه                      | `bw` | بوتسوانا                        | `by` | بلاروس                              |
 | `bz` | بلیز                             | `ca` | کانادا                          | `cc` | جزایر کوکوس (کیلینگ)                |
@@ -82,9 +88,9 @@ GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/d
 | `ge` | گرجستان                          | `gf` | گویان فرانسه                    | `gg` | گرنزی                               |
 | `gh` | غنا                              | `gi` | جبل‌الطارق                      | `gl` | گرینلند                             |
 | `gm` | گامبیا                           | `gn` | گینه                            | `gp` | گوادلوپ                             |
-| `gq` | گینهٔ استوایی                    | `gr` | یونان                           | `gs` | جزایر جورجیای جنوبی و ساندویچ جنوبی |
+| `gq` | گینهٔ استوایی                    | `gr` | یونان                           | `gs` | جورجیای جنوبی و جزایر ساندویچ جنوبی |
 | `gt` | گواتمالا                         | `gu` | گوام                            | `gw` | گینهٔ بیسائو                        |
-| `gy` | گویان                            | `hk` | هنگ‌کنگ، منطقهٔ اداری ویژهٔ چین | `hm` | جزیرهٔ هرد و جزایر مک‌دونالد        |
+| `gy` | گویان                            | `hk` | هنگ‌کنگ، منطقهٔ ویژهٔ اداری چین | `hm` | جزیرهٔ هرد و جزایر مک‌دونالد        |
 | `hn` | هندوراس                          | `hr` | کرواسی                          | `ht` | هائیتی                              |
 | `hu` | مجارستان                         | `id` | اندونزی                         | `ie` | ایرلند                              |
 | `il` | اسرائیل                          | `im` | جزیرهٔ من                       | `in` | هند                                 |
@@ -102,7 +108,7 @@ GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/d
 | `md` | مولداوی                          | `me` | مونته‌نگرو                      | `mf` | سن مارتن (بخش فرانسوی)              |
 | `mg` | ماداگاسکار                       | `mh` | جزایر مارشال                    | `mk` | مقدونیهٔ شمالی                      |
 | `ml` | مالی                             | `mm` | میانمار                         | `mn` | مغولستان                            |
-| `mo` | ماکائو، منطقهٔ اداری ویژهٔ چین   | `mp` | جزایر ماریانای شمالی            | `mq` | مارتینیک                            |
+| `mo` | ماکائو، منطقهٔ ویژهٔ اداری چین   | `mp` | جزایر ماریانای شمالی            | `mq` | مارتینیک                            |
 | `mr` | موریتانی                         | `ms` | مونتسرات                        | `mt` | مالت                                |
 | `mu` | موریس                            | `mv` | مالدیو                          | `mw` | مالاوی                              |
 | `mx` | مکزیک                            | `my` | مالزی                           | `mz` | موزامبیک                            |
@@ -123,7 +129,7 @@ GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/d
 | `sk` | اسلواکی                          | `sl` | سیرالئون                        | `sm` | سان مارینو                          |
 | `sn` | سنگال                            | `so` | سومالی                          | `sr` | سورینام                             |
 | `ss` | سودان جنوبی                      | `st` | سائوتومه و پرنسیپ               | `sv` | السالوادور                          |
-| `sx` | سینت مارتن (بخش هلندی)           | `sy` | سوریه                           | `sz` | سوازیلند                            |
+| `sx` | سینت مارتن (بخش هلندی)           | `sy` | سوریه                           | `sz` | اسواتینی                            |
 | `tc` | جزایر تورکس و کایکوس             | `td` | چاد                             | `tf` | سرزمین‌های جنوبی فرانسه             |
 | `tg` | توگو                             | `th` | تایلند                          | `tj` | تاجیکستان                           |
 | `tk` | توکلائو                          | `tl` | تیمور شرقی                      | `tm` | ترکمنستان                           |
@@ -140,49 +146,38 @@ GeoSite بر پایهٔ [v2fly/domain-list-community](https://github.com/v2fly/d
 
 </details>
 
-### مجموعه‌داده‌های GeoSite
+### تفاوت GeoSite استاندارد و گسترش‌یافته
 
-برای مشاهدهٔ جزئیات ترکیب دسته‌بندی‌ها، راهنمای مهاجرت و منابع داده، به [مستندات GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) مراجعه کنید.
+| نوع                                                                     | نام دسته‌ها              | استاندارد | گسترش‌یافته |
+| ----------------------------------------------------------------------- | ------------------------ | --------- | ----------- |
+| [domain-list-community](https://github.com/v2fly/domain-list-community) | مطابق با پروژهٔ بالادستی | دارد      | دارد        |
+| فهرست سیاه سرزمین اصلی چین                                              | `blocked-in-cn`          | دارد      | دارد        |
+| فهرست سفید سرزمین اصلی چین                                              | `cn`                     | دارد      | دارد        |
+| فهرست سیاه گسترش‌یافتهٔ سرزمین اصلی چین                                 | `blocked-in-cn-expand`   | ندارد     | دارد        |
+| فهرست سفید گسترش‌یافتهٔ سرزمین اصلی چین                                 | `expand-cn`              | ندارد     | دارد        |
+| فهرست سیاه روسیه                                                        | `blocked-in-ru`          | دارد      | دارد        |
+| فهرست سفید روسیه                                                        | `available-only-in-ru`   | دارد      | دارد        |
+| فهرست سیاه گسترش‌یافتهٔ روسیه                                           | `blocked-in-ru-expand`   | ندارد     | دارد        |
+| فهرست سفید ایران                                                        | `mainly-ir`              | دارد      | دارد        |
+| فهرست سفید گسترش‌یافتهٔ ایران                                           | `expand-ir`              | ندارد     | دارد        |
 
-#### نسخهٔ استاندارد GeoSite
+برای ترکیب دسته‌ها، راهنمای مهاجرت و منابع داده، [مستندات GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) را ببینید.
 
-نسخهٔ استاندارد (`geosite.dat`) شامل برچسب‌های زیر و مجموعه‌داده‌های متناظر با آن‌ها است:
+#### فایل‌های افزایشی نسخهٔ گسترش‌یافته
 
-- داده‌های اصلی `v2fly/domain-list-community` که بدون تغییر وارد مجموعه شده‌اند
-- `available-only-in-ru`: دامنه‌های برگرفته از `runetfreedom/russia-domains-list` که فقط در داخل روسیه قابل دسترسی هستند.
-- `blocked-in-cn`: مجموعهٔ دامنه‌های مسدودشده در سرزمین اصلی چین.
-  - `gfwlist-cn`: داده‌های برگرفته از `gfwlist/gfwlist`.
-- `blocked-in-ru`: مجموعهٔ دامنه‌های مسدودشده در روسیه.
-  - `antifilter-list-community`: فهرست دامنه‌های نسخهٔ جامعهٔ Antifilter.Download.
-  - `refilter`: فهرست کامل دامنه‌های برگرفته از `1andrevich/Re-filter-lists`.
-- `mainly-ir`: مجموعه‌ای از دامنه‌های برگرفته از `Chocolate4U/Iran-v2ray-rules` که اعتبار آن‌ها بررسی شده و برای عبور از محدودیت‌های شبکه در داخل ایران در نظر گرفته شده‌اند.
+اگر فقط به داده‌های گسترش‌یافتهٔ برخی مناطق نیاز دارید، فایل‌های افزایشی مربوط را در کنار نسخهٔ استاندارد `geosite.dat` دانلود کنید؛ نیازی به دانلود `geosite-expand.dat` نیست.
 
-#### نسخهٔ توسعه‌یافتهٔ GeoSite
+برای مثال، [delta-ru.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geosite/delta/delta-ru.dat) را در همان پوشهٔ نسخهٔ استاندارد `geosite.dat` قرار دهید. دسته‌های پروژهٔ بالادستی domain-list-community همچنان با `geosite:xx` و فهرست سیاه گسترش‌یافتهٔ روسیه با `ext:delta-ru.dat:blocked-in-ru-expand` قابل استفاده‌اند.
 
-نسخهٔ توسعه‌یافته (`geosite-expand.dat`) شامل برچسب‌های زیر و مجموعه‌داده‌های متناظر با آن‌ها است:
-
-- داده‌های اصلی `v2fly/domain-list-community` که بدون تغییر وارد مجموعه شده‌اند.
-- `available-only-in-ru`: دامنه‌های برگرفته از `runetfreedom/russia-domains-list` که فقط در داخل روسیه قابل دسترسی هستند.
-- `blocked-in-cn-expand`: مجموعهٔ توسعه‌یافتهٔ دامنه‌های مسدودشده در سرزمین اصلی چین.
-  - `blocked-in-cn`: مجموعهٔ دامنه‌های مسدودشده در سرزمین اصلی چین.
-    - `gfwlist-cn`: داده‌های برگرفته از `gfwlist/gfwlist`.
-  - `greatfire-list`: داده‌های برگرفته از GreatFire.org.
-- `blocked-in-ru-expand`: مجموعهٔ توسعه‌یافتهٔ دامنه‌های مسدودشده در روسیه.
-  - `antifilter-list-full`: فهرست دامنه‌های برگرفته از Antifilter.Download.
-  - `blocked-in-ru`: مجموعهٔ دامنه‌های مسدودشده در روسیه.
-    - `antifilter-list-community`: فهرست دامنه‌های نسخهٔ جامعهٔ Antifilter.Download.
-    - `refilter`: فهرست کامل دامنه‌های برگرفته از `1andrevich/Re-filter-lists`.
-- `expand-cn`: مجموعه‌دادهٔ دامنه‌های سرزمین اصلی چین، برگرفته از `felixonmars/dnsmasq-china-list`.
-- `expand-ir`: مجموعه‌ای از دامنه‌های برگرفته از `bootmortis/iran-hosted-domains` که برای عبور از محدودیت‌های شبکه در داخل ایران در نظر گرفته شده‌اند.
-- `mainly-ir`: مجموعه‌ای از دامنه‌های برگرفته از `Chocolate4U/Iran-v2ray-rules` که اعتبار آن‌ها بررسی شده و برای عبور از محدودیت‌های شبکه در داخل ایران در نظر گرفته شده‌اند.
+فایل‌های افزایشی DAT در پوشهٔ [`/geosite/delta/`](https://github.com/XTLS/Xray-rules-dat/tree/release/geosite/delta) از شاخهٔ `release` قرار دارند.
 
 ## راهنمای دانلود
 
 ### GitHub Releases
 
-در GitHub Releases فقط پایگاه‌های دادهٔ DAT به‌صورت تک‌فایل ارائه می‌شوند. برای دانلود دستی، [آخرین نسخه](https://github.com/XTLS/Xray-rules-dat/releases/latest) را باز کنید. نسخه‌های پیشین در [GitHub Releases](https://github.com/XTLS/Xray-rules-dat/releases) در دسترس هستند.
+در GitHub Releases فقط فایل‌های کامل DAT ارائه می‌شوند. آخرین نسخه و نسخه‌های پیشین در [صفحهٔ انتشارها](https://github.com/XTLS/Xray-rules-dat/releases) در دسترس هستند.
 
-برنامه‌های به‌روزرسانی خودکار می‌توانند آخرین نسخه را از نشانی ثابت زیر دانلود کنند. به‌جای `<filename>` نام فایل موردنظر را قرار دهید:
+برای به‌روزرسانی خودکار می‌توانید از نشانی ثابت زیر استفاده کنید. کافی است `<filename>` را با نام فایل مورد نظر جایگزین کنید تا آخرین نسخه را دریافت کنید:
 
 ```text
 https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
@@ -190,25 +185,33 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 ### شاخهٔ `release`
 
-آخرین نسخهٔ همهٔ فایل‌ها در [شاخهٔ `release`](https://github.com/XTLS/Xray-rules-dat/tree/release) منتشر می‌شود. اگر به دسته‌بندی مشخصی نیاز دارید، فایل مربوط به آن را مستقیماً از این شاخه دانلود کنید.
+شاخهٔ `release` نیز آخرین فایل‌های کامل را به‌همراه فایل‌های جداگانهٔ هر دسته و فایل‌های افزایشی ارائه می‌کند، اما نسخه‌های پیشین را نگه نمی‌دارد.
 
-به‌جای `<path>` مسیر فایل در شاخه، مانند `geoip/dat/us.dat`، را قرار دهید:
+با [مرور این شاخه](https://github.com/XTLS/Xray-rules-dat/tree/release)، فایل مورد نظر را پیدا کنید و مسیر آن (مانند `geoip/dat/us.dat`) را به‌جای `<path>` قرار دهید. نشانی زیر برای به‌روزرسانی خودکار قابل استفاده است:
 
-- GitHub Raw: `https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>`
-- آینهٔ jsDelivr (پیش‌فرض): `https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
-- آینهٔ jsDelivr (Fastly): `https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+```text
+https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
+```
 
-آینه‌های jsDelivr دارای [محدودیت حجم هر فایل](https://github.com/jsdelivr/jsdelivr#restrictions) هستند؛ بنابراین حتی فایل‌های جداگانهٔ دسته‌بندی‌ها نیز ممکن است به‌دلیل حجم زیاد قابل دانلود نباشند. توصیه می‌شود ابتدا از GitHub Releases یا GitHub Raw استفاده کنید و فقط هنگامی که GitHub در دسترس نیست، از آینه‌ها کمک بگیرید.
+<details>
+<summary>اگر به GitHub دسترسی ندارید، از آینهٔ jsDelivr استفاده کنید</summary>
 
-برای هر فایل داده، یک فایل متناظر با پسوند `.sha256sum` برای بررسی صحت فایل در همان محل قرار دارد.
+- پیش‌فرض: `https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+- Fastly: `https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/<path>`
+
+\* jsDelivr دارای [محدودیت حجم برای هر فایل](https://github.com/jsdelivr/jsdelivr#restrictions) است؛ بنابراین حتی فایل‌های جداگانهٔ دسته‌ها یا فایل‌های افزایشی نیز ممکن است به دلیل حجم زیاد قابل دانلود نباشند. توصیه می‌شود ابتدا دانلود مستقیم از GitHub را امتحان کنید.
+
+</details>
+
+برای هر فایل داده، یک فایل متناظر با پسوند `.sha256sum` برای بررسی صحت در همان مسیر وجود دارد.
 
 ## استفاده در Xray
 
-بسته‌های انتشار Xray شامل نسخهٔ سبک GeoIP با نام `geoip.dat` هستند. می‌توانید مستقیماً از مجموعه‌های سفارشی منطقه‌ای و دسته‌بندی‌های عمومی آن استفاده کنید.
+بسته‌های انتشار Xray به‌طور پیش‌فرض شامل GeoIP سبک و GeoSite استاندارد با نام‌های `geoip.dat` و `geosite.dat` هستند. می‌توانید مستقیماً با ساختار `geoip:xx` و `geosite:xx` از آن‌ها استفاده کنید.
 
-در مثال زیر، نسخهٔ سبک با نام `geoip.dat` حفظ می‌شود و فایل [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) نیز در همان پوشه دانلود می‌شود.
+در مثال زیر، فایل IP آمریکا یعنی [us.dat](https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat) نیز استفاده می‌شود. هر سه فایل را در یک پوشه قرار دهید.
 
-قطعهٔ زیر را به پیکربندی Xray اضافه کنید تا هر دو فایل هر روز ساعت ۰۴:۰۰ به وقت محلی محیط اجرا، به‌صورت خودکار به‌روزرسانی و بدون راه‌اندازی مجدد بارگذاری شوند. آدرس‌های خصوصی و دسته‌بندی `in-cn` از خروجی موجود `direct` و دسته‌بندی `us` از خروجی موجود `wireguard` استفاده می‌کنند:
+قطعهٔ زیر را در پیکربندی فعلی Xray خود ادغام کنید. این مثال از اتصال‌های خروجی موجود `direct`، `xhttp-us` و `xhttp-jp` استفاده می‌کند و هر روز ساعت 04:00 به وقت محلی محیط اجرا، هر سه فایل را به‌طور خودکار به‌روزرسانی و بدون راه‌اندازی دوباره بارگذاری می‌کند:
 
 ```json
 {
@@ -222,60 +225,76 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
       {
         "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat",
         "file": "us.dat"
+      },
+      {
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat",
+        "file": "geosite.dat"
       }
     ]
   },
   "routing": {
+    "domainStrategy": "IPOnDemand", // نام دامنه‌ها را در صورت نیاز به IP تبدیل کنید تا ترافیک دامنه نیز بتواند با قوانین IP تطبیق پیدا کند
     "rules": [
       {
-        "ip": ["geoip:private", "geoip:in-cn"],
+        // ابتدا ترافیک نشانی‌های خصوصی را مستقیماً ارسال کنید
+        "ip": ["geoip:private"],
         "outboundTag": "direct"
       },
       {
+        // اشتراک فهرست‌های سفید دامنه و IP: اتصال مستقیم فقط در صورت تطبیق با هر دو، برای کاهش اثر تشخیص نادرست در یک فهرست
+        "domain": ["geosite:cn"],
+        "ip": ["geoip:in-cn"],
+        "outboundTag": "direct"
+      },
+      {
+        // نشانی‌های IP آمریکا را با دستهٔ us در us.dat تطبیق دهید و از اتصال خروجی xhttp-us استفاده کنید
         "ip": ["ext:us.dat:us"],
-        "outboundTag": "wireguard"
+        "outboundTag": "xhttp-us"
+      },
+      {
+        // برای دامنه‌های فهرست سیاه سرزمین اصلی چین از اتصال خروجی xhttp-jp استفاده کنید
+        "domain": ["geosite:blocked-in-cn"],
+        "outboundTag": "xhttp-jp"
       }
     ]
   }
 }
 ```
 
-فایل‌هایی که قرار است به‌روزرسانی شوند باید از قبل وجود داشته باشند. برای گزینه‌های بیشتر، [مستندات پیکربندی Geodata](https://xtls.github.io/en/config/geodata.html) را ببینید.
+فایل‌هایی که قرار است به‌روزرسانی شوند باید از قبل موجود باشند. گزینه‌های به‌روزرسانی در [مستندات پیکربندی Geodata](https://xtls.github.io/en/config/geodata.html) توضیح داده شده‌اند.
 
-می‌توانید نام دسته‌بندی‌ها را در مثال بر اساس نیاز تغییر دهید. برای ترتیب قوانین و روش تطبیق IP، [مستندات مسیریابی Xray](https://xtls.github.io/en/config/routing.html) را ببینید.
+این فقط نمونه‌ای از یک قطعهٔ پیکربندی است؛ برای استفادهٔ واقعی، آن را با پیکربندی فعلی و نیازهای مسیریابی خود سازگار کنید. ترتیب قوانین و شیوهٔ تطبیق IP و دامنه در [مستندات مسیریابی](https://xtls.github.io/en/config/routing.html) آمده است.
 
-دسته‌بندی موجود `in-cn` همچنان از طریق `geoip:in-cn` استفاده می‌شود و دسته‌بندی اضافه‌شدهٔ `us` از طریق `ext:us.dat:us` بارگذاری می‌شود. برای دسته‌بندی‌های دیگر، `us` را در نام فایل و نام دسته‌بندی جایگزین کنید.
+نام دسته پس از آخرین دونقطه باید در فایل DAT مربوطه وجود داشته باشد. برای جزئیات، [بارگذاری IP / دامنه از فایل](https://xtls.github.io/en/config/routing.html#ruleobject) را ببینید.
 
-نام دسته‌بندی پس از آخرین دونقطه باید در همان فایل DAT وجود داشته باشد. برای جزئیات، بخش [بارگذاری IP از فایل](https://xtls.github.io/en/config/routing.html#ruleobject) در مستندات Xray را ببینید.
+اگر به داده‌های IP کشورهای بیشتری نیاز دارید، `geoip-full.dat` را دانلود کنید، نام آن را به `geoip.dat` تغییر دهید، فایل قبلی را جایگزین کنید و در نشانی به‌روزرسانی، `geoip-lite.dat` را به `geoip-full.dat` تغییر دهید. پس از آن می‌توانید مستقیماً از ارجاع‌هایی مانند `geoip:us` استفاده کنید و دیگر نیازی به دانلود جداگانهٔ `us.dat` یا استفاده از `ext:us.dat:us` ندارید.
 
-اگر به دسته‌بندی‌های اصلی برای کشورها و قلمروهای بیشتری نیاز دارید، می‌توانید `geoip-full.dat` را دانلود کرده، نام آن را به `geoip.dat` تغییر دهید و جایگزین فایل قبلی کنید. همچنین در نشانی به‌روزرسانی بالا، `geoip-lite.dat` را به `geoip-full.dat` تغییر دهید. پس از جایگزینی فایل، می‌توانید دسته‌بندی‌های اصلی را مستقیماً، برای نمونه از طریق `geoip:us`، استفاده کنید و نیازی به دانلود جداگانهٔ `us.dat` یا استفاده از `ext:us.dat:us` نیست.
+## کد منبع و مجوزها
 
-## کد منبع و مجوز
+کد منبع GeoIP، منابع داده و راهنمای ساخت در [شاخهٔ `geoip`](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_fa-IR.md) نگهداری می‌شوند.
 
-کد منبع GeoIP، منابع داده و مراحل ساخت در [شاخهٔ `geoip`](https://github.com/XTLS/Xray-rules-dat/blob/geoip/README_fa-IR.md) نگهداری می‌شوند.
+کد منبع GeoSite، منابع داده و راهنمای ساخت در [شاخهٔ `geosite`](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) نگهداری می‌شوند.
 
-کد منبع GeoSite، منابع داده و ابزارهای ساخت در شاخهٔ [`geosite`](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) نگهداری می‌شوند.
-
-مجوز کلی این پروژه [GPL-3.0](./LICENSE) است. برخی ابزارها (GeoSite) تحت مجوز [MIT](./LICENSE-GeoSite) یا [شرایط مجوز به‌ارث‌رسیده](./LICENSE-GeoSite-inherit) ارائه می‌شوند.
+این پروژه در مجموع تحت مجوز [GPL-3.0](./LICENSE) منتشر می‌شود. برخی ابزارها (GeoSite) به‌صورت جداگانه تحت [مجوز MIT](./LICENSE-GeoSite) یا [شرایط مجوز به‌ارث‌رسیده](./LICENSE-GeoSite-inherit) قرار دارند.
 
 ## قدردانی
 
-- کد منبع GeoIP از [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) منشعب شده است که خود انشعابی از [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc) است
-- کد منبع GeoSite از [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) انشعاب گرفته شده و بر پایهٔ آن انتقال و سازگار‌سازی شده است
+- کد منبع GeoIP از [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) منشعب شده است؛ این پروژه نیز از [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc) منشعب شده بود
+- کد منبع GeoSite از [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) منشعب و منتقل شده است
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community): منبع بالادستی داده‌های GeoSite
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
-- [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
+- [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
+- [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
+- [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
+- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
-- [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
-- [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
-- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
 - [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
 - [Antifilter.Download community edition](https://community.antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
+- [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
