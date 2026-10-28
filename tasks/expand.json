@@ -18,7 +18,9 @@
 		"mode": "allowlist",
 		"lists": [
 			"located-in-ir-expand",
-			"iran-hosted-domains",
+			"iran-hosted-domains"
+		],
+		"backseated": [
 			"blocked-in-ir-expand"
 		]
 	},

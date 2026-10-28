@@ -5,7 +5,6 @@
 		"lists": [
 			"blocked-in-cn-expand",
 			"greatfire-list-cn",
-			"blocked-in-ir-expand",
 			"blocked-in-ru-expand",
 			"antifilter-list-full",
 			"located-in-cn-expand",
@@ -13,6 +12,9 @@
 			"located-in-ir-expand",
 			"iran-hosted-domains",
 			"located-in-ru-expand"
+		],
+		"backseated": [
+			"blocked-in-ir-expand"
 		]
 	}
 ]
