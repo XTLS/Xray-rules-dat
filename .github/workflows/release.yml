@@ -156,15 +156,21 @@ jobs:
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --outputname geosite-expand.dat --outputdir ./output/
+          # File too large
           # ./datadump --inputdata ./output/geosite-expand.dat --outputdir ./output/
 
-      - name: Build GeoSite Deltas
+      - name: Build GeoSite Deltas and Supplement lists
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --datprofile ./tasks/delta.json --outputdir ./output/delta/
+          # File too large
           # for file in ./output/delta/*.dat; do
           #   ./datadump --inputdata "$file" --outputdir ./output/delta/
           # done
+          ./geosite --datapath ./data/exp --datprofile ./tasks/supplement.json --outputdir ./output/supplement/
+          for file in ./output/supplement/*.dat; do
+            ./datadump --inputdata "$file" --outputdir ./output/supplement/
+          done
 
       - name: Collect GeoSite outputs
         run: mv ./geosite/output/* ./output/geosite/
