@@ -1,0 +1,24 @@
+[
+	{
+		"name": "supplement-cn.dat",
+		"mode": "allowlist",
+		"lists": [
+			"dnsmasq-china-list",
+			"greatfire-list-cn"
+		]
+	},
+	{
+		"name": "supplement-ir.dat",
+		"mode": "allowlist",
+		"lists": [
+			"iran-hosted-domains"
+		]
+	},
+	{
+		"name": "supplement-ru.dat",
+		"mode": "allowlist",
+		"lists": [
+			"antifilter-list-full"
+		]
+	}
+]
