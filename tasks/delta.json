@@ -3,21 +3,27 @@
 		"name": "delta-cn.dat",
 		"mode": "allowlist",
 		"lists": [
-			"expand-cn",
-			"greatfire-list"
+			"located-in-cn-expand",
+			"dnsmasq-china-list",
+			"blocked-in-cn-expand",
+			"greatfire-list-cn"
 		]
 	},
 	{
 		"name": "delta-ir.dat",
 		"mode": "allowlist",
 		"lists": [
-			"expand-ir"
+			"located-in-ir-expand",
+			"iran-hosted-domains",
+			"blocked-in-ir-expand"
 		]
 	},
 	{
 		"name": "delta-ru.dat",
 		"mode": "allowlist",
 		"lists": [
+			"located-in-ru-expand",
+			"blocked-in-ru-expand",
 			"antifilter-list-full"
 		]
 	}
