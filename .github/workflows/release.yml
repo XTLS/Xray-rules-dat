@@ -200,6 +200,13 @@ jobs:
           esac
           echo "RELEASE_NOTES=${notes} GeoIP source: ${GEOIP_SOURCE_SHA}. GeoSite source: ${GEOSITE_SOURCE_SHA}." >> "$GITHUB_ENV"
 
+      - name: Compress DAT files
+        working-directory: ./output
+        run: |
+          find . -type f -name "*.dat" -print0 | sort -z | while IFS= read -r -d '' path; do
+            gzip -6 -n -c -- "$path" > "${path}.gz"
+          done
+
       - name: Generate SHA-256 checksums
         working-directory: ./output
         run: |
@@ -246,12 +253,13 @@ jobs:
             gh release delete "$tag" --yes --cleanup-tag
           done
 
-      - name: Upload DAT files and checksums to GitHub Release
+      - name: Upload DAT assets and checksums to GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           files=()
-          for file in ./output/*/*.dat ./output/*/*.dat.sha256sum; do
+          for file in ./output/*/*.dat ./output/*/*.dat.gz \
+            ./output/*/*.dat.sha256sum ./output/*/*.dat.gz.sha256sum; do
             [ -f "$file" ] || continue
             files+=("$file")
           done
