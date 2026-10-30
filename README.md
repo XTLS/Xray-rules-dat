@@ -26,12 +26,12 @@ Both versions include IPv4 and IPv6 data.
 
 `in-cn` is a direct-connection allowlist for routing from mainland China.
 
-IPv4 data combines the following two sources, without adding IPInfo Lite's original CN IPv4 data:
+IPv4 data combines the following two sources:
 
 - misakaio/chnroutes2
 - china.txt from gaoyifan/china-operator-ip
 
-IPv6 data combines IPInfo Lite's original CN IPv6 data with china6.txt from gaoyifan/china-operator-ip.
+IPv6 data comes only from china6.txt in gaoyifan/china-operator-ip.
 
 Because ISPs in mainland China degrade international connectivity, overseas addresses effectively constitute a blocklist. This project therefore maintains only a direct-connection allowlist for mainland China, without a separate blocklist.
 

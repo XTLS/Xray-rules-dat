@@ -1,17 +1,6 @@
 {
   "input": [
     {
-      "type": "ipinfoCountryMMDB",
-      "action": "add",
-      "args": {
-        "uri": "./ipinfo/ipinfo_lite.mmdb",
-        "wantedList": [
-          "cn"
-        ],
-        "onlyIPType": "ipv6"
-      }
-    },
-    {
       "type": "text",
       "action": "add",
       "args": {
