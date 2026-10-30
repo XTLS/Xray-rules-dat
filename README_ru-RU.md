@@ -26,15 +26,12 @@
 
 `in-cn` — список адресов для прямого подключения при маршрутизации из материкового Китая.
 
-Для IPv4 объединяются следующие три источника без добавления исходных данных CN IPv4 из IPInfo Lite:
+Для IPv4 объединяются следующие два источника без добавления исходных данных CN IPv4 из IPInfo Lite:
 
-- zhufengme/block_cn_files
 - misakaio/chnroutes2
 - china.txt из gaoyifan/china-operator-ip
 
 Для IPv6 объединяются исходные данные CN IPv6 из IPInfo Lite и china6.txt из gaoyifan/china-operator-ip.
-
-Теоретически для маршрутизации достаточно уже анонсируемых префиксов. Более специфичные префиксы, которые пока не анонсируются, также включаются заранее, чтобы правила маршрутизации срабатывали сразу после начала их анонсирования, без ожидания обновления данных.
 
 Поскольку интернет-провайдеры материкового Китая ухудшают международную связность, зарубежные адреса фактически образуют чёрный список. Поэтому для материкового Китая поддерживается только список адресов для прямого подключения, без отдельного чёрного списка.
 
@@ -96,7 +93,6 @@ go run . convert -c config-geoip-full.json
 
 - Проект создан как форк [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb), который, в свою очередь, был ответвлён от [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)

@@ -28,15 +28,12 @@
 
 `in-cn` فهرست مجاز اتصال مستقیم برای مسیریابی از سرزمین اصلی چین است.
 
-داده‌های IPv4 از ادغام سه منبع زیر به دست می‌آیند و داده‌های اصلی CN IPv4 از IPInfo Lite به آن‌ها افزوده نمی‌شوند:
+داده‌های IPv4 از ادغام دو منبع زیر به دست می‌آیند و داده‌های اصلی CN IPv4 از IPInfo Lite به آن‌ها افزوده نمی‌شوند:
 
-- zhufengme/block_cn_files
 - misakaio/chnroutes2
 - فایل china.txt از gaoyifan/china-operator-ip
 
 داده‌های IPv6 از ادغام داده‌های اصلی CN IPv6 در IPInfo Lite با فایل china6.txt از gaoyifan/china-operator-ip به دست می‌آیند.
-
-از نظر تئوری، پیشوندهای اعلان‌شده برای نیازهای مسیریابی کافی هستند. با این حال، پیشوندهای جزئی‌تری که هنوز اعلان نشده‌اند نیز از قبل اضافه می‌شوند تا به‌محض آغاز اعلان، بدون نیاز به انتظار برای به‌روزرسانی داده‌ها، با قواعد مسیریابی مطابقت داشته باشند.
 
 از آنجا که ارائه‌دهندگان خدمات اینترنت در سرزمین اصلی چین کیفیت ارتباطات بین‌المللی را کاهش می‌دهند، نشانی‌های خارجی عملاً یک فهرست سیاه را تشکیل می‌دهند. بنابراین برای این منطقه فقط فهرست مجاز اتصال مستقیم نگهداری می‌شود و فهرست سیاه جداگانه‌ای وجود ندارد.
 
@@ -106,7 +103,6 @@ go run . convert -c config-geoip-full.json
 
 - این پروژه از [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) منشعب شده است که خود انشعابی از [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc) است.
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)

@@ -26,15 +26,12 @@ GeoIP 数据的覆盖程度会直接影响分流效果。在国际多出口分�
 
 `in-cn` 表示适用于中国大陆分流环境的直连白名单。
 
-IPv4 合并以下三个来源，不加入 IPInfo Lite 原始 CN IPv4：
+IPv4 合并以下两个来源，不加入 IPInfo Lite 原始 CN IPv4：
 
-- zhufengme/block_cn_files
 - misakaio/chnroutes2
 - gaoyifan/china-operator-ip 的 china.txt
 
 IPv6 合并 IPInfo Lite 原始 CN IPv6 与 gaoyifan/china-operator-ip 的 china6.txt。
-
-理论上，已广播的地址就足以满足分流需求。这里仍预先纳入更细分、尚未广播的地址，主要是为了让它们开始广播时即可匹配分流规则，不必等待数据更新。
 
 中国大陆因 ISP 劣化国际网络，境外地址约等于黑名单，因此只维护直连白名单，不单列黑名单。
 
@@ -96,7 +93,6 @@ lite 只输出 `./output/geoip-lite.dat`。full 输出 `./output/geoip-full.dat`
 
 - 本项目从 [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb) 分叉而来，后者分叉自 [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)

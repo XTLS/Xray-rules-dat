@@ -26,15 +26,12 @@ Both versions include IPv4 and IPv6 data.
 
 `in-cn` is a direct-connection allowlist for routing from mainland China.
 
-IPv4 data combines the following three sources, without adding IPInfo Lite's original CN IPv4 data:
+IPv4 data combines the following two sources, without adding IPInfo Lite's original CN IPv4 data:
 
-- zhufengme/block_cn_files
 - misakaio/chnroutes2
 - china.txt from gaoyifan/china-operator-ip
 
 IPv6 data combines IPInfo Lite's original CN IPv6 data with china6.txt from gaoyifan/china-operator-ip.
-
-In theory, announced prefixes are sufficient for routing needs. More specific prefixes that have not yet been announced are also included so that routing rules can match them as soon as they are announced, without waiting for a data update.
 
 Because ISPs in mainland China degrade international connectivity, overseas addresses effectively constitute a blocklist. This project therefore maintains only a direct-connection allowlist for mainland China, without a separate blocklist.
 
@@ -96,7 +93,6 @@ Build commands must explicitly specify a configuration file with `-c`. See the [
 
 - This project was forked from [`Meo597/geoip@56a84321`](https://github.com/Meo597/geoip/commit/56a8432119d6f03d8689b36ac3ba9a8ed880f9cb), which was forked from [`Loyalsoldier/geoip@b84c0db4`](https://github.com/Loyalsoldier/geoip/commit/b84c0db4ad7286eb5cec870cabf6642a156290bc)
 - [IPInfo Lite](https://ipinfo.io/lite)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
