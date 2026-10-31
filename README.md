@@ -22,20 +22,20 @@ _Due to GitHub Actions workflow queues and scheduling, builds may finish a few m
 | GeoSite Standard | `geosite.dat`        | Upstream domain categories, plus domain blacklists and whitelists for mainland China, Russia, and Iran                                     | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [Default](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
 | GeoSite Expanded | `geosite-expand.dat` | All categories from the Standard edition, plus domain blacklists and whitelists with broader coverage for mainland China, Russia, and Iran | [Download](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | File too large                                                                                                                                                                      |
 
-\* The Lite edition is suitable for basic direct/proxy routing in mainland China, Russia, and Iran.\
-\* The Full edition supports more granular routing by destination country, as well as direct/proxy routing needs in other countries and regions.\
+\* The GeoIP Lite edition is suitable for basic direct/proxy routing in mainland China, Russia, and Iran.\
+\* The GeoIP Full edition supports more granular routing by destination country, as well as direct/proxy routing needs in other countries and regions.\
 \* Xray releases include GeoIP Lite and GeoSite Standard by default, named `geoip.dat` and `geosite.dat`, respectively.
 
 ### GeoIP Lite vs. Full
 
-| Type                                        | Category names                                                                                                 | Lite         | Full          |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
-| IP geolocation                              | Two-letter country codes (see the [table below](#all-countries-and-territories))                               | Not included | Included      |
-| Anycast addresses                           | `anycast`                                                                                                      | Not included | Included      |
-| Region-specific sets (whitelists)           | `in-cn`, `in-ru`, `in-ir`                                                                                      | Included     | Included      |
-| Blacklists                                  | `blacklist-ru`, `blacklist-ir`                                                                                 | Included     | Included      |
-| Private networks and commonly used services | `private`, `cloudflare`, `cloudfront`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Included     | Included      |
-| Compatibility aliases                       | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                 | Available    | Not available |
+| Type                                        | Category names                                                                                                        | Lite         | Full          |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| IP geolocation                              | Two-letter country codes (see the [table below](#all-countries-and-territories))                                      | Not included | Included      |
+| Global Anycast addresses                    | `anycast`                                                                                                             | Not included | Included      |
+| Region-specific sets (whitelists)           | `in-cn`, `in-ru`, `in-ir`                                                                                             | Included     | Included      |
+| Region-specific sets (blacklists)           | `blacklist-ru`, `blacklist-ir`                                                                                        | Included     | Included      |
+| Private networks and commonly used services | `private`, `cloudflare`, `cloudfront`, `doh`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Included     | Included      |
+| Compatibility aliases                       | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                        | Available    | Not available |
 
 \* Compatibility aliases preserve established community usage and are available only in the Lite edition.\
 \* `in-cn` contains IP addresses suitable for direct connections from mainland China; it does not imply that these IP addresses are located in mainland China. In the Full edition, `cn` is strictly based on IP geolocation; the same applies to `ru` and `ir`.
@@ -288,7 +288,6 @@ The project as a whole is licensed under [GPL-3.0](./LICENSE). Some tools (GeoSi
 - [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)

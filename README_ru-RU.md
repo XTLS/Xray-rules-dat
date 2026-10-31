@@ -22,20 +22,20 @@ _Из-за очередей и особенностей планирования
 | GeoSite Standard | `geosite.dat`        | Категории доменов из исходного проекта, дополненные чёрными и белыми списками доменов для материкового Китая, России и Ирана        | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [Основное](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
 | GeoSite Expanded | `geosite-expand.dat` | Все категории версии Standard, а также чёрные и белые списки доменов с более широким охватом для материкового Китая, России и Ирана | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | Слишком большой файл                                                                                                                                                                 |
 
-\* Версия Lite подходит для базового разделения трафика на прямые и проксируемые соединения в материковом Китае, России и Иране.\
-\* Версия Full позволяет точнее маршрутизировать трафик по стране назначения, а также подходит для разделения трафика на прямые и проксируемые соединения в других странах и регионах.\
+\* Версия GeoIP Lite подходит для базового разделения трафика на прямые и проксируемые соединения в материковом Китае, России и Иране.\
+\* Версия GeoIP Full позволяет точнее маршрутизировать трафик по стране назначения, а также подходит для разделения трафика на прямые и проксируемые соединения в других странах и регионах.\
 \* В поставку Xray по умолчанию входят GeoIP Lite и GeoSite Standard под именами `geoip.dat` и `geosite.dat` соответственно.
 
 ### Различия между GeoIP Lite и Full
 
-| Тип                                       | Имена категорий                                                                                                | Lite | Full |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ---- | ---- |
-| Геолокация IP                             | Двухбуквенные коды стран (см. [таблицу ниже](#все-страны-и-территории))                                        | Нет  | Есть |
-| Anycast-адреса                            | `anycast`                                                                                                      | Нет  | Есть |
-| Региональные наборы (белые списки)        | `in-cn`, `in-ru`, `in-ir`                                                                                      | Есть | Есть |
-| Чёрные списки                             | `blacklist-ru`, `blacklist-ir`                                                                                 | Есть | Есть |
-| Частные сети и часто используемые сервисы | `private`, `cloudflare`, `cloudfront`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Есть | Есть |
-| Псевдонимы для совместимости              | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                 | Есть | Нет  |
+| Тип                                       | Имена категорий                                                                                                       | Lite | Full |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---- | ---- |
+| Геолокация IP                             | Двухбуквенные коды стран (см. [таблицу ниже](#все-страны-и-территории))                                               | Нет  | Есть |
+| Anycast-адреса по всему миру              | `anycast`                                                                                                             | Нет  | Есть |
+| Региональные наборы (белые списки)        | `in-cn`, `in-ru`, `in-ir`                                                                                             | Есть | Есть |
+| Региональные наборы (чёрные списки)       | `blacklist-ru`, `blacklist-ir`                                                                                        | Есть | Есть |
+| Частные сети и часто используемые сервисы | `private`, `cloudflare`, `cloudfront`, `doh`, `facebook`, `fastly`, `google`, `netflix`, `telegram`, `twitter`, `tor` | Есть | Есть |
+| Псевдонимы для совместимости              | `cn` → `in-cn`, `ru` → `in-ru`, `ir` → `in-ir`                                                                        | Есть | Нет  |
 
 \* Псевдонимы для совместимости сохраняют привычный для сообщества способ использования и доступны только в версии Lite.\
 \* `in-cn` содержит IP-адреса, подходящие для прямого подключения из материкового Китая; это не означает, что сами адреса находятся в материковом Китае. В версии Full категория `cn` определяется строго по геолокации IP; то же относится к `ru` и `ir`.
@@ -288,7 +288,6 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 - [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)

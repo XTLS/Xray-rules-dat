@@ -22,20 +22,20 @@ _به دلیل صف گردش‌کارها و سازوکار زمان‌بندی 
 | GeoSite استاندارد   | `geosite.dat`        | دسته‌بندی دامنه‌های پروژهٔ بالادستی، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها برای سرزمین اصلی چین، روسیه و ایران                  | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
 | GeoSite گسترش‌یافته | `geosite-expand.dat` | تمام دسته‌بندی‌های نسخهٔ استاندارد، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها با پوشش گسترده‌تر برای سرزمین اصلی چین، روسیه و ایران | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
 
-\* نسخهٔ سبک برای تفکیک پایهٔ ترافیک مستقیم و پراکسی در سرزمین اصلی چین، روسیه و ایران مناسب است.\
-\* نسخهٔ کامل برای مسیریابی دقیق‌تر بر اساس کشور مقصد ترافیک و همچنین نیازهای تفکیک ترافیک مستقیم و پراکسی در سایر کشورها و مناطق مناسب است.\
+\* نسخهٔ سبک GeoIP برای تفکیک پایهٔ ترافیک مستقیم و پراکسی در سرزمین اصلی چین، روسیه و ایران مناسب است.\
+\* نسخهٔ کامل GeoIP برای مسیریابی دقیق‌تر بر اساس کشور مقصد ترافیک و همچنین نیازهای تفکیک ترافیک مستقیم و پراکسی در سایر کشورها و مناطق مناسب است.\
 \* بسته‌های انتشار Xray به‌طور پیش‌فرض شامل داده‌های GeoIP سبک و GeoSite استاندارد هستند که به‌ترتیب با نام‌های `geoip.dat` و `geosite.dat` ارائه می‌شوند.
 
 ### تفاوت GeoIP سبک و کامل
 
-| نوع                                    | نام دسته‌ها                                                                                                    | سبک          | کامل          |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
-| موقعیت جغرافیایی IP                    | کدهای دوحرفی کشورها (نگاه کنید به [جدول زیر](#همه-کشورها-و-مناطق))                                             | ندارد        | دارد          |
-| نشانی‌های Anycast                      | `anycast`                                                                                                      | ندارد        | دارد          |
-| مجموعه‌های ویژهٔ هر منطقه (فهرست سفید) | `in-cn`، `in-ru`، `in-ir`                                                                                      | دارد         | دارد          |
-| فهرست‌های سیاه                         | `blacklist-ru`، `blacklist-ir`                                                                                 | دارد         | دارد          |
-| شبکه‌های خصوصی و سرویس‌های پرکاربرد    | `private`، `cloudflare`، `cloudfront`، `facebook`، `fastly`، `google`، `netflix`، `telegram`، `twitter`، `tor` | دارد         | دارد          |
-| نام‌های مستعار برای سازگاری            | `cn` → `in-cn`، `ru` → `in-ru`، `ir` → `in-ir`                                                                 | ارائه می‌شود | ارائه نمی‌شود |
+| نوع                                    | نام دسته‌ها                                                                                                           | سبک          | کامل          |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| موقعیت جغرافیایی IP                    | کدهای دوحرفی کشورها (نگاه کنید به [جدول زیر](#همه-کشورها-و-مناطق))                                                    | ندارد        | دارد          |
+| نشانی‌های Anycast در سراسر جهان        | `anycast`                                                                                                             | ندارد        | دارد          |
+| مجموعه‌های ویژهٔ هر منطقه (فهرست سفید) | `in-cn`، `in-ru`، `in-ir`                                                                                             | دارد         | دارد          |
+| مجموعه‌های ویژهٔ هر منطقه (فهرست سیاه) | `blacklist-ru`، `blacklist-ir`                                                                                        | دارد         | دارد          |
+| شبکه‌های خصوصی و سرویس‌های پرکاربرد    | `private`، `cloudflare`، `cloudfront`، `doh`، `facebook`، `fastly`، `google`، `netflix`، `telegram`، `twitter`، `tor` | دارد         | دارد          |
+| نام‌های مستعار برای سازگاری            | `cn` → `in-cn`، `ru` → `in-ru`، `ir` → `in-ir`                                                                        | ارائه می‌شود | ارائه نمی‌شود |
 
 \* نام‌های مستعار برای سازگاری، شیوهٔ استفادهٔ رایج در جامعهٔ کاربران را حفظ می‌کنند و فقط در نسخهٔ سبک ارائه می‌شوند.\
 \* دستهٔ `in-cn` شامل نشانی‌های IP مناسب برای اتصال مستقیم از سرزمین اصلی چین است؛ این به معنی قرار داشتن آن نشانی‌ها در سرزمین اصلی چین نیست. در نسخهٔ کامل، دستهٔ `cn` صرفاً بر اساس موقعیت جغرافیایی IP تعریف می‌شود؛ همین موضوع دربارهٔ `ru` و `ir` نیز صدق می‌کند.
@@ -288,7 +288,6 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 - [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)

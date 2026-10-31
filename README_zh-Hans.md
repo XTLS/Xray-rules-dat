@@ -22,20 +22,20 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 | GeoSite 标准版 | `geosite.dat`        | 上游域名分类，以及针对中国大陆、俄罗斯和伊朗补充的域名黑白名单               | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
 | GeoSite 扩展版 | `geosite-expand.dat` | 包含标准版全部分类，并为中国大陆、俄罗斯和伊朗提供覆盖范围更广的域名黑白名单 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | 体积过大                                                                                                                                                                         |
 
-\* 精简版适合中国大陆、俄罗斯和伊朗的基本直连／代理分流。\
-\* 完整版适合按流量目的地国家进一步精细分流，也适用于其他国家和地区的直连／代理分流需求。\
+\* GeoIP 精简版适合中国大陆、俄罗斯和伊朗的基本直连／代理分流。\
+\* GeoIP 完整版适合按流量目的地国家进一步精细分流，也适用于其他国家和地区的直连／代理分流需求。\
 \* Xray 发布包默认随附精简版 GeoIP 与标准版 GeoSite 数据文件，分别以 `geoip.dat` 和 `geosite.dat` 为文件名。
 
 ### GeoIP 精简版与完整版的区别
 
-| 类型                   | 分类名称                                                                                                       | 精简版 | 完整版 |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------- | ------ | ------ |
-| IP 地理位置            | 两字母国家代码（见[下表](#全部国家和地区)）                                                                    | 不包含 | 包含   |
-| 任播地址               | `anycast`                                                                                                      | 不包含 | 包含   |
-| 地区定制集合（白名单） | `in-cn`、`in-ru`、`in-ir`                                                                                      | 包含   | 包含   |
-| 黑名单                 | `blacklist-ru`、`blacklist-ir`                                                                                 | 包含   | 包含   |
-| 私有网络与常用服务     | `private`、`cloudflare`、`cloudfront`、`facebook`、`fastly`、`google`、`netflix`、`telegram`、`twitter`、`tor` | 包含   | 包含   |
-| 兼容别名               | `cn` → `in-cn`、`ru` → `in-ru`、`ir` → `in-ir`                                                                 | 提供   | 不提供 |
+| 类型                   | 分类名称                                                                                                              | 精简版 | 完整版 |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------- | ------ | ------ |
+| IP 地理位置            | 两字母国家代码（见[下表](#全部国家和地区)）                                                                           | 不包含 | 包含   |
+| 全球任播地址           | `anycast`                                                                                                             | 不包含 | 包含   |
+| 地区定制集合（白名单） | `in-cn`、`in-ru`、`in-ir`                                                                                             | 包含   | 包含   |
+| 地区定制集合（黑名单） | `blacklist-ru`、`blacklist-ir`                                                                                        | 包含   | 包含   |
+| 私有网络与常用服务     | `private`、`cloudflare`、`cloudfront`、`doh`、`facebook`、`fastly`、`google`、`netflix`、`telegram`、`twitter`、`tor` | 包含   | 包含   |
+| 兼容别名               | `cn` → `in-cn`、`ru` → `in-ru`、`ir` → `in-ir`                                                                        | 提供   | 不提供 |
 
 \* 兼容别名用于延续社区旧有的使用习惯，仅在精简版中提供。\
 \* `in-cn` 收录适合从中国大陆直连的 IP，不代表这些 IP 位于中国大陆；完整版中的 `cn` 严格按 IP 地理位置划分，`ru`、`ir` 同理。
@@ -288,7 +288,6 @@ GeoSite 源码、数据来源和构建说明维护在 [`geosite` 分支](https:/
 - [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
 - [gaoyifan/china-operator-ip](https://github.com/gaoyifan/china-operator-ip)
 - [misakaio/chnroutes2](https://github.com/misakaio/chnroutes2)
-- [zhufengme/block_cn_files](https://github.com/zhufengme/block_cn_files)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
