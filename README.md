@@ -205,7 +205,7 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 Each data file has a corresponding `.sha256sum` checksum file in the same location.
 
-Each `.dat` file also has a `.gz` compressed version and its `.gz.sha256sum` checksum file in the same location.
+Each `.dat` file also has a `.gz` compressed version and its `.gz.sha256sum` checksum file in the same location. Xray's built-in automatic updater can use the `.gz` format directly; the core decompresses it during download, reducing data usage by 80%.
 
 ## Xray usage
 
@@ -221,15 +221,15 @@ Merge the following snippet into your existing Xray configuration. The example u
     "cron": "0 4 * * *",
     "assets": [
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat",
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz", // .gz uses less data and is automatically decompressed during download
         "file": "geoip.dat"
       },
       {
-        "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat",
+        "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat.gz",
         "file": "us.dat"
       },
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat",
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat.gz",
         "file": "geosite.dat"
       }
     ]
@@ -269,7 +269,7 @@ This is only a configuration snippet; adapt it to your existing configuration an
 
 The category name after the last colon must exist in the corresponding DAT file. See [Loading IP addresses / domains from files](https://xtls.github.io/en/config/routing.html#ruleobject).
 
-If you need IP data for more countries, download `geoip-full.dat`, rename it to `geoip.dat`, replace the original file, and change `geoip-lite.dat` to `geoip-full.dat` in the update URL. You can then use references such as `geoip:us` directly, without downloading `us.dat` separately or using `ext:us.dat:us`.
+If you need IP data for more countries, manually download `geoip-full.dat`, rename it to `geoip.dat`, replace the original file, and change `geoip-lite.dat.gz` to `geoip-full.dat.gz` in the update URL. You can then use references such as `geoip:us` directly, without downloading `us.dat` separately or using `ext:us.dat:us`.
 
 ## Source code and licenses
 

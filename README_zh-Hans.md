@@ -205,7 +205,7 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 每个数据文件在同一位置都有对应的 `.sha256sum` 校验文件。
 
-每个 `.dat` 文件在同一位置还提供 `.gz` 压缩文件及其 `.gz.sha256sum` 校验文件。
+每个 `.dat` 文件在同一位置还提供 `.gz` 压缩文件及其 `.gz.sha256sum` 校验文件。Xray 内置自动更新可直接使用 `.gz` 格式，下载时核心自动解压，节省 80% 流量。
 
 ## Xray 用法
 
@@ -221,15 +221,15 @@ Xray 发布包默认随附精简版 GeoIP 和标准版 GeoSite，已分别命名
     "cron": "0 4 * * *",
     "assets": [
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat",
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz", // .gz 格式更省流量，下载时自动解压
         "file": "geoip.dat"
       },
       {
-        "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat",
+        "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat.gz",
         "file": "us.dat"
       },
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat",
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat.gz",
         "file": "geosite.dat"
       }
     ]
@@ -269,7 +269,7 @@ Xray 发布包默认随附精简版 GeoIP 和标准版 GeoSite，已分别命名
 
 最后一个冒号后的分类名称须存在于对应的 DAT 文件中，详见[从文件中加载 IP / 域名](https://xtls.github.io/config/routing.html#ruleobject)。
 
-如需更多国家的 IP 数据，可下载 `geoip-full.dat`，重命名为 `geoip.dat` 后替换原文件，并将更新地址中的 `geoip-lite.dat` 改为 `geoip-full.dat`。此时可直接使用 `geoip:us` 等引用，无需额外下载 `us.dat` 或使用 `ext:us.dat:us`。
+如需更多国家的 IP 数据，可手动下载 `geoip-full.dat`，重命名为 `geoip.dat` 后替换原文件，并将更新地址中的 `geoip-lite.dat.gz` 改为 `geoip-full.dat.gz`。此时可直接使用 `geoip:us` 等引用，无需额外下载 `us.dat` 或使用 `ext:us.dat:us`。
 
 ## 源码与许可证
 

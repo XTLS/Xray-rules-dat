@@ -205,7 +205,7 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 Для каждого файла данных в том же расположении доступен соответствующий файл контрольной суммы `.sha256sum`.
 
-Для каждого файла `.dat` в том же расположении также доступны сжатая версия `.gz` и её файл контрольной суммы `.gz.sha256sum`.
+Для каждого файла `.dat` в том же расположении также доступны сжатая версия `.gz` и её файл контрольной суммы `.gz.sha256sum`. Для встроенного автообновления Xray можно напрямую использовать формат `.gz`: ядро автоматически распаковывает данные при скачивании, что сокращает трафик на 80%.
 
 ## Использование в Xray
 
@@ -221,15 +221,15 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
     "cron": "0 4 * * *",
     "assets": [
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat",
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz", // Формат .gz экономит трафик, данные автоматически распаковываются при скачивании
         "file": "geoip.dat"
       },
       {
-        "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat",
+        "url": "https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/geoip/dat/us.dat.gz",
         "file": "us.dat"
       },
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat",
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat.gz",
         "file": "geosite.dat"
       }
     ]
@@ -269,7 +269,7 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 Категория, указанная после последнего двоеточия, должна существовать в соответствующем DAT-файле. См. [Загрузка IP-адресов / доменов из файлов](https://xtls.github.io/ru/config/routing.html#ruleobject).
 
-Если нужны IP-данные других стран, скачайте `geoip-full.dat`, переименуйте его в `geoip.dat`, замените исходный файл и измените `geoip-lite.dat` на `geoip-full.dat` в адресе обновления. После этого можно напрямую использовать ссылки вида `geoip:us`, без отдельного скачивания `us.dat` и без `ext:us.dat:us`.
+Если нужны IP-данные других стран, вручную скачайте `geoip-full.dat`, переименуйте его в `geoip.dat`, замените исходный файл и измените `geoip-lite.dat.gz` на `geoip-full.dat.gz` в адресе обновления. После этого можно напрямую использовать ссылки вида `geoip:us`, без отдельного скачивания `us.dat` и без `ext:us.dat:us`.
 
 ## Исходный код и лицензии
 
