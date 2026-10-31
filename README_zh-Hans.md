@@ -205,6 +205,8 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 每个数据文件在同一位置都有对应的 `.sha256sum` 校验文件。
 
+每个 `.dat` 文件在同一位置还提供 `.gz` 压缩文件及其 `.gz.sha256sum` 校验文件。
+
 ## Xray 用法
 
 Xray 发布包默认随附精简版 GeoIP 和标准版 GeoSite，已分别命名为 `geoip.dat` 和 `geosite.dat`，可直接通过 `geoip:xx` 和 `geosite:xx` 语法使用。

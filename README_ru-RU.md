@@ -205,6 +205,8 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 Для каждого файла данных в том же расположении доступен соответствующий файл контрольной суммы `.sha256sum`.
 
+Для каждого файла `.dat` в том же расположении также доступны сжатая версия `.gz` и её файл контрольной суммы `.gz.sha256sum`.
+
 ## Использование в Xray
 
 В поставку Xray по умолчанию входят GeoIP Lite и GeoSite Standard, уже названные `geoip.dat` и `geosite.dat`. Их можно сразу использовать с синтаксисом `geoip:xx` и `geosite:xx`.
