@@ -54,6 +54,7 @@ Both the full and lite versions include the following common categories:
 - `geoip:private`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
+- `geoip:doh`
 - `geoip:facebook`
 - `geoip:fastly`
 - `geoip:google`

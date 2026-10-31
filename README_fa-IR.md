@@ -56,6 +56,7 @@
 - `geoip:private`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
+- `geoip:doh`
 - `geoip:facebook`
 - `geoip:fastly`
 - `geoip:google`

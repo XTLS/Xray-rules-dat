@@ -68,6 +68,28 @@
       "type": "text",
       "action": "add",
       "args": {
+        "name": "doh",
+        "ipOrCIDR": [
+          // Block common DoH servers to prevent routing failures or DNS poisoning.
+          // Examples: Chrome Secure DNS with a system resolver that supports DoH, or DoH enabled on Android and other devices.
+          // More: https://adguard-dns.io/kb/zh-CN/general/dns-providers/
+          "1.12.12.12", "120.53.53.53", // doh.pub
+          "223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1", // dns.alidns.com
+          "101.226.4.6", "218.30.118.6", "123.125.81.6", "140.207.198.6", // doh.360.cn
+          "8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844", // dns.google
+          "1.1.1.0/24", "1.0.0.0/24", "2606:4700:4700::/112", // cloudflare-dns.com
+          "208.67.222.0/24", "208.67.220.0/24", "2620:119:35::/112", "2620:119:53::/112", // doh.opendns.com
+          "94.140.14.0/24", "94.140.15.0/24", "2a10:50c0::/96", // dns.adguard.com
+          "185.228.168.0/24", "185.228.169.0/24", "2a0d:2a00:1::/112", "2a0d:2a00:2::/112", // doh.cleanbrowsing.org
+          "9.9.9.0/24", "149.112.112.0/24", "2620:fe::/48", // dns.quad9.net
+          "101.101.101.0/24", "101.102.103.0/24", "2001:de4::/48" // dns.twnic.tw
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
         "name": "tor",
         "uri": "https://check.torproject.org/torbulkexitlist"
       }

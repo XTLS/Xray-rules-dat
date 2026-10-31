@@ -54,6 +54,7 @@ IPv6 仅使用 gaoyifan/china-operator-ip 的 china6.txt。
 - `geoip:private`
 - `geoip:cloudflare`
 - `geoip:cloudfront`
+- `geoip:doh`
 - `geoip:facebook`
 - `geoip:fastly`
 - `geoip:google`
