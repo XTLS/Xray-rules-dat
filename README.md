@@ -24,7 +24,8 @@ _Due to GitHub Actions workflow queues and scheduling, builds may finish a few m
 
 \* The GeoIP Lite edition is suitable for basic direct/proxy routing in mainland China, Russia, and Iran.\
 \* The GeoIP Full edition supports more granular routing by destination country, as well as direct/proxy routing needs in other countries and regions.\
-\* Xray releases include GeoIP Lite and GeoSite Standard by default, named `geoip.dat` and `geosite.dat`, respectively.
+\* Xray releases include GeoIP Lite and GeoSite Standard by default, named `geoip.dat` and `geosite.dat`, respectively.\
+\* You can use the [Geo Data Viewer](https://xtls.github.io/en/tools/geofileviewer.html) to browse categories, search rules, or check which rules match an IP address or domain.
 
 ### GeoIP Lite vs. Full
 

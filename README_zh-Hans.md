@@ -24,7 +24,8 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 
 \* GeoIP 精简版适合中国大陆、俄罗斯和伊朗的基本直连／代理分流。\
 \* GeoIP 完整版适合按流量目的地国家进一步精细分流，也适用于其他国家和地区的直连／代理分流需求。\
-\* Xray 发布包默认随附精简版 GeoIP 与标准版 GeoSite 数据文件，分别以 `geoip.dat` 和 `geosite.dat` 为文件名。
+\* Xray 发布包默认随附精简版 GeoIP 与标准版 GeoSite 数据文件，分别以 `geoip.dat` 和 `geosite.dat` 为文件名。\
+\* 可使用 [Geo 数据查看器](https://xtls.github.io/tools/geofileviewer.html) 浏览分类、搜索规则或查询 IP／域名的命中结果。
 
 ### GeoIP 精简版与完整版的区别
 
