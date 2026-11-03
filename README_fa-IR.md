@@ -45,7 +45,7 @@
 
 ### روسیه: `in-ru`، `blacklist-ru`
 
-`in-ru` بر پایهٔ داده‌های اصلی IPv4 و IPv6 مربوط به روسیه در IPInfo Lite ساخته می‌شود.
+`in-ru` فقط شامل داده‌های اصلی IPv4 و IPv6 مربوط به RU از IPInfo Lite است.
 
 `blacklist-ru` فهرست‌های IP از Antifilter و 1andrevich/Re-filter-lists را با پیشوندهای اضافی تلگرام ادغام می‌کند.
 

@@ -43,7 +43,7 @@
 
 ### Россия: `in-ru`, `blacklist-ru`
 
-`in-ru` базируется на исходных данных IPv4 и IPv6 для России из IPInfo Lite.
+`in-ru` содержит только исходные данные IPv4 и IPv6 для RU из IPInfo Lite.
 
 `blacklist-ru` объединяет списки IP-адресов Antifilter и 1andrevich/Re-filter-lists, а также дополнительные префиксы Telegram.
 

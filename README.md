@@ -43,7 +43,7 @@ Starting with IPInfo Lite's original IR IPv4 and IPv6 data, `in-ir` adds Eitaa (
 
 ### Russia: `in-ru`, `blacklist-ru`
 
-`in-ru` is based on IPInfo Lite's original RU IPv4 and IPv6 data.
+`in-ru` contains only IPInfo Lite's original RU IPv4 and IPv6 data.
 
 `blacklist-ru` combines IP lists from Antifilter and 1andrevich/Re-filter-lists with additional Telegram prefixes.
 
