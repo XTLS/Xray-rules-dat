@@ -45,7 +45,7 @@
 
 ### روسیه: `in-ru`، `blacklist-ru`
 
-`in-ru` بر پایهٔ داده‌های اصلی RU IPv4 و IPv6 در IPInfo Lite ساخته می‌شود و فهرست مجاز اینترنت همراه از hxehex/russia-mobile-internet-whitelist را نیز در بر می‌گیرد.
+`in-ru` بر پایهٔ داده‌های اصلی RU IPv4 و IPv6 در IPInfo Lite ساخته می‌شود.
 
 `blacklist-ru` فهرست‌های IP از Antifilter و 1andrevich/Re-filter-lists را با پیشوندهای اضافی تلگرام ادغام می‌کند.
 
@@ -113,7 +113,6 @@ go run . convert -c config-geoip-full.json
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
-- [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
 

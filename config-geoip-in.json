@@ -135,14 +135,6 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "ru",
-        "uri": "https://raw.githubusercontent.com/hxehex/russia-mobile-internet-whitelist/refs/heads/main/cidrwhitelist.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
         "name": "blacklist-ru",
         "uri": "https://antifilter.download/list/ipresolve.lst"
       }
