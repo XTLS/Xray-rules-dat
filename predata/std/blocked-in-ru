@@ -1,2 +1,3 @@
 include:refilter
+include:refilter-community
 include:antifilter-list-community

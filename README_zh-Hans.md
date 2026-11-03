@@ -25,9 +25,10 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | `iran-hosted-domains-lite` | 来自 Chocolate4U/Iran-v2ray-rules 中经过有效性检查的用于绕过伊朗境内的域名集合 | `located-in-ir` | | 与 Chocolate4U/Iran-v2ray-rules 中 `category-ir` 一致 |
 | `available-only-in-ru` | 来自 runetfreedom/russia-domains-list 中仅能在俄罗斯境内使用的域名 | `located-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-available-only-inside` 一致 |
 | `refilter` | 来自 Re:filter 的完整域名列表 | `blocked-in-ru` | | |
+| `refilter-community` | 来自 Re:filter 的限制来自俄罗斯地址访问的域名列表 | `blocked-in-ru` | | |
 | `antifilter-list-community` | 来自 Antifilter.Download community edition 的域名列表 | `blocked-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download-community` 一致 |
 | `blocked-in-cn` | 中国大陆黑名单 | |  `gfwlist-cn` | |
-| `blocked-in-ru` | 俄罗斯黑名单 | | `refilter` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
+| `blocked-in-ru` | 俄罗斯黑名单 | | `refilter` `refilter-community` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
 | `located-in-cn` | 中国大陆白名单 | | `tld-cn` `geolocation:cn` | |
 | `located-in-ir` | 伊朗白名单 | | `category-ir` `iran-hosted-domains-lite` | |
 | `located-in-ru` | 俄罗斯白名单 | | `category-ru` `available-only-in-ru` | |
@@ -44,11 +45,12 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | `iran-hosted-domains` | 来自 Iran Hosted Domains 中用于绕过伊朗境内的域名集合 | `located-in-ir-expand` | | 与 Chocolate4U/Iran-v2ray-rules 中 `ir` 一致 |
 | `available-only-in-ru` | 来自 runetfreedom/russia-domains-list 中仅能在俄罗斯境内使用的域名 | `located-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-available-only-inside` 一致 |
 | `refilter` | 来自 Re:filter 的完整域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | |
+| `refilter-community` | 来自 Re:filter 的限制来自俄罗斯地址访问的域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | 来自 Antifilter.Download community edition 的域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download-community` 一致 |
 | `antifilter-list-full` | 来自 Antifilter.Download 的域名列表 | `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download` 一致；记录数过多，慎用 |
 | `blocked-in-cn` | 中国大陆黑名单 | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | 中国大陆扩展黑名单 | | `blocked-in-cn` `greatfire-list-cn` | |
-| `blocked-in-ru` | 俄罗斯黑名单 | `blocked-in-ru-expand` | `refilter` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
+| `blocked-in-ru` | 俄罗斯黑名单 | `blocked-in-ru-expand` | `refilter` `refilter-community` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
 | `blocked-in-ru-expand` | 俄罗斯扩展黑名单 | | `blocked-in-ru` `antifilter-list-full` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked-all` 一致；记录数过多，慎用 |
 | `located-in-cn` | 中国大陆白名单 | `located-in-cn-expand` | `tld-cn` `geolocation:cn` | |
 | `located-in-cn-expand` | 中国大陆扩展白名单 | | `located-in-cn` `dnsmasq-china-list` | |
@@ -90,5 +92,5 @@ go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir 
 - [GFWList](https://github.com/gfwlist/gfwlist)
 - [Iran Hosted Domains](https://github.com/bootmortis/iran-hosted-domains)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
-- [`Re:filter`](https://github.com/1andrevich/Re-filter-lists)
+- [Re:filter](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)

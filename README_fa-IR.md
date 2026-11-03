@@ -25,9 +25,10 @@
 | `iran-hosted-domains-lite` | مجموعه‌ای از دامنه‌های بررسی‌شده از `Chocolate4U/Iran-v2ray-rules` که برای دور زدن محدودیت‌های داخل ایران در نظر گرفته شده‌اند | `located-in-ir` | | با دسته‌بندی `category-ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
 | `available-only-in-ru` | دامنه‌هایی که فقط در داخل روسیه در دسترس هستند، برگرفته از `runetfreedom/russia-domains-list` | `located-in-ru` | | با دسته‌بندی `ru-available-only-inside` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `refilter` | فهرست کامل دامنه‌های پروژهٔ Re:filter | `blocked-in-ru` | | |
+| `refilter-community` | فهرست دامنه‌هایی از Re:filter که دسترسی به آن‌ها از طریق آدرس‌های IP روسیه محدود شده است | `blocked-in-ru` | | |
 | `antifilter-list-community` | فهرست دامنه‌های نسخهٔ انجمنی Antifilter.Download | `blocked-in-ru` | | با دسته‌بندی `antifilter-download-community` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `blocked-in-cn` | فهرست سیاه سرزمین اصلی چین | | `gfwlist-cn` | |
-| `blocked-in-ru` | فهرست سیاه روسیه | | `refilter`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
+| `blocked-in-ru` | فهرست سیاه روسیه | | `refilter`، `refilter-community`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `located-in-cn` | فهرست سفید سرزمین اصلی چین | | `tld-cn` `geolocation:cn` | |
 | `located-in-ir` | فهرست سفید ایران | | `category-ir` `iran-hosted-domains-lite` | |
 | `located-in-ru` | فهرست سفید روسیه | | `category-ru` `available-only-in-ru` | |
@@ -44,11 +45,12 @@
 | `iran-hosted-domains` | مجموعه‌ای از دامنه‌ها برای دور زدن محدودیت‌های داخل ایران، برگرفته از Iran Hosted Domains | `located-in-ir-expand` | | با دسته‌بندی `ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
 | `available-only-in-ru` | دامنه‌هایی که فقط در داخل روسیه در دسترس هستند، برگرفته از `runetfreedom/russia-domains-list` | `located-in-ru` | | با دسته‌بندی `ru-available-only-inside` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `refilter` | فهرست کامل دامنه‌های پروژهٔ Re:filter | `blocked-in-ru`، `blocked-in-ru-expand` | | |
+| `refilter-community` | فهرست دامنه‌هایی از Re:filter که دسترسی به آن‌ها از طریق آدرس‌های IP روسیه محدود شده است | `blocked-in-ru`، `blocked-in-ru-expand` | | |
 | `antifilter-list-community` | فهرست دامنه‌های نسخهٔ انجمنی Antifilter.Download | `blocked-in-ru`، `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download-community` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `antifilter-list-full` | فهرست دامنه‌های Antifilter.Download | `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
 | `blocked-in-cn` | فهرست سیاه سرزمین اصلی چین | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | فهرست سیاه گسترش‌یافتهٔ سرزمین اصلی چین | | `blocked-in-cn`، `greatfire-list-cn` | |
-| `blocked-in-ru` | فهرست سیاه روسیه | `blocked-in-ru-expand` | `refilter`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
+| `blocked-in-ru` | فهرست سیاه روسیه | `blocked-in-ru-expand` | `refilter`، `refilter-community`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `blocked-in-ru-expand` | فهرست سیاه گسترش‌یافتهٔ روسیه | | `blocked-in-ru`، `antifilter-list-full` | با دسته‌بندی `ru-blocked-all` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
 | `located-in-cn` | فهرست سفید سرزمین اصلی چین | `located-in-cn-expand` | `tld-cn`, `geolocation:cn` | |
 | `located-in-cn-expand` | فهرست سفید گسترش‌یافتهٔ سرزمین اصلی چین | | `located-in-cn`, `dnsmasq-china-list` | |
@@ -92,5 +94,5 @@ go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir 
 - [GFWList](https://github.com/gfwlist/gfwlist)
 - [Iran Hosted Domains](https://github.com/bootmortis/iran-hosted-domains)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
-- [`Re:filter`](https://github.com/1andrevich/Re-filter-lists)
+- [Re:filter](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)

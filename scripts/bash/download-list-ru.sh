@@ -8,6 +8,10 @@ echo "Downloading Re:filter list..."
 curl -L -o ./temp/refilter https://raw.githubusercontent.com/1andrevich/Re-filter-lists/refs/heads/main/domains_all.lst
 cp ./temp/refilter ./data/std/
 cp ./temp/refilter ./data/exp/
+echo "Downloading Re:filter community list..."
+curl -L -o ./temp/refilter-community https://raw.githubusercontent.com/1andrevich/Re-filter-lists/refs/heads/main/community.lst
+cp ./temp/refilter-community ./data/std/
+cp ./temp/refilter-community ./data/exp/
 echo "Downloading Antifilter list community edition..."
 curl -L -o ./temp/antifilter-list-community https://community.antifilter.download/list/domains.lst
 cp ./temp/antifilter-list-community ./data/std/
