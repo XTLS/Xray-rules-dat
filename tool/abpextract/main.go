@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	inputPath  = flag.String("inputpath", "", "Path to your ABP-style file directory")
+	inputPath  = flag.String("inputpath", "", "Path to your ABP-style file")
 	outputName = flag.String("outputname", "", "Name of the generated domain-list format file")
 	outputDir  = flag.String("outputdir", "./", "Directory to place all generated files")
 )
@@ -56,6 +56,9 @@ func convertRegexp(s string) (string, bool) {
 	pattern := s[1 : len(s)-1]
 	if after, ok := strings.CutPrefix(pattern, `^https?:\/\/`); ok {
 		pattern = after
+	}
+	if strings.Contains(pattern, `[^\/]+`) {
+		pattern = strings.ReplaceAll(pattern, `[^\/]+`, `(.*)`)
 	}
 
 	// Validate syntax using Go's regexp engine (RE2).
@@ -135,7 +138,7 @@ func middleWildcardToRegexp(host string) (string, bool) {
 		return host, false
 	}
 
-	pattern := strings.ReplaceAll(host, `*`, `(.*)`)
+	pattern := strings.ReplaceAll(strings.ReplaceAll(host, `.`, `\.`), `*`, `(.*)`)
 
 	return pattern, true
 }

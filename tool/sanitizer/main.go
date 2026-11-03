@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	inputPath  = flag.String("inputpath", "", "Path to your DNSmasq-style file directory")
+	inputPath  = flag.String("inputpath", "", "Path to your DNSmasq-style file")
 	outputName = flag.String("outputname", "", "Name of the generated domain-list format file")
 	outputDir  = flag.String("outputdir", "./", "Directory to place all generated files")
 )
