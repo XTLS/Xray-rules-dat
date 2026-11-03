@@ -43,7 +43,7 @@ IPv6 仅使用 gaoyifan/china-operator-ip 的 china6.txt。
 
 ### 俄罗斯：`in-ru`、`blacklist-ru`
 
-`in-ru` 以 IPInfo Lite 原始 RU IPv4、IPv6 为基础。
+`in-ru` 基于 IPInfo Lite 中原始的俄罗斯（RU）IPv4 和 IPv6 数据构建。
 
 `blacklist-ru` 合并 Antifilter、1andrevich/Re-filter-lists 的 IP 列表，并补充 Telegram 网段。
 
