@@ -43,7 +43,7 @@ IPv6 仅使用 gaoyifan/china-operator-ip 的 china6.txt。
 
 ### 俄罗斯：`in-ru`、`blacklist-ru`
 
-`in-ru` 以 IPInfo Lite 原始 RU IPv4、IPv6 为基础，合并 hxehex/russia-mobile-internet-whitelist 提供的移动网络白名单。
+`in-ru` 仅含 IPInfo Lite 原始 RU IPv4、IPv6 数据。
 
 `blacklist-ru` 合并 Antifilter、1andrevich/Re-filter-lists 的 IP 列表，并补充 Telegram 网段。
 
@@ -103,6 +103,5 @@ lite 只输出 `./output/geoip-lite.dat`。full 输出 `./output/geoip-full.dat`
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
-- [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)

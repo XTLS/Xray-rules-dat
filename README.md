@@ -43,7 +43,7 @@ Starting with IPInfo Lite's original IR IPv4 and IPv6 data, `in-ir` adds Eitaa (
 
 ### Russia: `in-ru`, `blacklist-ru`
 
-Starting with IPInfo Lite's original RU IPv4 and IPv6 data, `in-ru` adds the mobile internet allowlist from hxehex/russia-mobile-internet-whitelist.
+`in-ru` contains only IPInfo Lite's original RU IPv4 and IPv6 data.
 
 `blacklist-ru` combines IP lists from Antifilter and 1andrevich/Re-filter-lists with additional Telegram prefixes.
 
@@ -103,6 +103,5 @@ Build commands must explicitly specify a configuration file with `-c`. See the [
 - [bgptools/anycast-prefixes](https://github.com/bgptools/anycast-prefixes)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [runetfreedom/russia-blocked-geoip](https://github.com/runetfreedom/russia-blocked-geoip)
-- [hxehex/russia-mobile-internet-whitelist](https://github.com/hxehex/russia-mobile-internet-whitelist)
 - [Antifilter](https://antifilter.download/)
 - [1andrevich/Re-filter-lists](https://github.com/1andrevich/Re-filter-lists)
