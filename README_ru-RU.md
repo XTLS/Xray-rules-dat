@@ -159,7 +159,9 @@ DAT-файлы отдельных категорий находятся в ка�
 | Чёрный список для России                                                | `blocked-in-ru`                 | Есть     | Есть     |
 | Белый список для России                                                 | `located-in-ru`                 | Есть     | Есть     |
 | Расширенный чёрный список для России                                    | `blocked-in-ru-expand`          | Нет      | Есть     |
+| Чёрный список для Ирана                                                 | `blocked-in-ir`                 | Есть     | Есть     |
 | Белый список для Ирана                                                  | `located-in-ir`                 | Есть     | Есть     |
+| Расширенный чёрный список для Ирана                                     | `blocked-in-ir-expand`          | Нет      | Есть     |
 | Расширенный белый список для Ирана                                      | `located-in-ir-expand`          | Нет      | Есть     |
 
 Сочетания категорий, руководство по миграции и источники данных описаны в [документации GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_ru-RU.md).
@@ -299,3 +301,6 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
+- [MrDevAnony/DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
+- [armanlife/iran-blocked-domains](https://github.com/armanlife/iran-blocked-domains)
+- [armanlife/iran-sanctioned-domains](https://github.com/armanlife/iran-sanctioned-domains)

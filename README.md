@@ -159,7 +159,9 @@ The Full edition includes the following 250 country and territory categories.
 | Russia blacklist                                                        | `blocked-in-ru`        | Included     | Included |
 | Russia whitelist                                                        | `located-in-ru`        | Included     | Included |
 | Expanded Russia blacklist                                               | `blocked-in-ru-expand` | Not included | Included |
+| Iran blacklist                                                          | `blocked-in-ir`        | Included     | Included |
 | Iran whitelist                                                          | `located-in-ir`        | Included     | Included |
+| Expanded Iran blacklist                                                 | `blocked-in-ir-expand` | Not included | Included |
 | Expanded Iran whitelist                                                 | `located-in-ir-expand` | Not included | Included |
 
 For category combinations, migration guidance, and data sources, see the [GeoSite documentation](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README.md).
@@ -299,3 +301,6 @@ The project as a whole is licensed under [GPL-3.0](./LICENSE). Some tools (GeoSi
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
+- [MrDevAnony/DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
+- [armanlife/iran-blocked-domains](https://github.com/armanlife/iran-blocked-domains)
+- [armanlife/iran-sanctioned-domains](https://github.com/armanlife/iran-sanctioned-domains)

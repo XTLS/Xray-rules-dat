@@ -159,7 +159,9 @@ _به دلیل صف گردش‌کارها و سازوکار زمان‌بندی 
 | فهرست سیاه روسیه                                                        | `blocked-in-ru`          | دارد      | دارد        |
 | فهرست سفید روسیه                                                        | `located-in-ru`          | دارد      | دارد        |
 | فهرست سیاه گسترش‌یافتهٔ روسیه                                           | `blocked-in-ru-expand`   | ندارد     | دارد        |
+| فهرست سیاه ایران                                                        | `blocked-in-ir`          | دارد      | دارد        |
 | فهرست سفید ایران                                                        | `located-in-ir`          | دارد      | دارد        |
+| فهرست سیاه گسترش‌یافتهٔ ایران                                          | `blocked-in-ir-expand`   | ندارد     | دارد        |
 | فهرست سفید گسترش‌یافتهٔ ایران                                           | `located-in-ir-expand`   | ندارد     | دارد        |
 
 برای ترکیب دسته‌ها، راهنمای مهاجرت و منابع داده، [مستندات GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) را ببینید.
@@ -299,3 +301,6 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
+- [MrDevAnony/DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
+- [armanlife/iran-blocked-domains](https://github.com/armanlife/iran-blocked-domains)
+- [armanlife/iran-sanctioned-domains](https://github.com/armanlife/iran-sanctioned-domains)
