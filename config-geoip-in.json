@@ -28,6 +28,30 @@
       }
     },
     {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cn@ctcc",
+        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/chinanet46.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cn@cucc",
+        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/unicom46.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cn@cmcc",
+        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/cmcc46.txt"
+      }
+    },
+    {
       "type": "ipinfoCountryMMDB",
       "action": "add",
       "args": {
@@ -193,6 +217,9 @@
         "outputDir": "./tmp/geoip-in",
         "wantedList": [
           "cn",
+          "cn@ctcc",
+          "cn@cucc",
+          "cn@cmcc",
           "ir",
           "ru",
           "blacklist-ir",

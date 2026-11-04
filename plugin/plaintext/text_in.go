@@ -190,7 +190,7 @@ func (t *TextIn) walkLocalFile(path, name string, entries map[string]*lib.Entry)
 		entryName = filepath.Base(path)
 
 		// check filename
-		if !regexp.MustCompile(`^[a-zA-Z0-9_.\-]+$`).MatchString(entryName) {
+		if !regexp.MustCompile(`^[a-zA-Z0-9_.@\-]+$`).MatchString(entryName) {
 			return fmt.Errorf("filename %s cannot be entry name, please remove special characters in it", entryName)
 		}
 
