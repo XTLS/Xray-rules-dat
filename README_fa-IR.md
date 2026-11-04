@@ -15,12 +15,12 @@ _به دلیل صف گردش‌کارها و سازوکار زمان‌بندی 
 
 ## دانلود سریع
 
-| داده                | فایل                 | محتوا                                                                                                                             | GitHub Releases                                                                              | آینه‌های jsDelivr                                                                                                                                                                   |
-| ------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeoIP سبک           | `geoip-lite.dat`     | فهرست‌های سیاه و سفید برای سرزمین اصلی چین، روسیه و ایران، به‌همراه داده‌های IP شبکه‌های خصوصی، سرویس‌های پرکاربرد و موارد دیگر   | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoIP کامل          | `geoip-full.dat`     | تمام داده‌های مسیریابی نسخهٔ سبک، به‌همراه داده‌های موقعیت جغرافیایی IP در سراسر جهان و نشانی‌های IP از نوع Anycast               | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
-| GeoSite استاندارد   | `geosite.dat`        | دسته‌بندی دامنه‌های پروژهٔ بالادستی، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها برای سرزمین اصلی چین، روسیه و ایران                  | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [پیش‌فرض](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
-| GeoSite گسترش‌یافته | `geosite-expand.dat` | تمام دسته‌بندی‌های نسخهٔ استاندارد، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها با پوشش گسترده‌تر برای سرزمین اصلی چین، روسیه و ایران | [دانلود](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | حجم فایل بیش از حد مجاز است                                                                                                                                                         |
+| داده                | فایل                 | محتوا                                                                                                                             | GitHub Releases                                                                                                                                                                             |
+| ------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeoIP سبک           | `geoip-lite.dat`     | فهرست‌های سیاه و سفید برای سرزمین اصلی چین، روسیه و ایران، به‌همراه داده‌های IP شبکه‌های خصوصی، سرویس‌های پرکاربرد و موارد دیگر   | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz)         |
+| GeoIP کامل          | `geoip-full.dat`     | تمام داده‌های مسیریابی نسخهٔ سبک، به‌همراه داده‌های موقعیت جغرافیایی IP در سراسر جهان و نشانی‌های IP از نوع Anycast               | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat.gz)         |
+| GeoSite استاندارد   | `geosite.dat`        | دسته‌بندی دامنه‌های پروژهٔ بالادستی، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها برای سرزمین اصلی چین، روسیه و ایران                  | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat.gz)               |
+| GeoSite گسترش‌یافته | `geosite-expand.dat` | تمام دسته‌بندی‌های نسخهٔ استاندارد، به‌همراه فهرست‌های سیاه و سفید دامنه‌ها با پوشش گسترده‌تر برای سرزمین اصلی چین، روسیه و ایران | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat.gz) |
 
 \* نسخهٔ سبک GeoIP برای تفکیک پایهٔ ترافیک مستقیم و پراکسی در سرزمین اصلی چین، روسیه و ایران مناسب است.\
 \* نسخهٔ کامل GeoIP برای مسیریابی دقیق‌تر بر اساس کشور مقصد ترافیک و همچنین نیازهای تفکیک ترافیک مستقیم و پراکسی در سایر کشورها و مناطق مناسب است.\
@@ -161,7 +161,7 @@ _به دلیل صف گردش‌کارها و سازوکار زمان‌بندی 
 | فهرست سیاه گسترش‌یافتهٔ روسیه                                           | `blocked-in-ru-expand`   | ندارد     | دارد        |
 | فهرست سیاه ایران                                                        | `blocked-in-ir`          | دارد      | دارد        |
 | فهرست سفید ایران                                                        | `located-in-ir`          | دارد      | دارد        |
-| فهرست سیاه گسترش‌یافتهٔ ایران                                          | `blocked-in-ir-expand`   | ندارد     | دارد        |
+| فهرست سیاه گسترش‌یافتهٔ ایران                                           | `blocked-in-ir-expand`   | ندارد     | دارد        |
 | فهرست سفید گسترش‌یافتهٔ ایران                                           | `located-in-ir-expand`   | ندارد     | دارد        |
 
 برای ترکیب دسته‌ها، راهنمای مهاجرت و منابع داده، [مستندات GeoSite](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_fa-IR.md) را ببینید.
@@ -178,7 +178,7 @@ _به دلیل صف گردش‌کارها و سازوکار زمان‌بندی 
 
 ### GitHub Releases
 
-در GitHub Releases فقط فایل‌های کامل DAT ارائه می‌شوند. آخرین نسخه و نسخه‌های پیشین در [صفحهٔ انتشارها](https://github.com/XTLS/Xray-rules-dat/releases) در دسترس هستند.
+در GitHub Releases فقط بسته‌های کامل داده ارائه می‌شوند. آخرین نسخه و نسخه‌های پیشین در [صفحهٔ انتشارها](https://github.com/XTLS/Xray-rules-dat/releases) در دسترس هستند.
 
 برای به‌روزرسانی خودکار می‌توانید از نشانی ثابت زیر استفاده کنید. کافی است `<filename>` را با نام فایل مورد نظر جایگزین کنید تا آخرین نسخه را دریافت کنید:
 
@@ -188,7 +188,7 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 ### شاخهٔ `release`
 
-شاخهٔ `release` نیز آخرین فایل‌های کامل را به‌همراه فایل‌های جداگانهٔ هر دسته و فایل‌های افزایشی ارائه می‌کند، اما نسخه‌های پیشین را نگه نمی‌دارد.
+شاخهٔ `release` آخرین بسته‌های کامل داده را فقط در قالب فشردهٔ `.dat.gz`، به‌همراه فایل‌های جداگانهٔ هر دسته و فایل‌های افزایشی ارائه می‌کند. نسخه‌های پیشین نگه‌داری نمی‌شوند.
 
 با [مرور این شاخه](https://github.com/XTLS/Xray-rules-dat/tree/release)، فایل مورد نظر را پیدا کنید و مسیر آن (مانند `geoip/dat/us.dat`) را به‌جای `<path>` قرار دهید. نشانی زیر برای به‌روزرسانی خودکار قابل استفاده است:
 
@@ -206,9 +206,9 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 </details>
 
-برای هر فایل داده، یک فایل متناظر با پسوند `.sha256sum` برای بررسی صحت در همان مسیر وجود دارد.
+همهٔ فایل‌های DAT در قالب فشردهٔ `.dat.gz` در دسترس هستند. به‌روزرسانی خودکار داخلی Xray مستقیماً از این قالب پشتیبانی می‌کند؛ هسته هنگام دانلود، فایل‌ها را به‌طور خودکار از حالت فشرده خارج می‌کند و مصرف ترافیک را ۸۰٪ کاهش می‌دهد.
 
-برای هر فایل `.dat`، نسخهٔ فشردهٔ `.gz` و فایل بررسی صحت آن با پسوند `.gz.sha256sum` نیز در همان مسیر وجود دارد. به‌روزرسانی خودکار داخلی Xray می‌تواند مستقیماً از قالب `.gz` استفاده کند؛ هسته هنگام دانلود داده‌ها را به‌طور خودکار از حالت فشرده خارج می‌کند و مصرف ترافیک ۸۰٪ کاهش می‌یابد.
+برای هر فایل داده، یک فایل متناظر با پسوند `.sha256sum` برای بررسی صحت در همان مسیر وجود دارد.
 
 ## استفاده در Xray
 
@@ -224,7 +224,8 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
     "cron": "0 4 * * *",
     "assets": [
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz", // قالب .gz ترافیک کمتری مصرف می‌کند و هنگام دانلود خودکار از حالت فشرده خارج می‌شود
+        // فایل‌های .dat.gz ترافیک کمتری مصرف می‌کنند و هنگام دانلود به‌طور خودکار از حالت فشرده خارج می‌شوند
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz",
         "file": "geoip.dat"
       },
       {

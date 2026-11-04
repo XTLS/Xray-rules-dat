@@ -112,7 +112,6 @@ jobs:
         working-directory: ./geosite
         run: |
           go build -v -o ./geosite ./geositebuilder/main.go
-          go build -v -o ./datadump ./geositedumper/main.go
           go build -v -o ./extract-abp ./tool/abpextract/main.go
           go build -v -o ./extract-dnsmasq ./tool/dnsmasqextract/main.go
           go build -v -o ./sanitize ./tool/sanitizer/main.go
@@ -129,7 +128,6 @@ jobs:
         working-directory: ./geosite
         run: |
           ./geosite --datapath ../dlc/data/ --outputname validation.dat --outputdir ./output/validate/
-          ./datadump --inputdata ./output/validate/validation.dat --outputdir ./output/validate/
 
       - name: Prepare base data directories
         run: |
@@ -150,27 +148,17 @@ jobs:
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/std --outputdir ./output/
-          ./datadump --inputdata ./output/geosite.dat --outputdir ./output/
 
       - name: Build GeoSite Expanded
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --outputname geosite-expand.dat --outputdir ./output/
-          # File too large
-          # ./datadump --inputdata ./output/geosite-expand.dat --outputdir ./output/
 
       - name: Build GeoSite Deltas and Supplement lists
         working-directory: ./geosite
         run: |
           ./geosite --datapath ./data/exp --datprofile ./tasks/delta.json --outputdir ./output/delta/
-          # File too large
-          # for file in ./output/delta/*.dat; do
-          #   ./datadump --inputdata "$file" --outputdir ./output/delta/
-          # done
           ./geosite --datapath ./data/exp --datprofile ./tasks/supplement.json --outputdir ./output/supplement/
-          for file in ./output/supplement/*.dat; do
-            ./datadump --inputdata "$file" --outputdir ./output/supplement/
-          done
 
       - name: Collect GeoSite outputs
         run: mv ./geosite/output/* ./output/geosite/
@@ -216,15 +204,14 @@ jobs:
             (cd "$dir" && sha256sum -- "$name" > "${name}.sha256sum")
           done
 
-      - name: Push all assets to release branch
+      - name: Push assets to release branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git -C ./output init --initial-branch=release
           git -C ./output config user.name "github-actions[bot]"
           git -C ./output config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # git -C ./output add -A
-          # Prevent 104,857,600 B rejection
+          (cd ./output && find . -type f ! -size -104857600c -printf '::warning::Skipping %p (100 MiB or larger) for release branch\n')
           (cd ./output && find . -type f -size -104857600c -exec git add {} +)
           git -C ./output commit -m "$RELEASE_NAME"
           git -C ./output remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"

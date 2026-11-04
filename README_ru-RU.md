@@ -15,12 +15,12 @@ _Из-за очередей и особенностей планирования
 
 ## Быстрое скачивание
 
-| Данные           | Файл                 | Содержимое                                                                                                                          | GitHub Releases                                                                               | Зеркала jsDelivr                                                                                                                                                                     |
-| ---------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GeoIP Lite       | `geoip-lite.dat`     | Чёрные и белые списки для материкового Китая, России и Ирана, а также IP-данные частных сетей, популярных сервисов и др.            | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [Основное](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoIP Full       | `geoip-full.dat`     | Все данные для маршрутизации из версии Lite, а также данные геолокации IP по всему миру и Anycast-адреса                            | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | Слишком большой файл                                                                                                                                                                 |
-| GeoSite Standard | `geosite.dat`        | Категории доменов из исходного проекта, дополненные чёрными и белыми списками доменов для материкового Китая, России и Ирана        | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [Основное](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
-| GeoSite Expanded | `geosite-expand.dat` | Все категории версии Standard, а также чёрные и белые списки доменов с более широким охватом для материкового Китая, России и Ирана | [Скачать](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | Слишком большой файл                                                                                                                                                                 |
+| Данные           | Файл                 | Содержимое                                                                                                                          | GitHub Releases                                                                                                                                                                             |
+| ---------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeoIP Lite       | `geoip-lite.dat`     | Чёрные и белые списки для материкового Китая, России и Ирана, а также IP-данные частных сетей, популярных сервисов и др.            | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz)         |
+| GeoIP Full       | `geoip-full.dat`     | Все данные для маршрутизации из версии Lite, а также данные геолокации IP по всему миру и Anycast-адреса                            | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat.gz)         |
+| GeoSite Standard | `geosite.dat`        | Категории доменов из исходного проекта, дополненные чёрными и белыми списками доменов для материкового Китая, России и Ирана        | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat.gz)               |
+| GeoSite Expanded | `geosite-expand.dat` | Все категории версии Standard, а также чёрные и белые списки доменов с более широким охватом для материкового Китая, России и Ирана | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat.gz) |
 
 \* Версия GeoIP Lite подходит для базового разделения трафика на прямые и проксируемые соединения в материковом Китае, России и Иране.\
 \* Версия GeoIP Full позволяет точнее маршрутизировать трафик по стране назначения, а также подходит для разделения трафика на прямые и проксируемые соединения в других странах и регионах.\
@@ -178,7 +178,7 @@ DAT-файлы отдельных категорий находятся в ка�
 
 ### GitHub Releases
 
-В GitHub Releases доступны только полные DAT-файлы. Последняя и предыдущие версии находятся на [странице выпусков](https://github.com/XTLS/Xray-rules-dat/releases).
+В GitHub Releases доступны только полные наборы данных. Последняя и предыдущие версии находятся на [странице выпусков](https://github.com/XTLS/Xray-rules-dat/releases).
 
 Для автоматического обновления используйте следующий постоянный адрес, заменив `<filename>` нужным именем файла для получения последней версии:
 
@@ -188,7 +188,7 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 ### Ветка `release`
 
-Ветка `release` также содержит последние полные файлы и дополнительно файлы отдельных категорий и дельта-файлы, но не хранит предыдущие версии.
+Ветка `release` содержит актуальные полные наборы данных только в сжатом формате `.dat.gz`, а также файлы отдельных категорий и дельта-файлы. Предыдущие версии не сохраняются.
 
 [Откройте ветку](https://github.com/XTLS/Xray-rules-dat/tree/release), найдите нужный файл и подставьте его путь (например, `geoip/dat/us.dat`) вместо `<path>`. Следующий адрес можно использовать для автоматического обновления:
 
@@ -206,9 +206,9 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 </details>
 
-Для каждого файла данных в том же расположении доступен соответствующий файл контрольной суммы `.sha256sum`.
+Все DAT-файлы доступны в сжатом формате `.dat.gz`. Встроенное автообновление Xray поддерживает этот формат напрямую; ядро автоматически распаковывает файлы при скачивании, сокращая трафик на 80%.
 
-Для каждого файла `.dat` в том же расположении также доступны сжатая версия `.gz` и её файл контрольной суммы `.gz.sha256sum`. Для встроенного автообновления Xray можно напрямую использовать формат `.gz`: ядро автоматически распаковывает данные при скачивании, что сокращает трафик на 80%.
+Для каждого файла данных в том же расположении доступен соответствующий файл контрольной суммы `.sha256sum`.
 
 ## Использование в Xray
 
@@ -224,7 +224,8 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
     "cron": "0 4 * * *",
     "assets": [
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz", // Формат .gz экономит трафик, данные автоматически распаковываются при скачивании
+        // Файлы .dat.gz экономят трафик и автоматически распаковываются при скачивании
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz",
         "file": "geoip.dat"
       },
       {

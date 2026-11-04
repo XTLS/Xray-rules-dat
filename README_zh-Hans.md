@@ -15,12 +15,12 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 
 ## 快速下载
 
-| 数据           | 文件                 | 内容                                                                         | GitHub Releases                                                                            | jsDelivr 镜像                                                                                                                                                                    |
-| -------------- | -------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeoIP 精简版   | `geoip-lite.dat`     | 面向中国大陆、俄罗斯和伊朗的黑白名单，以及私有网络、常用服务等 IP 数据       | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat)     | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geoip/geoip-lite.dat) |
-| GeoIP 完整版   | `geoip-full.dat`     | 包含精简版分流数据，另提供全球 IP 地理位置数据及任播（Anycast）IP            | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat)     | 体积过大                                                                                                                                                                         |
-| GeoSite 标准版 | `geosite.dat`        | 上游域名分类，以及针对中国大陆、俄罗斯和伊朗补充的域名黑白名单               | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat)        | [默认](https://cdn.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat) / [Fastly](https://fastly.jsdelivr.net/gh/XTLS/Xray-rules-dat@release/geosite/geosite.dat)   |
-| GeoSite 扩展版 | `geosite-expand.dat` | 包含标准版全部分类，并为中国大陆、俄罗斯和伊朗提供覆盖范围更广的域名黑白名单 | [下载](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) | 体积过大                                                                                                                                                                         |
+| 数据           | 文件                 | 内容                                                                         | GitHub Releases                                                                                                                                                                             |
+| -------------- | -------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeoIP 精简版   | `geoip-lite.dat`     | 面向中国大陆、俄罗斯和伊朗的黑白名单，以及私有网络、常用服务等 IP 数据       | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz)         |
+| GeoIP 完整版   | `geoip-full.dat`     | 包含精简版分流数据，另提供全球 IP 地理位置数据及任播（Anycast）IP            | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-full.dat.gz)         |
+| GeoSite 标准版 | `geosite.dat`        | 上游域名分类，以及针对中国大陆、俄罗斯和伊朗补充的域名黑白名单               | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite.dat.gz)               |
+| GeoSite 扩展版 | `geosite-expand.dat` | 包含标准版全部分类，并为中国大陆、俄罗斯和伊朗提供覆盖范围更广的域名黑白名单 | [dat](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat) / [dat.gz](https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geosite-expand.dat.gz) |
 
 \* GeoIP 精简版适合中国大陆、俄罗斯和伊朗的基本直连／代理分流。\
 \* GeoIP 完整版适合按流量目的地国家进一步精细分流，也适用于其他国家和地区的直连／代理分流需求。\
@@ -159,9 +159,9 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 | 俄罗斯黑名单                                                            | `blocked-in-ru`        | 包含   | 包含   |
 | 俄罗斯白名单                                                            | `located-in-ru`        | 包含   | 包含   |
 | 俄罗斯扩展黑名单                                                        | `blocked-in-ru-expand` | 不包含 | 包含   |
-| 伊朗黑名单                                                             | `blocked-in-ir`        | 包含   | 包含   |
+| 伊朗黑名单                                                              | `blocked-in-ir`        | 包含   | 包含   |
 | 伊朗白名单                                                              | `located-in-ir`        | 包含   | 包含   |
-| 伊朗扩展黑名单                                                           | `blocked-in-ir-expand` | 不包含 | 包含   |
+| 伊朗扩展黑名单                                                          | `blocked-in-ir-expand` | 不包含 | 包含   |
 | 伊朗扩展白名单                                                          | `located-in-ir-expand` | 不包含 | 包含   |
 
 分类组合、迁移指南及数据来源详见 [GeoSite 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
@@ -178,7 +178,7 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 
 ### GitHub Releases
 
-GitHub Releases 仅提供整包 DAT 文件。最新及历史版本均见[发布页面](https://github.com/XTLS/Xray-rules-dat/releases)。
+GitHub Releases 仅提供整包文件。最新及历史版本均见[发布页面](https://github.com/XTLS/Xray-rules-dat/releases)。
 
 以下固定地址可用于自动更新，将 `<filename>` 替换为所需文件名即可获取最新版本：
 
@@ -188,7 +188,7 @@ https://github.com/XTLS/Xray-rules-dat/releases/latest/download/<filename>
 
 ### “release” 分支
 
-“release” 分支同样提供最新的整包文件，并额外提供逐分类和增量文件，但不保留历史版本。
+“release” 分支仅提供最新整包的 `.dat.gz` 压缩版，并额外提供逐分类和增量文件，但不保留历史版本。
 
 [浏览该分支](https://github.com/XTLS/Xray-rules-dat/tree/release)查找所需文件，将其路径（如 `geoip/dat/us.dat`）填入 `<path>`，以下地址即可用于自动更新：
 
@@ -206,9 +206,9 @@ https://raw.githubusercontent.com/XTLS/Xray-rules-dat/release/<path>
 
 </details>
 
-每个数据文件在同一位置都有对应的 `.sha256sum` 校验文件。
+DAT 文件均提供 `.dat.gz` 压缩版。Xray 内置自动更新可直接使用，下载时核心自动解压，节省 80% 流量。
 
-每个 `.dat` 文件在同一位置还提供 `.gz` 压缩文件及其 `.gz.sha256sum` 校验文件。Xray 内置自动更新可直接使用 `.gz` 格式，下载时核心自动解压，节省 80% 流量。
+每个数据文件在同一位置都有对应的 `.sha256sum` 校验文件。
 
 ## Xray 用法
 
@@ -224,7 +224,8 @@ Xray 发布包默认随附精简版 GeoIP 和标准版 GeoSite，已分别命名
     "cron": "0 4 * * *",
     "assets": [
       {
-        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz", // .gz 格式更省流量，下载时自动解压
+        // .dat.gz 压缩版更省流量，下载时自动解压
+        "url": "https://github.com/XTLS/Xray-rules-dat/releases/latest/download/geoip-lite.dat.gz",
         "file": "geoip.dat"
       },
       {
