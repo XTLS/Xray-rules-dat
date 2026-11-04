@@ -23,11 +23,14 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | 与 domain-list-community 一致的数据索引 | 来自 v2fly/domain-list-community 的完整数据 | | | 未对相关数据索引进行改动或调整 |
 | `gfwlist-cn` | 来自 GFWList 的数据，经过 abpextract 转换为 GeoSite 语义 | `blocked-in-cn` | | |
 | `iran-hosted-domains-lite` | 来自 Chocolate4U/Iran-v2ray-rules 中经过有效性检查的用于绕过伊朗境内的域名集合 | `located-in-ir` | | 与 Chocolate4U/Iran-v2ray-rules 中 `category-ir` 一致 |
+| `dynx-antiban-domains` | MrDevAnony/DynX-AntiBan-Domains | `blocked-in-ir` | | |
+| `iran-sanctioned-domains` | armanlife/iran-sanctioned-domains | `blocked-in-ir` | | |
 | `available-only-in-ru` | 来自 runetfreedom/russia-domains-list 中仅能在俄罗斯境内使用的域名 | `located-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-available-only-inside` 一致 |
 | `refilter` | 来自 Re:filter 的完整域名列表 | `blocked-in-ru` | | |
 | `refilter-community` | 来自 Re:filter 的限制来自俄罗斯地址访问的域名列表 | `blocked-in-ru` | | |
 | `antifilter-list-community` | 来自 Antifilter.Download community edition 的域名列表 | `blocked-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download-community` 一致 |
 | `blocked-in-cn` | 中国大陆黑名单 | |  `gfwlist-cn` | |
+| `blocked-in-ir` | 伊朗黑名单 | | `dynx-antiban-domains` `iran-sanctioned-domains` | |
 | `blocked-in-ru` | 俄罗斯黑名单 | | `refilter` `refilter-community` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
 | `located-in-cn` | 中国大陆白名单 | | `tld-cn` `geolocation:cn` | |
 | `located-in-ir` | 伊朗白名单 | | `category-ir` `iran-hosted-domains-lite` | |
@@ -43,6 +46,9 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | `greatfire-list-cn` | 来自 GreatFire.org 的数据，由 Loyalsoldier/cn-blocked-domain 转换 | `blocked-in-cn-expand` | | |
 | `iran-hosted-domains-lite` | 来自 Chocolate4U/Iran-v2ray-rules 中经过有效性检查的用于绕过伊朗境内的域名集合 | `located-in-ir` `located-in-ir-expand` | | 与 Chocolate4U/Iran-v2ray-rules 中 `category-ir` 一致 |
 | `iran-hosted-domains` | 来自 Iran Hosted Domains 中用于绕过伊朗境内的域名集合 | `located-in-ir-expand` | | 与 Chocolate4U/Iran-v2ray-rules 中 `ir` 一致 |
+| `dynx-antiban-domains` | MrDevAnony/DynX-AntiBan-Domains | `blocked-in-ir` `blocked-in-ir-expand` | | |
+| `iran-sanctioned-domains` | armanlife/iran-sanctioned-domains | `blocked-in-ir` `blocked-in-ir-expand` | | |
+| `iran-blocked-domains` | armanlife/iran-blocked-domains | `blocked-in-ir-expand` | | |
 | `available-only-in-ru` | 来自 runetfreedom/russia-domains-list 中仅能在俄罗斯境内使用的域名 | `located-in-ru` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-available-only-inside` 一致 |
 | `refilter` | 来自 Re:filter 的完整域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | |
 | `refilter-community` | 来自 Re:filter 的限制来自俄罗斯地址访问的域名列表 | `blocked-in-ru` `blocked-in-ru-expand` | | |
@@ -50,6 +56,8 @@ GeoSite 数据的精准程度与覆盖程度，会对基于域名的分流效果
 | `antifilter-list-full` | 来自 Antifilter.Download 的域名列表 | `blocked-in-ru-expand` | | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `antifilter-download` 一致；记录数过多，慎用 |
 | `blocked-in-cn` | 中国大陆黑名单 | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | 中国大陆扩展黑名单 | | `blocked-in-cn` `greatfire-list-cn` | |
+| `blocked-in-ir` | 伊朗黑名单 | `blocked-in-ir-expand` | `dynx-antiban-domains` `iran-sanctioned-domains` | |
+| `blocked-in-ir-expand` | 伊朗扩展黑名单 | | `blocked-in-ir` `iran-blocked-domains` | |
 | `blocked-in-ru` | 俄罗斯黑名单 | `blocked-in-ru-expand` | `refilter` `refilter-community` `antifilter-list-community` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked` 一致 |
 | `blocked-in-ru-expand` | 俄罗斯扩展黑名单 | | `blocked-in-ru` `antifilter-list-full` | 与 russia-blocked-geosite 和 russia-v2ray-rules-dat 中 `ru-blocked-all` 一致；记录数过多，慎用 |
 | `located-in-cn` | 中国大陆白名单 | `located-in-cn-expand` | `tld-cn` `geolocation:cn` | |
@@ -84,13 +92,16 @@ go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir 
 ## 致谢
 
 - 本项目从 [`v2fly/domain-list-community@e449533`](https://github.com/v2fly/domain-list-community/commit/e449533a4ab2c00716e351f13b592153b39a5618) 获得数据编码器、数据导出器并进行移植而来
-- [Domain list community](https://github.com/v2fly/domain-list-community)
+- [Domain List Community](https://github.com/v2fly/domain-list-community)
 - [Antifilter](https://antifilter.download/)
-- [Antifilter.Download community edition](https://community.antifilter.download/)
+- [Antifilter.Download Community Edition](https://community.antifilter.download/)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
 - [GFWList](https://github.com/gfwlist/gfwlist)
 - [Iran Hosted Domains](https://github.com/bootmortis/iran-hosted-domains)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [List of Blocked Domains in Iran](https://github.com/armanlife/iran-blocked-domains)
+- [List of sanctioned domains for Iran](https://github.com/armanlife/iran-sanctioned-domains)
 - [Re:filter](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)

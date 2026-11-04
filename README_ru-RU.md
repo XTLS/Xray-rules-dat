@@ -23,11 +23,14 @@
 | Индексы данных, соответствующие `domain-list-community` | Полный набор данных из `v2fly/domain-list-community` | | | Соответствующие индексы данных не изменялись и не корректировались. |
 | `gfwlist-cn` | Данные из GFWList, преобразованные утилитой `abpextract` в соответствии с семантикой GeoSite | `blocked-in-cn` | | |
 | `iran-hosted-domains-lite` | Проверенный набор доменов из `Chocolate4U/Iran-v2ray-rules`, предназначенный для обхода ограничений внутри Ирана | `located-in-ir` | | Соответствует категории `category-ir` в `Chocolate4U/Iran-v2ray-rules`. |
+| `dynx-antiban-domains` | MrDevAnony/DynX-AntiBan-Domains | `blocked-in-ir` | | |
+| `iran-sanctioned-domains` | armanlife/iran-sanctioned-domains | `blocked-in-ir` | | |
 | `available-only-in-ru` | Домены, доступные только на территории России, из `runetfreedom/russia-domains-list` | `located-in-ru` | | Соответствует категории `ru-available-only-inside` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `refilter` | Полный список доменов из Re:filter | `blocked-in-ru` | | |
 | `refilter-community` | Полный список доменов от сообщества из Re:filter | `blocked-in-ru` | | |
 | `antifilter-list-community` | Список доменов из сообщества Antifilter.Download | `blocked-in-ru` | | Соответствует категории `antifilter-download-community` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `blocked-in-cn` | Чёрный список для материкового Китая | | `gfwlist-cn` | |
+| `blocked-in-ir` | Чёрный список для Ирана | | `dynx-antiban-domains`, `iran-sanctioned-domains` | |
 | `blocked-in-ru` | Чёрный список для России | | `refilter`, `refilter-community`, `antifilter-list-community` | Соответствует категории `ru-blocked` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `located-in-cn` | Белый список для материкового Китая | | `tld-cn` `geolocation:cn` | |
 | `located-in-ir` | Белый список для Ирана | | `category-ir` `iran-hosted-domains-lite` | |
@@ -43,6 +46,9 @@
 | `greatfire-list-cn` | Данные из GreatFire.org, преобразованные проектом `Loyalsoldier/cn-blocked-domain` | `blocked-in-cn-expand` | | |
 | `iran-hosted-domains-lite` | Проверенный набор доменов из `Chocolate4U/Iran-v2ray-rules`, предназначенный для обхода ограничений внутри Ирана | `located-in-ir`, `located-in-ir-expand` | | Соответствует категории `category-ir` в `Chocolate4U/Iran-v2ray-rules`. |
 | `iran-hosted-domains` | Набор доменов для обхода ограничений внутри Ирана из Iran Hosted Domains | `located-in-ir-expand` | | Соответствует категории `ir` в `Chocolate4U/Iran-v2ray-rules`. |
+| `dynx-antiban-domains` | MrDevAnony/DynX-AntiBan-Domains | `blocked-in-ir`, `blocked-in-ir-expand` | | |
+| `iran-sanctioned-domains` | armanlife/iran-sanctioned-domains | `blocked-in-ir`, `blocked-in-ir-expand` | | |
+| `iran-blocked-domains` | armanlife/iran-blocked-domains | `blocked-in-ir-expand` | | |
 | `available-only-in-ru` | Домены, доступные только на территории России, из `runetfreedom/russia-domains-list` | `located-in-ru` | | Соответствует категории `ru-available-only-inside` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `refilter` | Полный список доменов из Re:filter | `blocked-in-ru`, `blocked-in-ru-expand` | | |
 | `refilter-community` | Полный список доменов от сообщества из Re:filter | `blocked-in-ru`, `blocked-in-ru-expand` | | |
@@ -50,6 +56,8 @@
 | `antifilter-list-full` | Список доменов из Antifilter.Download | `blocked-in-ru-expand` | | Соответствует категории `antifilter-download` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. Содержит очень много записей; используйте с осторожностью. |
 | `blocked-in-cn` | Чёрный список для материкового Китая | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | Расширенный чёрный список для материкового Китая | | `blocked-in-cn`, `greatfire-list-cn` | |
+| `blocked-in-ir` | Чёрный список для Ирана | `blocked-in-ir-expand` | `dynx-antiban-domains`, `iran-sanctioned-domains` | |
+| `blocked-in-ir-expand` | Расширенный чёрный список для Ирана | | `blocked-in-ir`, `iran-blocked-domains` | |
 | `blocked-in-ru` | Чёрный список для России | `blocked-in-ru-expand` | `refilter`, `refilter-community`, `antifilter-list-community` | Соответствует категории `ru-blocked` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. |
 | `blocked-in-ru-expand` | Расширенный чёрный список для России | | `blocked-in-ru`, `antifilter-list-full` | Соответствует категории `ru-blocked-all` в `russia-blocked-geosite` и `russia-v2ray-rules-dat`. Содержит очень много записей; используйте с осторожностью. |
 | `located-in-cn` | Белый список для материкового Китая | `located-in-cn-expand` | `tld-cn`, `geolocation:cn` | |
@@ -91,8 +99,11 @@ go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir 
 - [Antifilter.Download Community Edition](https://community.antifilter.download/)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
 - [GFWList](https://github.com/gfwlist/gfwlist)
 - [Iran Hosted Domains](https://github.com/bootmortis/iran-hosted-domains)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [List of Blocked Domains in Iran](https://github.com/armanlife/iran-blocked-domains)
+- [List of sanctioned domains for Iran](https://github.com/armanlife/iran-sanctioned-domains)
 - [Re:filter](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)

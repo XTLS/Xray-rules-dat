@@ -18,10 +18,9 @@
 		"mode": "allowlist",
 		"lists": [
 			"located-in-ir-expand",
-			"iran-hosted-domains"
-		],
-		"backseated": [
-			"blocked-in-ir-expand"
+			"iran-hosted-domains",
+			"blocked-in-ir-expand",
+			"iran-blocked-domains"
 		]
 	},
 	{
@@ -45,7 +44,8 @@
 		"name": "supplement-ir.dat",
 		"mode": "allowlist",
 		"lists": [
-			"iran-hosted-domains"
+			"iran-hosted-domains",
+			"iran-blocked-domains"
 		]
 	},
 	{

@@ -23,11 +23,14 @@
 | شاخص‌های دادهٔ منطبق با `domain-list-community` | مجموعهٔ کامل داده‌های `v2fly/domain-list-community` | | | هیچ تغییری در شاخص‌های دادهٔ مربوطه اعمال نشده است. |
 | `gfwlist-cn` | داده‌های برگرفته از GFWList که با ابزار `abpextract` به قالبی سازگار با معناشناسی GeoSite تبدیل شده‌اند | `blocked-in-cn` | | |
 | `iran-hosted-domains-lite` | مجموعه‌ای از دامنه‌های بررسی‌شده از `Chocolate4U/Iran-v2ray-rules` که برای دور زدن محدودیت‌های داخل ایران در نظر گرفته شده‌اند | `located-in-ir` | | با دسته‌بندی `category-ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
+| `dynx-antiban-domains` | MrDevAnony/DynX-AntiBan-Domains | `blocked-in-ir` | | |
+| `iran-sanctioned-domains` | armanlife/iran-sanctioned-domains | `blocked-in-ir` | | |
 | `available-only-in-ru` | دامنه‌هایی که فقط در داخل روسیه در دسترس هستند، برگرفته از `runetfreedom/russia-domains-list` | `located-in-ru` | | با دسته‌بندی `ru-available-only-inside` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `refilter` | فهرست کامل دامنه‌های پروژهٔ Re:filter | `blocked-in-ru` | | |
 | `refilter-community` | فهرست دامنه‌هایی از Re:filter که دسترسی به آن‌ها از طریق آدرس‌های IP روسیه محدود شده است | `blocked-in-ru` | | |
 | `antifilter-list-community` | فهرست دامنه‌های نسخهٔ انجمنی Antifilter.Download | `blocked-in-ru` | | با دسته‌بندی `antifilter-download-community` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `blocked-in-cn` | فهرست سیاه سرزمین اصلی چین | | `gfwlist-cn` | |
+| `blocked-in-ir` | فهرست سیاه ایران | | `dynx-antiban-domains`, `iran-sanctioned-domains` | |
 | `blocked-in-ru` | فهرست سیاه روسیه | | `refilter`، `refilter-community`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `located-in-cn` | فهرست سفید سرزمین اصلی چین | | `tld-cn` `geolocation:cn` | |
 | `located-in-ir` | فهرست سفید ایران | | `category-ir` `iran-hosted-domains-lite` | |
@@ -43,6 +46,9 @@
 | `greatfire-list-cn` | داده‌های برگرفته از GreatFire.org که توسط پروژهٔ `Loyalsoldier/cn-blocked-domain` تبدیل شده‌اند | `blocked-in-cn-expand` | | |
 | `iran-hosted-domains-lite` | مجموعه‌ای از دامنه‌های بررسی‌شده از `Chocolate4U/Iran-v2ray-rules` که برای دور زدن محدودیت‌های داخل ایران در نظر گرفته شده‌اند | `located-in-ir`, `located-in-ir-expand` | | با دسته‌بندی `category-ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
 | `iran-hosted-domains` | مجموعه‌ای از دامنه‌ها برای دور زدن محدودیت‌های داخل ایران، برگرفته از Iran Hosted Domains | `located-in-ir-expand` | | با دسته‌بندی `ir` در `Chocolate4U/Iran-v2ray-rules` مطابقت دارد. |
+| `dynx-antiban-domains` | MrDevAnony/DynX-AntiBan-Domains | `blocked-in-ir`, `blocked-in-ir-expand` | | |
+| `iran-sanctioned-domains` | armanlife/iran-sanctioned-domains | `blocked-in-ir`, `blocked-in-ir-expand` | | |
+| `iran-blocked-domains` | armanlife/iran-blocked-domains | `blocked-in-ir-expand` | | |
 | `available-only-in-ru` | دامنه‌هایی که فقط در داخل روسیه در دسترس هستند، برگرفته از `runetfreedom/russia-domains-list` | `located-in-ru` | | با دسته‌بندی `ru-available-only-inside` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `refilter` | فهرست کامل دامنه‌های پروژهٔ Re:filter | `blocked-in-ru`، `blocked-in-ru-expand` | | |
 | `refilter-community` | فهرست دامنه‌هایی از Re:filter که دسترسی به آن‌ها از طریق آدرس‌های IP روسیه محدود شده است | `blocked-in-ru`، `blocked-in-ru-expand` | | |
@@ -50,6 +56,8 @@
 | `antifilter-list-full` | فهرست دامنه‌های Antifilter.Download | `blocked-in-ru-expand` | | با دسته‌بندی `antifilter-download` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
 | `blocked-in-cn` | فهرست سیاه سرزمین اصلی چین | `blocked-in-cn-expand` | `gfwlist-cn` | |
 | `blocked-in-cn-expand` | فهرست سیاه گسترش‌یافتهٔ سرزمین اصلی چین | | `blocked-in-cn`، `greatfire-list-cn` | |
+| `blocked-in-ir` | فهرست سیاه ایران | `blocked-in-ir-expand` | `dynx-antiban-domains`, `iran-sanctioned-domains` | |
+| `blocked-in-ir-expand` | فهرست سیاه گسترش‌یافتهٔ ایران | | `blocked-in-ir`, `iran-blocked-domains` | |
 | `blocked-in-ru` | فهرست سیاه روسیه | `blocked-in-ru-expand` | `refilter`، `refilter-community`، `antifilter-list-community` | با دسته‌بندی `ru-blocked` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. |
 | `blocked-in-ru-expand` | فهرست سیاه گسترش‌یافتهٔ روسیه | | `blocked-in-ru`، `antifilter-list-full` | با دسته‌بندی `ru-blocked-all` در `russia-blocked-geosite` و `russia-v2ray-rules-dat` مطابقت دارد. تعداد رکوردها بسیار زیاد است؛ با احتیاط استفاده کنید. |
 | `located-in-cn` | فهرست سفید سرزمین اصلی چین | `located-in-cn-expand` | `tld-cn`, `geolocation:cn` | |
@@ -91,8 +99,11 @@ go run ./main.go --datapath ./data --datprofile ./tasks/expand.json --outputdir 
 - [Antifilter.Download Community Edition](https://community.antifilter.download/)
 - [Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
 - [GFWList](https://github.com/gfwlist/gfwlist)
 - [Iran Hosted Domains](https://github.com/bootmortis/iran-hosted-domains)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
+- [List of Blocked Domains in Iran](https://github.com/armanlife/iran-blocked-domains)
+- [List of sanctioned domains for Iran](https://github.com/armanlife/iran-sanctioned-domains)
 - [Re:filter](https://github.com/1andrevich/Re-filter-lists)
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
