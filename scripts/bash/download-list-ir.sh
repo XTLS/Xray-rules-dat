@@ -9,9 +9,9 @@ cp ./temp/iran-hosted-domains-lite ./data/std/
 cp ./temp/iran-hosted-domains-lite ./data/exp/
 cp ./temp/iran-hosted-domains ./data/exp/
 echo "Downloading Iran black lists..."
-curl -L -o ./temp/dynx-antiban-domains https://raw.githubusercontent.com/MrDevAnony/DynX-AntiBan-Domains/refs/heads/main/DynX-AntiBan-list.lst
-cp ./temp/dynx-antiban-domains ./data/std/
-cp ./temp/dynx-antiban-domains ./data/exp/
+curl -L -o ./temp/pre-dynx-antiban-domains https://raw.githubusercontent.com/MrDevAnony/DynX-AntiBan-Domains/refs/heads/main/DynX-AntiBan-list.lst
+./sanitize --inputpath ./temp/pre-dynx-antiban-domains --outputname dynx-antiban-domains -outputdir ./data/std/
+./sanitize --inputpath ./temp/pre-dynx-antiban-domains --outputname dynx-antiban-domains -outputdir ./data/exp/
 curl -L -o ./temp/iran-sanctioned-domains https://raw.githubusercontent.com/armanlife/iran-sanctioned-domains/refs/heads/main/data/ir-sanctioned-domain
 cp ./temp/iran-sanctioned-domains ./data/std/
 cp ./temp/iran-sanctioned-domains ./data/exp/
