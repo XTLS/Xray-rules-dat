@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Building GeoSite Encoder..."
-go build -v -trimpath -o ./geosite ./main.go
+go build -v -trimpath -o ./geosite ./geositebuilder/main.go
 echo "Building GeoSite Data Dumper..."
 go build -v -trimpath -o ./datadump ./geositedumper/main.go
 echo "Building GeoSite Extract-ABP..."

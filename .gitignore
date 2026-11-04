@@ -67,6 +67,7 @@ $RECYCLE.BIN/
 # vendor/
 
 tmp/
+temp/
 data/
 geolite2/
 db-ip/

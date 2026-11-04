@@ -1,5 +1,5 @@
 Write-Host "Building GeoSite Encoder..."
-go build -v -trimpath -o ".\geosite.exe" ".\main.go"
+go build -v -trimpath -o ".\geosite.exe" ".\geositebuilder\main.go"
 Write-Host "Building GeoSite Data Dumper..."
 go build -v -trimpath -o ".\datadump.exe" ".\geositedumper\main.go"
 Write-Host "Building GeoSite Extract-ABP..."
