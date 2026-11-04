@@ -35,6 +35,8 @@ IPv6 仅使用 gaoyifan/china-operator-ip 的 china6.txt。
 
 中国大陆因 ISP 劣化国际网络，境外地址约等于黑名单，因此只维护直连白名单，不单列黑名单。
 
+另提供用于 ISP 分流的目标运营商子集：`in-cn@ctcc`（电信）、`in-cn@cucc`（联通）、`in-cn@cmcc`（移动）。
+
 ### 伊朗：`in-ir`、`blacklist-ir`
 
 `in-ir` 以 IPInfo Lite 原始 IR IPv4、IPv6 为基础，使用本地 ASN 数据补充 Eitaa（AS202798）和 GAP（AS210877），并合并 ArvanCloud、DerakCloud、IranServer、ParsPack 的 CDN 地址列表，以及伊朗特殊的六个本地服务私有地址。ParsPack 使用 Chocolate4U/Iran-v2ray-rules 提供的纯文本镜像。

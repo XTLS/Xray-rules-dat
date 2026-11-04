@@ -20,6 +20,30 @@
       "type": "text",
       "action": "add",
       "args": {
+        "name": "in-cn@ctcc",
+        "uri": "./tmp/geoip-in/cn@ctcc.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "in-cn@cucc",
+        "uri": "./tmp/geoip-in/cn@cucc.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "in-cn@cmcc",
+        "uri": "./tmp/geoip-in/cn@cmcc.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
         "name": "in-ir",
         "uri": "./tmp/geoip-in/ir.txt"
       }

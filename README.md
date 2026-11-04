@@ -35,6 +35,8 @@ IPv6 data comes only from china6.txt in gaoyifan/china-operator-ip.
 
 Because ISPs in mainland China degrade international connectivity, overseas addresses effectively constitute a blocklist. This project therefore maintains only a direct-connection allowlist for mainland China, without a separate blocklist.
 
+Subsets by destination network operator are also available for routing: `in-cn@ctcc` (China Telecom), `in-cn@cucc` (China Unicom), and `in-cn@cmcc` (China Mobile).
+
 ### Iran: `in-ir`, `blacklist-ir`
 
 Starting with IPInfo Lite's original IR IPv4 and IPv6 data, `in-ir` adds Eitaa (AS202798) and GAP (AS210877) from the local ASN database, CDN address lists from ArvanCloud, DerakCloud, IranServer, and ParsPack, and six private addresses used by specific local services in Iran. ParsPack data comes from the plain-text mirror provided by Chocolate4U/Iran-v2ray-rules.
