@@ -159,7 +159,9 @@ _受 GitHub Actions 工作流排队及调度机制影响，实际构建完成时
 | 俄罗斯黑名单                                                            | `blocked-in-ru`        | 包含   | 包含   |
 | 俄罗斯白名单                                                            | `located-in-ru`        | 包含   | 包含   |
 | 俄罗斯扩展黑名单                                                        | `blocked-in-ru-expand` | 不包含 | 包含   |
+| 伊朗黑名单                                                             | `blocked-in-ir`        | 包含   | 包含   |
 | 伊朗白名单                                                              | `located-in-ir`        | 包含   | 包含   |
+| 伊朗扩展黑名单                                                           | `blocked-in-ir-expand` | 不包含 | 包含   |
 | 伊朗扩展白名单                                                          | `located-in-ir-expand` | 不包含 | 包含   |
 
 分类组合、迁移指南及数据来源详见 [GeoSite 说明文档](https://github.com/XTLS/Xray-rules-dat/blob/geosite/README_zh-Hans.md)。
@@ -299,3 +301,6 @@ GeoSite 源码、数据来源和构建说明维护在 [`geosite` 分支](https:/
 - [runetfreedom/russia-domains-list](https://github.com/runetfreedom/russia-domains-list)
 - [Chocolate4U/Iran-v2ray-rules](https://github.com/Chocolate4U/Iran-v2ray-rules)
 - [bootmortis/iran-hosted-domains](https://github.com/bootmortis/iran-hosted-domains)
+- [MrDevAnony/DynX-AntiBan-Domains](https://github.com/MrDevAnony/DynX-AntiBan-Domains)
+- [armanlife/iran-blocked-domains](https://github.com/armanlife/iran-blocked-domains)
+- [armanlife/iran-sanctioned-domains](https://github.com/armanlife/iran-sanctioned-domains)
