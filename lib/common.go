@@ -5,12 +5,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
 
+var remoteHTTPClient = func() *retryablehttp.Client {
+	client := retryablehttp.NewClient()
+	client.RetryWaitMin = 5 * time.Minute
+	client.RetryWaitMax = 5 * time.Minute
+	client.RetryMax = 10
+	return client
+}()
+
+// GetRemoteURLResponse performs a GET with the shared retry policy.
+// The caller must close the response body.
+func GetRemoteURLResponse(url string) (*http.Response, error) {
+	return remoteHTTPClient.Get(url)
+}
+
 func GetRemoteURLContent(url string) ([]byte, error) {
-	resp, err := retryablehttp.Get(url)
+	resp, err := GetRemoteURLResponse(url)
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +39,7 @@ func GetRemoteURLContent(url string) ([]byte, error) {
 }
 
 func GetRemoteURLReader(url string) (io.ReadCloser, error) {
-	resp, err := retryablehttp.Get(url)
+	resp, err := GetRemoteURLResponse(url)
 	if err != nil {
 		return nil, err
 	}

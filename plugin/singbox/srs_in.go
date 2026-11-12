@@ -9,7 +9,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/hashicorp/go-retryablehttp"
 	"github.com/sagernet/sing-box/common/srs"
 	"github.com/xtls/geoip/lib"
 )
@@ -198,7 +197,7 @@ func (s *SRSIn) walkLocalFile(path, name string, entries map[string]*lib.Entry) 
 }
 
 func (s *SRSIn) walkRemoteFile(url, name string, entries map[string]*lib.Entry) error {
-	resp, err := retryablehttp.Get(url)
+	resp, err := lib.GetRemoteURLResponse(url)
 	if err != nil {
 		return err
 	}

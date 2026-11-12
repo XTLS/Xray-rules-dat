@@ -8,7 +8,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/go-retryablehttp"
 	"github.com/xtls/geoip/lib"
 	"google.golang.org/protobuf/proto"
 )
@@ -137,7 +136,7 @@ func (g *GeoIPDatIn) walkLocalFile(path string, entries map[string]*lib.Entry) e
 }
 
 func (g *GeoIPDatIn) walkRemoteFile(url string, entries map[string]*lib.Entry) error {
-	resp, err := retryablehttp.Get(url)
+	resp, err := lib.GetRemoteURLResponse(url)
 	if err != nil {
 		return err
 	}
